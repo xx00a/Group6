@@ -7,6 +7,9 @@
 - Master Code Coverage
 - Develop Code Coverage
 
+## Group 6 Knaban Board
+- The Group 6 Knaban Board can be found here (https://trello.com/b/k1GUHuP7/group-6-knaban-board)
+
 ## Group Members
 This repository is maintained and contributed by the following Group 6 members:
 
