@@ -10,7 +10,7 @@
 - Develop Code Coverage
 
 ## Group 6 Knaban Board
-- The Group 6 Knaban Board can be [found here](https://trello.com/b/k1GUHuP7/group-6-knaban-board).
+The Group 6 Knaban Board can be [found here](https://trello.com/b/k1GUHuP7/group-6-knaban-board).
 OR [preferred](https://zube.io/napier-151/group-6-project/w/workspace-1/kanban).
 
 ## Group Members
