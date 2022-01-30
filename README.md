@@ -20,12 +20,11 @@ This repository is maintained and contributed by the following Group 6 members:
 * [Mucha, Tomasz](https://www.github.com/TomaszMuchaDev)
 * [Havlik, Ferdinand](https://www.github.com/fredy9669)
 * [Opaogun, Oladimeji David](https://www.github.com/avison9)
-* [Mclntyre Trevor](https://www.github.com/xx00a)
+* [Mclntyre, Trevor](https://www.github.com/xx00a)
 
 ## Requirements Met
 
-20 requirements of 32 have been implemented, which is 62.5%.
-
+0 requirements of 32 have been implemented, which is 0%.
 
 | ID    | Name | Met  | Screenshot |
 |-------|------|------|------------|
