@@ -10,18 +10,22 @@
 - Develop Code Coverage
 
 ## Group 6 Knaban Board
-- The Group 6 Knaban Board can be found here: https://trello.com/b/k1GUHuP7/group-6-knaban-board
+- The Group 6 Knaban Board can be [found here](https://trello.com/b/k1GUHuP7/group-6-knaban-board).
+OR [preferred](https://zube.io/napier-151/group-6-project/w/workspace-1/kanban).
 
 ## Group Members
 This repository is maintained and contributed by the following Group 6 members:
 
 * [Gavinio, Ray Tristan](https://www.github.com/40522829)
-* [Havlik Ferdinand](https://www.github.com/)
+* [Mucha, Tomasz](https://www.github.com/TomaszMuchaDev)
+* [Havlik, Ferdinand](https://www.github.com/fredy9669)
+* [Opaogun, Oladimeji David](https://www.github.com/avison9)
 * [Mclntyre Trevor](https://www.github.com/xx00a)
-* [Mucha Tomasz](https://www.github.com/TomaszMuchaDev)
-* [Opaogun David](https://www.github.com/avison9)
 
 ## Requirements Met
+
+20 requirements of 32 have been implemented, which is 62.5%.
+
 
 | ID    | Name | Met  | Screenshot |
 |-------|------|------|------------|
