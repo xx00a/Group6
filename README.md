@@ -1,5 +1,7 @@
 # Welcome to the SET08803 Assignment, Group 6 Repository!
 
+![workflow](https://github.com/xx00a/Group6/actions/workflows/main.yml/badge.svg)
+
 - Master Build Status
 - Develop Build Status
 - Licence [![LICENSE](https://img.shields.io/github/license/xx00a/Group6.svg?style=flat-square)](https://github.com/xx00a/Group6/blob/master/LICENSE)
@@ -8,7 +10,7 @@
 - Develop Code Coverage
 
 ## Group 6 Knaban Board
-- The Group 6 Knaban Board can be found here (https://trello.com/b/k1GUHuP7/group-6-knaban-board)
+- The Group 6 Knaban Board can be found here: https://trello.com/b/k1GUHuP7/group-6-knaban-board
 
 ## Group Members
 This repository is maintained and contributed by the following Group 6 members:
