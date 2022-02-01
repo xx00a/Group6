@@ -2,8 +2,8 @@
 
 ![workflow](https://github.com/xx00a/Group6/actions/workflows/main.yml/badge.svg)
 
-- Master Build Status
-- Develop Build Status
+- Master Build Status ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/xx00a/Group6/Build%20for%20Group%206%20application/master)
+- Develop Build Status ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/xx00a/Group6/Build%20for%20Group%206%20application/branch)
 - Licence [![LICENSE](https://img.shields.io/github/license/xx00a/Group6.svg?style=flat-square)](https://github.com/xx00a/Group6/blob/master/LICENSE)
 - Release [![Releases](https://img.shields.io/github/release/xx00a/Group6/all.svg?style=flat-square)](https://github.com/xx00a/Group6/releases)
 - Master Code Coverage
