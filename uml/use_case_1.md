@@ -1,4 +1,4 @@
-# Use Case 1: Output a Country Report
+# Use Case 1: Output a Country Report 
 
 ## CHARACTERISTIC INFORMATION
 

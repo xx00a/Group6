@@ -1,4 +1,4 @@
-# Use Case 1: Output a Capital City Report
+# Use Case 3: Output a Capital City Report
 
 ## CHARACTERISTIC INFORMATION
 

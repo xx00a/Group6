@@ -1,4 +1,4 @@
-# Use Case 1: Output a Population Report
+# Use Case 4: Output a Population Report
 
 ## CHARACTERISTIC INFORMATION
 

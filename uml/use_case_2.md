@@ -1,4 +1,4 @@
-# Use Case 1: Output a City Report
+# Use Case 2: Output a City Report
 
 ## CHARACTERISTIC INFORMATION
 
