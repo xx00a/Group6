@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As a *business analyst*, I want to produce a *Country Report* that is organised by various parameters, including population, region, and name, for analysis so that I can provide further analysis as required by my organisation.
+As a ***business analyst***, I want to produce a *Country Report* that is organised by various parameters, including population, region, and name, for analysis so that I can provide further analysis as required by my organisation.
 
 ### Scope
 
