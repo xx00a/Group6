@@ -1,22 +1,32 @@
 @startuml
-'https://plantuml.com/use-case-diagram
+left to right direction
 
-:Main Admin: as Admin
-(Use the application) as (Use)
+actor BA as "Business analyst"
+rectangle Database
 
-User -> (Start)
-User --> (Use)
+rectangle "HR System" {
+    usecase UC1 as "Languages Used Report"
+    usecase UC2 as "City Report"
+    usecase UC3 as "Capital City Report"
+    usecase UC4 as "Population Report"
+    usecase UC5 as "Country Report"
 
-Admin ---> (Use)
+    usecase UCp as "Print report"
 
-note right of Admin : This is an example.
-
-note right of (Use)
-A note can also
-be on several lines
-end note
-
-note "This note is connected\nto several objects." as N2
-(Start) .. N2
-N2 .. (Use)
+     BA - UC1
+     BA - UC2
+     BA - UC3
+     BA - UC4
+     BA - UC5
+    UC1 ..> UCp : include
+    UC2 ..> UCp : include
+    UC3 ..> UCp : include
+    UC4 ..> UCp : include
+    UC5 ..> UCp : include
+    UC1 - Database
+    UC2 - Database
+    UC3 - Database
+    UC4 - Database
+    UC5 - Database
+}
 @enduml
