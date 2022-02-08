@@ -4,7 +4,7 @@ left to right direction
 actor BA as "Business analyst"
 rectangle Database
 
-rectangle "HR System" {
+rectangle "Statistic department." {
     usecase UC1 as "Languages Used Report"
     usecase UC2 as "City Report"
     usecase UC3 as "Capital City Report"
