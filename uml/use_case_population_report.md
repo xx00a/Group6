@@ -1,4 +1,4 @@
-# Use Case 5: Output a Languages Used Report
+# Use Case 4: Output a Population Report
 
 ## CHARACTERISTIC INFORMATION
 
