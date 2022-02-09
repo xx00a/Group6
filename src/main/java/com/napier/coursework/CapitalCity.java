@@ -7,8 +7,7 @@ public class CapitalCity {
     private String region;
     private String continent;
     private int population;
-
-
+    
     public String getName() {
         return name;
     }

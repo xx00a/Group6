@@ -12,7 +12,7 @@ The report will detail population data per capital city and can be grouped by re
 
 ### Level
 
-Primary tasks???
+Primary tasks.
 
 ### Preconditions
 
