@@ -21,22 +21,25 @@ The report will output tables including all vital information for the demographi
 The app will generate a report with continent/region/country name and the number (also in %) of inhabitants.
 
 ### Failed End Condition
+If non or wrong report is produced.
 
 ### Primary Actor
+Demographic analyst.
 
 ### Trigger
+A request is received to generate certain report.
 
 ## MAIN SUCCESS SCENARIO
 
-1. x
-2. x
-3. x
-4. x
+1. Correct variables being used and returned.
+2. Report is accurate and correctly produced.
+3. The generated report can be further sold/used to/by other companies.
+4. Analyst is comfortable with the system.
 
 ## EXTENSIONS
 
-1. x
-    1. y
+1. Demographic analyst not present in the company.
+    1. New one needs to be hired or the responsibility and tasks need to be passed on to another employee.
 
 ## SUB-VARIATIONS
 
@@ -44,4 +47,4 @@ None.
 
 ## SCHEDULE
 
-**DUE DATE**: <insert release version here>
+**DUE DATE**: 23rd February 2022
