@@ -3,7 +3,7 @@
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
-As a business analyst, I want to determine all the languages being spoken in a country and prepare a report for further business analysis required by my organisation.
+As an Administrator, I want to determine all the languages being spoken in a country and prepare a report for further business analysis required by my organisation.
 
 ### Scope
 All countries in the database
@@ -16,15 +16,15 @@ The application generates a specified report that includes the corresponding rec
 ### Failed End Condition
 No report is produced, or the parameters do not produce the correct report.
 ### Primary Actor
-Business Analyst
+Administrator
 ### Trigger
-A request is sent to the Business Analyst from a user requesting a data product.
+A request is sent to the Administrator from a user requesting a data product.
 ## MAIN SUCCESS SCENARIO
 
-1. Business Analyst correctly identifies variables to execute the query.   
-2. Business Analyst is competent on the system and successfully submits a request to the application to process.
-3. The application produces an accurate report that the Business Analyst can analyse.
-4. Business Analyst uses data to advise data product requestor.
+1. Administrator correctly identifies variables to execute the query.   
+2. Administrator is competent on the system and successfully submits a request to the application to process.
+3. The application produces an accurate report that the Administator can analyse.
+4. Administrator uses data to advise data product requestor.
 
 ## EXTENSIONS
 
