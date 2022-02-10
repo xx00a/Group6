@@ -52,4 +52,4 @@ None.
 
 ## SCHEDULE
 
-**DUE DATE**: Februrary 23, 2022
+**DUE DATE**: February 23, 2022
