@@ -28,8 +28,8 @@ A request is sent to the Administrator from a user requesting a data product.
 
 ## EXTENSIONS
 
-1. x
-    1. y
+1. **Business Analyst position does not exist:**
+    1. HR advises there is no Business Analyst to execute and analyze the report.
 
 ## SUB-VARIATIONS
 
