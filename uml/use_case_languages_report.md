@@ -3,16 +3,16 @@
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
-As an Administrator, I want to determine all the languages being spoken in a country and prepare a report for further business analysis required by my organisation.
+As an Administrator, I want to determine all the languages being spoken in a country, the percentage of world population and prepare a report for further business analysis required by my organisation.
 
 ### Scope
 All countries in the database
 ### Level
 Primary task
 ### Preconditions
-The report will contain the following fields: Country Code, Name, Continent, Region, Languages. It is also assumed that the country table includes a foreign key to the country code for reporting purposes.
+The report will contain the following fields: Languages, Number of people speaking a language,Population Percentage.
 ### Success End Condition
-The application generates a specified report that includes the corresponding records to Country Code, Country Name, Continent, Region, Languages.
+The application generates a specified report that includes the corresponding records to Language, Number of people speaking a language, population percentage.
 ### Failed End Condition
 No report is produced, or the parameters do not produce the correct report.
 ### Primary Actor
