@@ -3,7 +3,7 @@
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
-As a **demographic analyst** I want to produce a *Population Report* with many different criterias, in order to get 
+As an **administrator** I want to produce a *Population Report* with many different criterias, in order to get 
 a better understanding of the demography of population and provide this information further to other departments in my organisation.
 
 ### Scope
@@ -24,7 +24,7 @@ The app will generate a report with continent/region/country name and the number
 If non or wrong report is produced.
 
 ### Primary Actor
-Demographic analyst.
+Administrator.
 
 ### Trigger
 A request is received to generate certain report.
@@ -38,8 +38,7 @@ A request is received to generate certain report.
 
 ## EXTENSIONS
 
-1. Demographic analyst not present in the company.
-    1. New one needs to be hired or the responsibility and tasks need to be passed on to another employee.
+1. Demographic analyst, which is not present in the company, would be suitable for similar tasks like this.
 
 ## SUB-VARIATIONS
 
