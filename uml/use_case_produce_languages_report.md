@@ -3,7 +3,7 @@
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
-As an Administrator, I want to determine all the languages being spoken in a country, the percentage of world population and prepare a report for further business analysis required by my organisation.
+As an Administrator, I want to determine all the languages being spoken in a country, the percentage of world population and prepare a report for further business analysis required by WHO.
 
 ### Scope
 All countries in the database
@@ -24,12 +24,12 @@ A request is sent to the Administrator from a user requesting a data product.
 1. Administrator correctly identifies variables to execute the query.   
 2. Administrator is competent on the system and successfully submits a request to the application to process.
 3. The application produces an accurate report that the Administator can analyse.
-4. Administrator uses data to advise data product requestor.
+4. Administrator uses data to advise data product request.
 
 ## EXTENSIONS
 
-1. **Business Analyst position does not exist:**
-    1. HR advises there is no Business Analyst to execute and analyze the report.
+1. **Administrator position does not exist:**
+    1. HR advises there is no Administrator to execute and analyze the report.
 
 ## SUB-VARIATIONS
 
@@ -37,4 +37,4 @@ None.
 
 ## SCHEDULE
 
-**DUE DATE**: Februrary 23, 2022
+**DUE DATE**: February 23, 2022
