@@ -47,4 +47,5 @@ public class CapitalCity {
     public void setPopulation(int population) {
         this.population = population;
     }
+
 }
