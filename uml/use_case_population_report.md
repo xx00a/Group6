@@ -4,7 +4,7 @@
 
 ### Goal in Context
 As an **administrator** I want to produce a *Population Report* with many different criterias, in order to get 
-a better understanding of the demography of population and provide this information further to other departments World Health Organization.
+a better understanding of the demography of population and provide this information further to other departments in World Health Organization.
 
 ### Scope
 All countries in database.
