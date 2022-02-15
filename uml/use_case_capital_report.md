@@ -1,10 +1,10 @@
-# Use Case 3: Output a Capital City Report
+# Use Case 3: Produce Capital City Report
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a _Statistician_ I want to produce a *Capital City Report* that is determined by largest to smallest population grouped by country, region or as a whole in the world
+As an _Administrator_ I want to produce a *Capital City Report* that is determined by largest to smallest population grouped by country, region or as a whole in the world for the WHO (World Health Organisation)
 
 ### Scope
 
