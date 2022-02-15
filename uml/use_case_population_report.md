@@ -4,7 +4,7 @@
 
 ### Goal in Context
 As an **administrator** I want to produce a *Population Report* with many different criterias, in order to get 
-a better understanding of the demography of population and provide this information further to other departments in my organisation.
+a better understanding of the demography of population and provide this information further to other departments World Health Organization.
 
 ### Scope
 All countries in database.
@@ -38,7 +38,7 @@ A request is received to generate certain report.
 
 ## EXTENSIONS
 
-1. Demographic analyst, which is not present in the company, would be suitable for similar tasks like this.
+1. Demographic analyst, would be suitable for similar tasks like this.
 
 ## SUB-VARIATIONS
 
