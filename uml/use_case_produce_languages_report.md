@@ -3,7 +3,7 @@
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
-As an Administrator, I want to determine all the languages being spoken in a country, the percentage of world population and prepare a report for further business analysis required by WHO.
+As an Administrator, I want to determine all the languages being spoken in a country, the percentage of world population and prepare a report for further business analysis required by WHO(World Health Organization).
 
 ### Scope
 All countries in the database
