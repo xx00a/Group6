@@ -20,23 +20,28 @@ public class App
         CapitalCityReport capitalCityReport = new CapitalCityReport();
         // Display results
         capitalCityReport.getWorldCapitalCitiesByPopulationDesc(connection);
-        capitalCityReport.getContinentCapitalCitiesByPopulationDesc(connection);
+
+
+
 
         CountryReport countryReport = new CountryReport();
         // Display results
-        capitalCityReport.getWorldCapitalCitiesByPopulationDesc(connection);
-        capitalCityReport.getContinentCapitalCitiesByPopulationDesc(connection);
+        countryReport.getWorldCountriesByPopulationDesc(connection);
+
+
+
 
 
         LanguagesReport languagesReport = new LanguagesReport();
         // Display results
         languagesReport.getWorldLanguagesByPopulationDesc(connection);
-        languagesReport.getContinentLanguagesByPopulationDesc(connection);
+
 
 
         PopulationReport populationReport = new PopulationReport();
+        // Display results
         populationReport.getWorldPopulationDesc(connection);
-        populationReport.getContinentPopulationDesc(connection);
+
 
         // Disconnect from database
         mySQLConnection.disconnect(connection);
