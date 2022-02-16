@@ -2,14 +2,13 @@ package com.napier.coursework;
 
 import java.sql.*;
 
-public class App
-{
+public class App {
     public static void main(String[] args) {
 
         // Connect to database
         MySQLConnection mySQLConnection = new MySQLConnection();
 
-        Connection connection= mySQLConnection.connect();
+        Connection connection = mySQLConnection.connect();
 
         CityReport cityReport = new CityReport();
         // Display results
@@ -22,20 +21,14 @@ public class App
         capitalCityReport.getWorldCapitalCitiesByPopulationDesc(connection);
 
 
-
-
         CountryReport countryReport = new CountryReport();
         // Display results
         countryReport.getWorldCountriesByPopulationDesc(connection);
 
 
-
-
-
         LanguagesReport languagesReport = new LanguagesReport();
         // Display results
         languagesReport.getWorldLanguagesByPopulationDesc(connection);
-
 
 
         PopulationReport populationReport = new PopulationReport();
@@ -46,5 +39,4 @@ public class App
         // Disconnect from database
         mySQLConnection.disconnect(connection);
     }
-
 }
