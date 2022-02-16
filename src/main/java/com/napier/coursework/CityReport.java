@@ -35,7 +35,7 @@ public class CityReport {
     public void getWorldCitiesByPopulationDesc(Connection connection) {
         try {
             String query = "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code ORDER BY 4 DESC, 1 LIMIT 10";
-           System.out.println("\n All the cities in the world organised by largest population to smallest. \n");
+            System.out.println("\n All the cities in the world organised by largest population to smallest. \n");
             createReport(connection, query);
 
         } catch (SQLException e) {
