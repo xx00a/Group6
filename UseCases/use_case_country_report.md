@@ -1,12 +1,10 @@
-# Use Case: Template
-
-*[You may want to reference Lab 3A/B to verify language used in report.]*
+# Use Case 1: Output a Country Report 
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a *business analyst*, I want to produce a *Country Report* that is organised by various parameters, including population, region, and name, for analysis so that I can provide further analysis as required by my organisation.
+As a ***business analyst***, I want to produce a *Country Report* that is organised by various parameters, including population, region, and name, for analysis so that I can provide further analysis as required by my organisation.
 
 ### Scope
 
@@ -28,7 +26,7 @@ The application generates a specified report that includes the corresponding rec
 
 ### Failed End Condition
 
-No report is produced, or the parameters do not produce the correct report.
+No report is produced, or the parameters do not produce the correct report. 
 
 ### Primary Actor
 
@@ -42,14 +40,14 @@ A request is sent to the Business Analyst from a user requesting a data product.
 
 1. Business Analyst correctly identifies variables to execute the query.
 2. Business Analyst is competent on the system and successfully submits a request to the application to process.
-3. The application produces an accurate report that the Business Analyst can analyse.
+3. The application produces an accurate report that the Business Analyst can analyse. 
 4. Business Analyst uses data to advise data product requestor.
 
 ## EXTENSIONS
 
 1. **Business Analyst position does not exist:**
     1. HR advises there is no Business Analyst to execute and analyze the report.
-
+   
 ## SUB-VARIATIONS
 
 None.

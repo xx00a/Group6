@@ -1,18 +1,16 @@
 package com.napier.coursework;
 
 import java.sql.*;
-import java.util.Date;
 
-public class mySQLConnection {
+public class MySQLConnection {
 
-    //instance variables
-    private int cash = 0;
-    private Connection connection = null;
+    public Connection connect()
+    {
+      return   connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+    }
 
-
-    //begin constructor
-    public mySQLConnection(String uri) {
-
+    public Connection connect(String uri, String user, String password)
+    {
         try
         {
             // Load Database driver
@@ -35,16 +33,16 @@ public class mySQLConnection {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
+                con = DriverManager.getConnection(uri, user, password);
                 System.out.println("Successfully connected");
                 // Wait a bit
                 Thread.sleep(10000);
                 // Exit for loop
-                break;
+                return con;
             }
             catch (SQLException sqle)
             {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
             }
             catch (InterruptedException ie)
@@ -52,23 +50,26 @@ public class mySQLConnection {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
+        return con;
+    }
 
-        if (con != null)
+    // Disconnect from the MySQL database.
+    public void disconnect(Connection connection)
+    {
+        if (connection != null)
         {
             try
             {
                 // Close connection
-                con.close();
+                connection.close();
+                System.out.println("Database connection closed.");
             }
             catch (Exception e)
             {
                 System.out.println("Error closing connection to database");
             }
         }
-
-
-
-    }//end constructor
+    }
 
 
 }
