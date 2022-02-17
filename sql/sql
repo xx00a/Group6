@@ -26,3 +26,10 @@ SELECT countrylanguage.Language, Sum(country.Population) AS Speakers  FROM count
 #Arabic.
 SELECT countrylanguage.Language, Sum(country.Population)  AS Speakers FROM countrylanguage  INNER JOIN country ON countrylanguage.CountryCode = country.Code WHERE countrylanguage.Language= "Arabic";
 
+SELECT countrylanguage.Language, Sum(country.Population) AS Speakers FROM countrylanguage  INNER JOIN country ON
+        countrylanguage.CountryCode = country.Code WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English" OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"
+        OR countrylanguage.Language="Arabic" GROUP BY countrylanguage.Language ORDER BY Speakers DESC;
+
+SELECT countrylanguage.Language, Sum(country.Population) AS Speakers, AVG(countrylanguage.Percentage) AS Percentage FROM countrylanguage  INNER JOIN country ON countrylanguage.CountryCode = country.Code
+        WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English" OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"
+        OR countrylanguage.Language="Arabic" GROUP BY countrylanguage.Language ORDER BY Speakers DESC;
