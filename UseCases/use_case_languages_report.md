@@ -22,7 +22,7 @@ A request is sent to the Administrator from a user requesting a data product.
 
 - Administrator correctly identifies variables to execute the query.
 - Administrator is competent on the system and successfully submits a request to the application to process.
-- The application produces an accurate report that the Administator can analyse.
+- The application produces an accurate report the Administator can analyse.
 - Administrator uses data to advise data product request.
 
 ## EXTENSIONS
