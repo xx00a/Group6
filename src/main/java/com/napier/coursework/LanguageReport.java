@@ -32,7 +32,9 @@ public class LanguagesReport
     public void getWorldLanguagesByPopulationDesc(Connection connection)
         {
             try {
-                String query = "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code ORDER BY 4 DESC, 1 LIMIT 5";
+                String query = "SELECT countrylanguage.Language, Sum(country.Population) AS Speakers, AVG(countrylanguage.Percentage) AS Percentage FROM countrylanguage  INNER JOIN country ON countrylanguage.CountryCode = country.Code\n" +
+                        "        WHERE countrylanguage.Language= \"Chinese\" OR countrylanguage.Language=\"English\" OR countrylanguage.Language=\"Hindi\" OR countrylanguage.Language=\"Spanish\"\n" +
+                        "        OR countrylanguage.Language=\"Arabic\" GROUP BY countrylanguage.Language ORDER BY Speakers DESC;";
                 System.out.println("\n All the languages in the world organised by largest population to smallest. \n");
                 createReport(connection, query);
 
