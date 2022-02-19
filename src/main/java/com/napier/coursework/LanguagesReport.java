@@ -36,7 +36,7 @@ public class LanguagesReport {
                 String query = "SELECT countrylanguage.Language, Sum(country.Population) AS Speakers, AVG(countrylanguage.Percentage) AS Percentage FROM countrylanguage  INNER JOIN country ON countrylanguage.CountryCode = country.Code\n" +
                         "        WHERE countrylanguage.Language= \"Chinese\" OR countrylanguage.Language=\"English\" OR countrylanguage.Language=\"Hindi\" OR countrylanguage.Language=\"Spanish\"\n" +
                         "        OR countrylanguage.Language=\"Arabic\" GROUP BY countrylanguage.Language ORDER BY Speakers DESC;";
-                System.out.println("\n All the countries in the world organised by largest population to smallest. \n");
+                System.out.println("\n Five languages speakers from largest population to smallest. \n");
                 createReport(connection, query);
 
             } catch (SQLException e) {
