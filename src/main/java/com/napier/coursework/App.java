@@ -10,30 +10,31 @@ public class App {
 
         Connection connection = mySQLConnection.connect();
 
-        CityReport cityReport = new CityReport();
-        // Display results
-        cityReport.getWorldCitiesByPopulationDesc(connection);
-        cityReport.getContinentCitiesByPopulationDesc(connection);
-        cityReport.getRegiondCitiesByPopulationDesc(connection);
-
-        CapitalCityReport capitalCityReport = new CapitalCityReport();
-        // Display results
-        capitalCityReport.getWorldCapitalCitiesByPopulationDesc(connection);
-
-
-        CountryReport countryReport = new CountryReport();
-        // Display results
-        countryReport.getWorldCountriesByPopulationDesc(connection);
+//        CityReport cityReport = new CityReport();
+//        // Display results
+//        cityReport.getWorldCitiesByPopulationDesc(connection);
+//        cityReport.getContinentCitiesByPopulationDesc(connection);
+//        cityReport.getRegiondCitiesByPopulationDesc(connection);
+//
+//        CapitalCityReport capitalCityReport = new CapitalCityReport();
+//        // Display results
+//        capitalCityReport.getWorldCapitalCitiesByPopulationDesc(connection);
+//
+//
+//        CountryReport countryReport = new CountryReport();
+//        // Display results
+//        countryReport.getWorldCountriesByPopulationDesc(connection);
 
 
         LanguagesReport languagesReport = new LanguagesReport();
         // Display results
         languagesReport.getWorldLanguagesByPopulationDesc(connection);
+        languagesReport.getArabicLanguage(connection);
 
 
-        PopulationReport populationReport = new PopulationReport();
-        // Display results
-        populationReport.getWorldPopulationDesc(connection);
+//        PopulationReport populationReport = new PopulationReport();
+//        // Display results
+//        populationReport.getWorldPopulationDesc(connection);
 
 
         // Disconnect from database
