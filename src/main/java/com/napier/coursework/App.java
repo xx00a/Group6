@@ -45,16 +45,16 @@ public class App {
         languagesReport.getWorldLanguagesByPopulationDesc(connection);
 
 */
-        PopulationReport populationReport = new PopulationReport();
+        //PopulationReport populationReport = new PopulationReport();
 
-        /****************** Population reports ******************/
+        /*
         populationReport.getPopulationPerContinent(connection);
         populationReport.getPopulationPerRegion(connection);
         populationReport.getPopulationPerCountry(connection);
         populationReport.getPopulationOfWorld(connection);
         populationReport.getPopulationOfContinent(connection, "Asia");
         populationReport.getPopulationOfRegion(connection, "Baltic Countries");
-        /*******************************************************/
+        */
 
 //         Disconnect from database
         mySQLConnection.disconnect(connection);
