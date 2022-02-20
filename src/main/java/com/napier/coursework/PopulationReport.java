@@ -58,11 +58,11 @@ public class PopulationReport
     public void getPopulationPerContinent(Connection connection) {
         try {
             String query = "SELECT country.continent,\n" +
-                    "(SUM(DISTINCT(country.population)) + SUM(city. population)) AS 'Total Population',\n" +
-                    "SUM(DISTINCT(country.population)) AS 'NOT in cities',\n" +
-                    "(((SUM(DISTINCT(country.population))) / (SUM(DISTINCT(country.population)) + SUM(city.population)))*100) AS 'NOT in cities(%)',\n" +
+                    "(SUM(DISTINCT(country.population))) AS 'Total Population',\n" +
+                    "(SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',\n" +
+                    "((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',\n" +
                     "SUM(city. population) AS 'IN cities',\n" +
-                    "(((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)) + SUM(city.population)))*100) AS 'IN cities(%)'\n" +
+                    "(((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'\n" +
                     "FROM country JOIN city ON city.countrycode = country.code\n" +
                     "GROUP by country.continent;";
             System.out.println("\n The population of people, people living in cities, and people not living in cities in each continent. \n");
@@ -81,11 +81,11 @@ public class PopulationReport
     public void getPopulationPerRegion(Connection connection) {
         try {
             String query = "SELECT country.region,\n" +
-                    "(SUM(DISTINCT(country.population)) + SUM(city. population)) AS 'Total Population',\n" +
-                    "SUM(DISTINCT(country.population)) AS 'NOT in cities',\n" +
-                    "(((SUM(DISTINCT(country.population))) / (SUM(DISTINCT(country.population)) + SUM(city.population)))*100) AS 'NOT in cities(%)',\n" +
+                    "(SUM(DISTINCT(country.population))) AS 'Total Population',\n" +
+                    "(SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',\n" +
+                    "((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',\n" +
                     "SUM(city. population) AS 'IN cities',\n" +
-                    "(((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)) + SUM(city.population)))*100) AS 'IN cities(%)'\n" +
+                    "(((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'\n" +
                     "FROM country JOIN city ON city.countrycode = country.code\n" +
                     "GROUP by country.region;";
             System.out.println("\n The population of people, people living in cities, and people not living in cities in each region. \n");
@@ -105,11 +105,11 @@ public class PopulationReport
     public void getPopulationPerCountry(Connection connection) {
         try {
             String query = "SELECT country.name,\n" +
-                    "(SUM(DISTINCT(country.population)) + SUM(city. population)) AS 'Total Population',\n" +
-                    "SUM(DISTINCT(country.population)) AS 'NOT in cities',\n" +
-                    "(((SUM(DISTINCT(country.population))) / (SUM(DISTINCT(country.population)) + SUM(city.population)))*100) AS 'NOT in cities(%)',\n" +
+                    "(SUM(DISTINCT(country.population))) AS 'Total Population',\n" +
+                    "(SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',\n" +
+                    "((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',\n" +
                     "SUM(city. population) AS 'IN cities',\n" +
-                    "(((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)) + SUM(city.population)))*100) AS 'IN cities(%)'\n" +
+                    "(((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'\n" +
                     "FROM country JOIN city ON city.countrycode = country.code\n" +
                     "GROUP by country.name;";
             System.out.println("\n The population of people, people living in cities, and people not living in cities in each country. \n");
@@ -128,7 +128,7 @@ public class PopulationReport
     /************ Population of the world ***************/
     public void getPopulationOfWorld(Connection connection) {
         try {
-            String query = "SELECT (SUM(DISTINCT(country.population)) + SUM(city. population)) AS 'Total Population Of World'\n" +
+            String query = "SELECT (SUM(DISTINCT(country.population))) AS 'Total Population Of World'\n" +
                     "FROM country JOIN city ON city.countrycode = country.code;";
             System.out.println("\n The population of the world is: ");
             createReportOnlyPopulation(connection, query,"Total Population Of World");
@@ -146,7 +146,7 @@ public class PopulationReport
     /************ Population of selected continent ***************/
     public void getPopulationOfContinent(Connection connection, String detail) {
         try {
-            String query = "SELECT (SUM(DISTINCT(country.population)) + SUM(city. population)) AS 'Population of a continent'\n" +
+            String query = "SELECT (SUM(DISTINCT(country.population))) AS 'Population of a continent'\n" +
                     "FROM country JOIN city ON city.countrycode = country.code WHERE country.continent = '"+ detail +"';";
             System.out.println("\n The population of " + detail + " is: ");
             createReportOnlyPopulation(connection, query,"Population of a continent");
@@ -164,7 +164,7 @@ public class PopulationReport
     /************ Population of selected region ***************/
     public void getPopulationOfRegion(Connection connection, String detail) {
         try {
-            String query = "SELECT (SUM(DISTINCT(country.population)) + SUM(city. population)) AS 'Population of a region'\n" +
+            String query = "SELECT (SUM(DISTINCT(country.population))) AS 'Population of a region'\n" +
                     "FROM country JOIN city ON city.countrycode = country.code WHERE country.region = '"+ detail +"';";
             System.out.println("\n The population of " + detail + " is: ");
             createReportOnlyPopulation(connection, query,"Population of a region");
