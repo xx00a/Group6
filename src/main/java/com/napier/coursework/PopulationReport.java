@@ -18,7 +18,7 @@ public class PopulationReport
         while (rset.next()) {
             Population population = new Population();
             population.name = rset.getString(property);
-            population.totalPopulaton = rset.getLong("Total Population");
+            population.totalPopulation = rset.getLong("Total Population");
             population.notInCities = rset.getLong("NOT in cities");
             population.notInCitiesPercentage = rset.getInt("NOT in cities(%)");
             population.inCities = rset.getLong("IN cities");
@@ -31,7 +31,7 @@ public class PopulationReport
         for (Population population : populations) {
             String populationString =
                     String.format(" %-30s  %-30s  %-30s  %-30s  %-30s  %-30s ",
-                            population.name, population.totalPopulaton, population.notInCities, population.notInCitiesPercentage, population.inCities, population.inCitiesPercentage);
+                            population.name, population.totalPopulation, population.notInCities, population.notInCitiesPercentage, population.inCities, population.inCitiesPercentage);
             System.out.println(populationString);
         }
     }
@@ -44,11 +44,11 @@ public class PopulationReport
         Population population = new Population();
 
         while (rset.next()) {
-            population.totalPopulaton = rset.getLong(property);
+            population.totalPopulation = rset.getLong(property);
         }
         //Prints out the number
         String populationString =
-                    String.format(" %-30s ", population.totalPopulaton);
+                    String.format(" %-30s ", population.totalPopulation);
             System.out.println(populationString);
 
     }

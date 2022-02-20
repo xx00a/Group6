@@ -32,7 +32,6 @@ public class App {
 
 */
         PopulationReport populationReport = new PopulationReport();
-        // Display results
 
         /****************** Population reports ******************/
         populationReport.getPopulationPerContinent(connection);
