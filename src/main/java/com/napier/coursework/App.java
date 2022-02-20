@@ -15,7 +15,7 @@ public class App {
         MySQLConnection mySQLConnection = new MySQLConnection();
 
         Connection connection = mySQLConnection.connect();
-/*
+
         CityReport cityReport = new CityReport();
         // Display results
         cityReport.getWorldCitiesByPopulationDesc(connection);
@@ -58,7 +58,6 @@ public class App {
         // Display results
         languagesReport.getWorldLanguagesByPopulationDesc(connection);
 
-*/
         //PopulationReport populationReport = new PopulationReport();
 
         /*
