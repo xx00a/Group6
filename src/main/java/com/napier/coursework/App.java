@@ -22,8 +22,22 @@ public class App {
         cityReport.getContinentCitiesByPopulationDesc(connection, "Africa");
 
         CapitalCityReport capitalCityReport = new CapitalCityReport();
-        // Display results
-        capitalCityReport.getWorldCapitalCitiesByPopulationDesc(connection);
+        // Display results for all the capital cities in the world organised by largest population to smallest.
+        capitalCityReport.getAllCapitalCityPopulation(connection);
+        // Display results for all the capital cities in a continent organised by largest population to smallest.
+        capitalCityReport.getCapitalCityPopulationByContinent(connection);
+        // Display results for all the capital cities in a region organised by largest population to smallest.
+        capitalCityReport.getCapitalCityPopulationByRegion(connection);
+        // Display results for the top N populated capital cities in the world where N is provided by the user.
+        capitalCityReport.getTopNCapitalCities(connection, 10);
+        // Display results for the top N populated capital cities in a continent where N is provided by the user.
+        capitalCityReport.getTopNCapitalCitiesInOneContinent(connection, 10, "Asia");
+        // Display results for the top N populated capital cities in a region where N is provided by the user.
+        capitalCityReport.getTopNCapitalCitiesInOneRegion(connection, 10, "Western Europe");
+        // Display results for the top N populated capital cities in all continents where N is provided by the user.
+        capitalCityReport.getTopNCapitalCitiesInAllContinents(connection, 10);
+        // Display results for the top N populated capital cities in all global regions where N is provided by the user.
+        capitalCityReport.getTopNCapitalCitiesInAllRegions(connection, 10);
 
 
         // Start of Country Series of Reports -->
