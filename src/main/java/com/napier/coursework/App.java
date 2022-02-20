@@ -1,115 +1,75 @@
 package com.napier.coursework;
 
+/*
+ * SET08803 Coursework Application
+ *
+ */
+
 import java.sql.*;
 
-public class App
-{
+public class App {
+
     public static void main(String[] args) {
-        // Create new Application
-        App a = new App();
 
         // Connect to database
-        a.connect();
-        // Get Employee
+        MySQLConnection mySQLConnection = new MySQLConnection();
 
+        Connection connection = mySQLConnection.connect();
+
+        CityReport cityReport = new CityReport();
         // Display results
-        a.getCity(10);
+        cityReport.getWorldCitiesByPopulationDesc(connection);
+        cityReport.getContinentCitiesByPopulationDesc(connection, "Africa");
 
-        // Disconnect from database
-        a.disconnect();
+        CapitalCityReport capitalCityReport = new CapitalCityReport();
+        // Display results for all the capital cities in the world organised by largest population to smallest.
+        capitalCityReport.getAllCapitalCityPopulation(connection);
+        // Display results for all the capital cities in a continent organised by largest population to smallest.
+        capitalCityReport.getCapitalCityPopulationByContinent(connection);
+        // Display results for all the capital cities in a region organised by largest population to smallest.
+        capitalCityReport.getCapitalCityPopulationByRegion(connection);
+        // Display results for the top N populated capital cities in the world where N is provided by the user.
+        capitalCityReport.getTopNCapitalCities(connection, 10);
+        // Display results for the top N populated capital cities in a continent where N is provided by the user.
+        capitalCityReport.getTopNCapitalCitiesInOneContinent(connection, 10, "Asia");
+        // Display results for the top N populated capital cities in a region where N is provided by the user.
+        capitalCityReport.getTopNCapitalCitiesInOneRegion(connection, 10, "Western Europe");
+        // Display results for the top N populated capital cities in all continents where N is provided by the user.
+        capitalCityReport.getTopNCapitalCitiesInAllContinents(connection, 10);
+        // Display results for the top N populated capital cities in all global regions where N is provided by the user.
+        capitalCityReport.getTopNCapitalCitiesInAllRegions(connection, 10);
 
+
+        // Start of Country Series of Reports -->
+        // Create new Country Report (from class)
+        CountryReport countryReport = new CountryReport();
+
+        //For now, we will use static references for N until interface is developed
+        //This will cycle through Report IDs 1 to 6
+
+        for (int x = 1; x < 7; x++) {
+            // Call on getReport method to create individual report
+            countryReport.getReport(x, connection);
+        }
+        // End of Country Series of Reports -->
+
+
+        LanguagesReport languagesReport = new LanguagesReport();
+        // Display results
+        languagesReport.getWorldLanguagesByPopulationDesc(connection);
+
+        PopulationReport populationReport = new PopulationReport();
+
+
+        populationReport.getPopulationPerContinent(connection);
+        populationReport.getPopulationPerRegion(connection);
+        populationReport.getPopulationPerCountry(connection);
+        populationReport.getPopulationOfWorld(connection);
+        populationReport.getPopulationOfContinent(connection, "Asia");
+        populationReport.getPopulationOfRegion(connection, "Baltic Countries");
+
+
+//         Disconnect from database
+        mySQLConnection.disconnect(connection);
     }
-
-    // Connection to MySQL database.
-    private Connection con = null;
-    public void connect()
-    {
-        try
-        {
-            // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
-
-        int retries = 10;
-        for (int i = 0; i < retries; ++i)
-        {
-            System.out.println("Connecting to database...");
-            try
-            {
-                // Wait a bit for db to start
-                Thread.sleep(30000);
-                // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
-                System.out.println("Successfully connected");
-                break;
-            }
-            catch (SQLException sqle)
-            {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
-                System.out.println("Thread interrupted? Should not happen.");
-            }
-        }
-    }
-
-
-    // Disconnect from the MySQL database.
-
-    public void disconnect()
-    {
-        if (con != null)
-        {
-            try
-            {
-                // Close connection
-                con.close();
-                System.out.println("Database connection closed.");
-            }
-            catch (Exception e)
-            {
-                System.out.println("Error closing connection to database");
-            }
-        }
-    }
-
-
-    public String getCity(int ID)
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =  "SELECT Name  FROM city WHERE ID = " + ID;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Check one is returned
-            if (rset.next())
-            {
-                String name = rset.getString("Name");
-                System.out.println("City name is " + name);
-                return name;
-            }
-            else {
-                System.out.println("City  not found.");
-                return null;
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City  details");
-            return null;
-        }
-    }
-
-
 }

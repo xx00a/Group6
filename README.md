@@ -10,30 +10,29 @@
 - Develop Code Coverage
 
 ## Group 6 Knaban Board
-The Group 6 Knaban Board can be [found here](https://trello.com/b/k1GUHuP7/group-6-knaban-board).
-OR [preferred](https://zube.io/napier-151/group-6-project/w/workspace-1/kanban).
+The Group 6 Knaban Board (Zube) can be [found here](https://zube.io/napier-151/group-6-project/w/workspace-1/kanban).
 
 ## Group Members
 This repository is maintained and contributed by the following Group 6 members:
 
 * [Gavinio, Ray Tristan](https://www.github.com/40522829)
-* [Mucha, Tomasz](https://www.github.com/TomaszMuchaDev)
+* [Mucha, Tomasz](https://www.github.com/TomaszMuchaDev) (Product Owner)
 * [Havlik, Ferdinand](https://www.github.com/fredy9669)
 * [Opaogun, Oladimeji David](https://www.github.com/avison9)
-* [Mclntyre, Trevor](https://www.github.com/xx00a)
+* [Mclntyre, Trevor](https://www.github.com/xx00a) (Scrum Master)
 
 ## Requirements Met
 
-0 requirements of 32 have been implemented, which is 0%.
+7 requirements of 32 have been implemented, which is 22%.
 
 | ID    | Name | Met  | Screenshot |
 |-------|------|------|------------|
-| 1 |  All the countries in the world organised by largest population to smallest. | NO | URL |
-| 2 |  All the countries in a continent organised by largest population to smallest. | NO | URL |
-| 3 |  All the countries in a region organised by largest population to smallest. | NO | URL |
-| 4 |  The top N populated countries in the world where N is provided by the user. | NO | URL |
-| 5 |  The top N populated countries in a continent where N is provided by the user. | NO | URL |
-| 6 |  The top N populated countries in a region where N is provided by the user. | NO | URL |
+| 1 |  All the countries in the world organised by largest population to smallest. | YES | ![](https://github.com/xx00a/Group6/blob/master/screenshots/ReportID_1.png?raw=true) |
+| 2 |  All the countries in a continent organised by largest population to smallest. | YES | ![](https://github.com/xx00a/Group6/blob/master/screenshots/ReportID_2.png?raw=true) |
+| 3 |  All the countries in a region organised by largest population to smallest. | YES | ![](https://github.com/xx00a/Group6/blob/master/screenshots/ReportID_3.png?raw=true) |
+| 4 |  The top N populated countries in the world where N is provided by the user. | YES | ![](https://github.com/xx00a/Group6/blob/master/screenshots/ReportID_4.png?raw=true) |
+| 5 |  The top N populated countries in a continent where N is provided by the user. | YES | ![](https://github.com/xx00a/Group6/blob/master/screenshots/ReportID_5.png?raw=true) |
+| 6 |  The top N populated countries in a region where N is provided by the user. | YES | ![](https://github.com/xx00a/Group6/blob/master/screenshots/ReportID_6.png?raw=true) |
 | 7 |  All the cities in the world organised by largest population to smallest. | NO | URL |
 | 8 |  All the cities in a continent organised by largest population to smallest. | NO | URL |
 | 9 |  All the cities in a region organised by largest population to smallest. | NO | URL |
@@ -59,4 +58,4 @@ This repository is maintained and contributed by the following Group 6 members:
 | 29 |  The population of a country. | NO | URL |
 | 30 |  The population of a district. | NO | URL |
 | 31 |  The population of a city. | NO | URL |
-| 32 |  The number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic | NO | URL |
+| 32 |  The number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic | YES | ![](https://github.com/xx00a/Group6/blob/master/screenshots/ReportID_32.png?raw=true) |
