@@ -19,8 +19,7 @@ public class App {
         CityReport cityReport = new CityReport();
         // Display results
         cityReport.getWorldCitiesByPopulationDesc(connection);
-        cityReport.getContinentCitiesByPopulationDesc(connection);
-        cityReport.getRegiondCitiesByPopulationDesc(connection);
+        cityReport.getContinentCitiesByPopulationDesc(connection, "Africa");
 
         CapitalCityReport capitalCityReport = new CapitalCityReport();
         // Display results
