@@ -34,9 +34,14 @@ public class App {
         PopulationReport populationReport = new PopulationReport();
         // Display results
 
+        /****************** Population reports ******************/
         populationReport.getPopulationPerContinent(connection);
         populationReport.getPopulationPerRegion(connection);
         populationReport.getPopulationPerCountry(connection);
+        populationReport.getPopulationOfWorld(connection);
+        populationReport.getPopulationOfContinent(connection, "Asia");
+        populationReport.getPopulationOfRegion(connection, "Baltic Countries");
+        /*******************************************************/
 
         // Disconnect from database
         mySQLConnection.disconnect(connection);
