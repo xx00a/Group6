@@ -73,4 +73,24 @@ public class PopulationReport
 
         }
     }
+
+    public void getPopulationPerCountry(Connection connection) {
+        try {
+            String query = "SELECT country.name,\n" +
+                    "(SUM(DISTINCT(country.population)) + SUM(city. population)) AS 'Total Population',\n" +
+                    "SUM(DISTINCT(country.population)) AS 'NOT in cities',\n" +
+                    "(((SUM(DISTINCT(country.population))) / (SUM(DISTINCT(country.population)) + SUM(city.population)))*100) AS 'NOT in cities(%)',\n" +
+                    "SUM(city. population) AS 'IN cities',\n" +
+                    "(((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)) + SUM(city.population)))*100) AS 'IN cities(%)'\n" +
+                    "FROM country JOIN city ON city.countrycode = country.code\n" +
+                    "GROUP by country.name;";
+            System.out.println("\n The population of people, people living in cities, and people not living in cities in each country. \n");
+            createReport(connection, query,"country.name");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get population details");
+
+        }
+    }
 }

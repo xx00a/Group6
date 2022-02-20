@@ -36,6 +36,7 @@ public class App {
 
         populationReport.getPopulationPerContinent(connection);
         populationReport.getPopulationPerRegion(connection);
+        populationReport.getPopulationPerCountry(connection);
 
         // Disconnect from database
         mySQLConnection.disconnect(connection);
