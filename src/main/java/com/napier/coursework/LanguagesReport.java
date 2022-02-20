@@ -7,44 +7,44 @@ import java.util.ArrayList;
 
 import static com.napier.coursework.QueryHelper.getResultSet;
 
-public class LanguagesReport
-{
-
+public class LanguagesReport {
 
     private void createReport(Connection connection, String query) throws SQLException {
         ResultSet rset = getResultSet(connection, query);
-        ArrayList<City> cities = new ArrayList<City>();
+        ArrayList<Languages> languageslist = new ArrayList<Languages>();
 
         while (rset.next()) {
-            City city = new City();
-            city.name = rset.getString("City");
-            city.country = rset.getString("Country");
-            city.district = rset.getString("city.District");
-            city.population = rset.getInt("city.Population");
-            cities.add(city);
+            Languages language = new Languages();
+            language.language = rset.getString("countrylanguage.Language");
+            language.population = rset.getInt("Speakers");
+            language.percentage= rset.getFloat("Percentage");
+            languageslist.add(language);
         }
-        System.out.println(String.format(" %-30s  %-30s  %-30s  %-30s ", "City", "Country", "District", "Population"));
-        for (City city : cities) {
-            String cityString =
-                    String.format(" %-30s  %-30s  %-30s  %-30s ",
-                            city.name, city.country, city.district, city.population);
-            System.out.println(cityString);
+        System.out.println(String.format(" %-30s  %-30s  %-30s  ", "Language", "Speakers", "Population"));
+        for (Languages language : languageslist) {
+            String languageString =
+                    String.format(" %-30s  %-30s  %-30s ",
+                            language.language, language.population, language.percentage);
+            System.out.println(languageString);
         }
     }
 
-    //   All the languages in the world organised by largest population to smallest.
-    public void getWorldLanguagesByPopulationDesc(Connection connection)
+    //   All the countries in the world organised by largest population to smallest.
+    public void getWorldLanguagesByPopulationDesc(Connection connection) {
         {
             try {
-                String query = "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code ORDER BY 4 DESC, 1 LIMIT 5";
-                System.out.println("\n All the languages in the world organised by largest population to smallest. \n");
+                String query = "SELECT countrylanguage.Language, Sum(country.Population) AS Speakers, AVG(countrylanguage.Percentage) AS Percentage FROM countrylanguage  INNER JOIN country ON countrylanguage.CountryCode = country.Code\n" +
+                        "        WHERE countrylanguage.Language= \"Chinese\" OR countrylanguage.Language=\"English\" OR countrylanguage.Language=\"Hindi\" OR countrylanguage.Language=\"Spanish\"\n" +
+                        "        OR countrylanguage.Language=\"Arabic\" GROUP BY countrylanguage.Language ORDER BY Speakers DESC;";
+                System.out.println("\n Five languages speakers from largest population to smallest. \n");
                 createReport(connection, query);
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Failed to get language details");
+                System.out.println("Failed to get countries details");
 
             }
         }
-}
+    }
 
+}

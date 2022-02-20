@@ -50,7 +50,7 @@ public class App {
         populationReport.getWorldPopulationDesc(connection);
 
 
-        // Disconnect from database
+//         Disconnect from database
         mySQLConnection.disconnect(connection);
     }
 }
