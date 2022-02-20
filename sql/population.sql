@@ -39,4 +39,10 @@ SELECT (SUM(DISTINCT(country.population)) + SUM(city. population)) AS 'Total Pop
 
 -- The population of a continent.
 
+SELECT (SUM(DISTINCT(country.population))) AS 'Population of a continent'
+FROM country JOIN city ON city.countrycode = country.code WHERE country.continent = '';
+
 -- The population of a region.
+
+SELECT (SUM(DISTINCT(country.population))) AS 'Population of a region'
+FROM country JOIN city ON city.countrycode = country.code WHERE country.region = '';
