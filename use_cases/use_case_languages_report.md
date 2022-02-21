@@ -1,9 +1,9 @@
-# Use Case 5: Output a Languages Used Report
+# Use Case: Produce a Languages Used Report
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
-As an Administrator, I want to determine all the languages being spoken in a country, the percentage of world population and prepare a report for further business analysis required by WHO(World Health Organization).
+As an *Administrator*, I want to determine all the languages being spoken in a country, the percentage of world population and prepare a report for further business analysis as required by the World Health Organisation.
 ### Scope
 All countries in the database
 ### Level
@@ -33,6 +33,10 @@ HR advises there is no Analyst to execute and analyze the report
 
 None.
 
-## SCHEDULE
+## Schedule
 
 **DUE DATE**: February 23, 2022
+
+##References
+
+This documented was based on the work of [Alistair Cockburn](https://cis.bentley.edu/lwaguespack/CS360_Site/Downloads_files/Use%20Case%20Template%20%28Cockburn%29.pdf).

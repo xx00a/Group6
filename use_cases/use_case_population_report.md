@@ -1,10 +1,10 @@
-# Use Case 4: Output a Population Report
+# Use Case: Produce a Population Report
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
-As an **administrator** I want to produce a *Population Report* with many different criterias, in order to get 
-a better understanding of the demography of population and provide this information further to other departments in World Health Organization.
+As an *Administrator*, I want to produce a *Population Report* with many different criterias, in order to get 
+a better understanding of the demography of population and provide this information further to other departments as required by the World Health Organisation.
 
 ### Scope
 All countries in database.
@@ -44,6 +44,10 @@ A request is received to generate certain report.
 
 None.
 
-## SCHEDULE
+## Schedule
 
-**DUE DATE**: 23rd February 2022
+**DUE DATE**: February 23, 2022
+
+##References
+
+This documented was based on the work of [Alistair Cockburn](https://cis.bentley.edu/lwaguespack/CS360_Site/Downloads_files/Use%20Case%20Template%20%28Cockburn%29.pdf).

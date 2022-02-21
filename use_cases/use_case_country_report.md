@@ -1,10 +1,10 @@
-# Use Case: Produce a Country Report 
+# Use Case: Produce a Country Report
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a ***administrator***, I want to produce a *Country Report* that is organised by various parameters, including population, region, and name, for analysis so that I can provide further analysis as required by my organisation.
+As an *Administrator*, I want to produce a *Country Report* that is organised by various parameters, including population, region, and name, for analysis so that I can provide further analysis as required by the World Health Organisation.
 
 ### Scope
 
@@ -26,7 +26,7 @@ The application generates a specified report that includes the corresponding rec
 
 ### Failed End Condition
 
-No report is produced, or the parameters do not produce the correct report. 
+No report is produced, or the parameters do not produce the correct report.
 
 ### Primary Actor
 
@@ -40,18 +40,22 @@ A request is sent to the Administrator from a user requesting a data product.
 
 1. Administrator correctly identifies variables to execute the query.
 2. Administrator is competent on the system and successfully submits a request to the application to process.
-3. The application produces an accurate report that the Administrator can analyse. 
+3. The application produces an accurate report that the Administrator can analyse.
 4. Administrator uses data to advise data product requestor.
 
 ## EXTENSIONS
 
 1. **Administrator position does not exist:**
-    1. HR advises there is no Administrator to execute and analyze the report.
-   
+   1. HR advises there is no Administrator to execute and analyze the report.
+
 ## SUB-VARIATIONS
 
 None.
 
-## SCHEDULE
+## Schedule
 
-**DUE DATE**: Februrary 23, 2022
+**DUE DATE**: February 23, 2022
+
+##References
+
+This documented was based on the work of [Alistair Cockburn](https://cis.bentley.edu/lwaguespack/CS360_Site/Downloads_files/Use%20Case%20Template%20%28Cockburn%29.pdf).
