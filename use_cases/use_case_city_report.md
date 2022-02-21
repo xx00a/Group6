@@ -1,12 +1,10 @@
 # Use Case: Template
 
-*[You may want to reference Lab 3A/B to verify language used in report.]*
-
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an *administrator*, I want to produce a *City Report* that is organised by various parameters, including name, country, district, population, for analysis so that I can provide further analysis as required by World Health Organisation.
+As an *Administrator*, I want to produce a *City Report* that is organised by various parameters, including name, country, district, population, for analysis so that I can provide further analysis as required by the World Health Organisation.
 
 ### Scope
 
@@ -54,6 +52,10 @@ A request is sent to the Administrator from a World Health Organisation requesti
 
 None.
 
-## SCHEDULE
+## Schedule
 
-**DUE
+**DUE DATE**: February 23, 2022
+
+## References
+
+This documented was based on the work of [Alistair Cockburn](https://cis.bentley.edu/lwaguespack/CS360_Site/Downloads_files/Use%20Case%20Template%20%28Cockburn%29.pdf).

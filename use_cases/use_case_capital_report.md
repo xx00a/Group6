@@ -1,10 +1,10 @@
-# Use Case 3: Produce Capital City Report
+# Use Case: Produce Capital City Report
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an _Administrator_ I want to produce a *Capital City Report* that is determined by largest to smallest population grouped by country, region or as a whole in the world for the WHO (World Health Organisation)
+As an *Administrator*, I want to produce a *Capital City Report* that is determined by largest to smallest population grouped by country, region or as a whole in the world as required by the World Health Organisation.
 
 ### Scope
 
@@ -34,22 +34,26 @@ Any permitted user of the system within the organisation wishing to generate the
 
 A request from the organisation to require capital city population data (with groupings or not).
 
-## MAIN SUCCESS SCENARIO
+## Main Success Scenario
 
 1. User logs in the system
 2. User navigates to the capital city population report generation page
 3. User choice any groupings (continent, region, top 10, etc.)
 4. User hits the "Generate report" button
 
-## EXTENSIONS
+## Extensions
 
 1. **Statistician position does not exist within the organisation**
    1.1 HR advises there is no Statisticians to execute and analyze the report.
 
-## SUB-VARIATIONS
+## Sub-variations
 
 None.
 
-## SCHEDULE
+## Schedule
 
 **DUE DATE**: February 23, 2022
+
+## References
+
+This documented was based on the work of [Alistair Cockburn](https://cis.bentley.edu/lwaguespack/CS360_Site/Downloads_files/Use%20Case%20Template%20%28Cockburn%29.pdf).
