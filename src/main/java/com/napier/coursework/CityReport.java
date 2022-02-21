@@ -92,9 +92,21 @@ public class CityReport {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get city details");
-
         }
+    }
 
+    // All the cities in a district organised by largest population to smallest.
+    public void getDistirctCitiesByPopulationDesc(Connection connection, String district) {
+        try {
+            String query = "\n" +
+                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code WHERE city.District = '%s' ORDER BY 4 DESC, 1".formatted(district);
+            System.out.println("\n All the cities in " + district + " organised by largest population to smallest.\n");
+            createReport(connection, query);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+        }
     }
 
 }

@@ -27,6 +27,8 @@ public class App {
         cityReport.getRegiondCitiesByPopulationDesc(connection, "Caribbean");
         //Display results for all the cities in a country organised by largest population to smallest.
         cityReport.getCountryCitiesByPopulationDesc(connection, "Poland");
+        //Display results for all the cities in a district organised by largest population to smallest.
+        cityReport.getDistirctCitiesByPopulationDesc(connection, "Zachodnio-Pomorskie");
 
 
 
