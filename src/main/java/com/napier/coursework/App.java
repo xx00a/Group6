@@ -16,10 +16,17 @@ public class App {
 
         Connection connection = mySQLConnection.connect();
 
+
+        // Creating CityReport instance
         CityReport cityReport = new CityReport();
-        // Display results
+        // Display results for all the cities in the world organised by largest population to smallest.
         cityReport.getWorldCitiesByPopulationDesc(connection);
+        // Display results for all the cities in a continent organised by largest population to smallest.
         cityReport.getContinentCitiesByPopulationDesc(connection, "Africa");
+        // Display results for all the cities in a region organised by largest population to smallest.
+        cityReport.getRegiondCitiesByPopulationDesc(connection, "Caribbean");
+
+
 
         CapitalCityReport capitalCityReport = new CapitalCityReport();
         // Display results for all the capital cities in the world organised by largest population to smallest.
@@ -57,6 +64,7 @@ public class App {
         LanguagesReport languagesReport = new LanguagesReport();
         // Display results
         languagesReport.getWorldLanguagesByPopulationDesc(connection);
+
 
         PopulationReport populationReport = new PopulationReport();
 
