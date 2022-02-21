@@ -53,7 +53,7 @@ public class CityReport {
     public void getContinentCitiesByPopulationDesc(Connection connection, String continent) {
         try {
             String query = "\n" +
-                    "SELECT city.Name AS City, country.Name AS Country, city.District, country.Continent, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code WHERE country.Continent = '%s' ORDER BY 4, 5 DESC, 1".formatted(continent);
+                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code WHERE country.Continent = '%s' ORDER BY 4 DESC, 1".formatted(continent);
             System.out.println(" \n All the cities in " + continent + " organised by largest population to smallest. \n");
             createReport(connection, query);
 
@@ -69,8 +69,24 @@ public class CityReport {
     public void getRegiondCitiesByPopulationDesc(Connection connection, String region) {
         try {
             String query = "\n" +
-                    "SELECT city.Name AS City, country.Name AS Country, city.District, country.Region, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code WHERE country.Region = '%s' ORDER BY 4, 5 DESC, 1 LIMIT 20".formatted(region);
+                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code WHERE country.Region = '%s' ORDER BY 4 DESC, 1".formatted(region);
             System.out.println("\n All the cities in " + region + " organised by largest population to smallest.\n");
+            createReport(connection, query);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+
+        }
+
+    }
+
+    //All the cities in a country organised by largest population to smallest.
+    public void getCountryCitiesByPopulationDesc(Connection connection, String country) {
+        try {
+            String query = "\n" +
+                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code WHERE country.Name = '%s' ORDER BY 4 DESC, 1".formatted(country);
+            System.out.println("\n All the cities in " + country + " organised by largest population to smallest.\n");
             createReport(connection, query);
 
         } catch (SQLException e) {
