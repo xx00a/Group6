@@ -37,6 +37,6 @@ None.
 
 **DUE DATE**: February 23, 2022
 
-##References
+## References
 
 This documented was based on the work of [Alistair Cockburn](https://cis.bentley.edu/lwaguespack/CS360_Site/Downloads_files/Use%20Case%20Template%20%28Cockburn%29.pdf).
