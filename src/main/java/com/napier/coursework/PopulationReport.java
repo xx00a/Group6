@@ -54,6 +54,7 @@ public class PopulationReport
     }
     /***************************************************************************************************/
 
+//ID23
     /***** The population of people, people living in cities, and people not living in cities in each continent. ****/
     public void getPopulationPerContinent(Connection connection) {
         try {
@@ -76,7 +77,7 @@ public class PopulationReport
     }
     /**************************************************************************************************************/
 
-
+//ID24
     /***** The population of people, people living in cities, and people not living in cities in each region. ****/
     public void getPopulationPerRegion(Connection connection) {
         try {
@@ -100,7 +101,7 @@ public class PopulationReport
     /**************************************************************************************************************/
 
 
-
+//ID25
     /***** The population of people, people living in cities, and people not living in cities in each country. ****/
     public void getPopulationPerCountry(Connection connection) {
         try {
@@ -124,7 +125,7 @@ public class PopulationReport
     /**************************************************************************************************************/
 
 
-
+//ID26
     /************ Population of the world ***************/
     public void getPopulationOfWorld(Connection connection) {
         try {
@@ -142,7 +143,7 @@ public class PopulationReport
     /*****************************************************/
 
 
-
+//ID27
     /************ Population of selected continent ***************/
     public void getPopulationOfContinent(Connection connection, String detail) {
         try {
@@ -160,7 +161,7 @@ public class PopulationReport
     /************************************************************/
 
 
-
+//ID28
     /************ Population of selected region ***************/
     public void getPopulationOfRegion(Connection connection, String detail) {
         try {
