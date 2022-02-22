@@ -18,7 +18,7 @@ Primary task.
 
 There are only a finite number of cities globally; therefore, the database will contain a limited number of records for analysis.
 
-It is known that the report will contain the following fields: *Name, Country Code, District, Population*. It is also assumed that the ***city*** table includes a foreign key to the country for reporting purposes.
+It is known that the report will contain the following fields: *Name, Country Code, District, Population*.
 
 ### Success End Condition
 
