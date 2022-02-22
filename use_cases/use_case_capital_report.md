@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As an *Administrator*, I want to produce a *Capital City Report* that is organised by various parameters, including population, region, and name, for analysis so that I can provide further analysis as required by the World Health Organisation
+As an *Administrator*, I want to produce a *Capital City Report* that is organised by various parameters, including capital city name, country, region, continent and population for analysis so that I can provide further analysis as required by the World Health Organisation
 
 ### Scope
 
