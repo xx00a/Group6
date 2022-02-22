@@ -4,12 +4,11 @@
 
 ### Goal in Context
 
-As an *Administrator*, I want to produce a *Country Report* that is organised by various parameters, including population, region, and name, for analysis so that I can provide further analysis as required by the World Health Organisation.
+As an *Administrator*, I want to produce a Country Report organised by various parameters, including country code, name, continent, region, population, and the associated capital for analysis to provide further analysis as required by the World Health Organisation.
 
 ### Scope
 
-All countries in database.
-
+All countries and capital cities in the database. Several variations of reports will require the need to organise the data from largest to smallest. There is also a requirement to allow a variable to be defined that may restrict what countries are included in each report variation.
 ### Level
 
 Primary task.
@@ -18,7 +17,7 @@ Primary task.
 
 There are only a finite number of countries globally; therefore, the database will contain a limited number of records for analysis.
 
-It is known that the report will contain the following fields: *Country Code, Name, Continent, Region, Population, Capital*. It is also assumed that the ***[city]*** table includes a foreign key to the capital city for reporting purposes.
+It is known that the report will contain the following fields: *Country Code, Name, Continent, Region, Population, Capital*. The  ***City*** table includes a foreign key to the capital city for reporting purposes.
 
 ### Success End Condition
 
