@@ -4,12 +4,11 @@
 
 ### Goal in Context
 
-As an *Administrator*, I want to produce a *Country Report* that is organised by various parameters, including population, region, and name, for analysis so that I can provide further analysis as required by the World Health Organisation.
+As an *Administrator*, I want to produce a Country Report organised by various parameters, including country code, name, continent, region, population, and the associated capital for analysis to provide further analysis as required by the World Health Organisation.
 
 ### Scope
 
-All countries in database.
-
+All countries and capital cities in the database. Several variations of reports will require the need to organise the data from largest to smallest. There is also a requirement to allow a variable to be defined that may restrict what countries are included in each report variation.
 ### Level
 
 Primary task.
