@@ -4,15 +4,15 @@
 
 ### Goal in Context
 
-As an *Administrator*, I want to produce a *Capital City Report* that is determined by largest to smallest population grouped by country, region or as a whole in the world for analysis. So, that I can provide further analysis as required by the World Health Organisation.
+As an *Administrator*, I want to produce a *Capital City Report* that is organised by various parameters, including population, region, and name, for analysis so that I can provide further analysis as required by the World Health Organisation
 
 ### Scope
 
-The report will detail population data per capital city and can be grouped by region, continent or as a whole in the world.
+The report will entail population data for each capital city in the world.
 
 ### Level
 
-Primary tasks.
+Primary task.
 
 ### Preconditions
 
@@ -30,7 +30,7 @@ If there are no data available, a message saying so should appear. If any error,
 
 ### Primary Actor
 
-**Adiministrator**
+**Administrator**
 
 ### Trigger
 
@@ -38,14 +38,14 @@ A request from the organisation to require capital city population data (with gr
 
 ## Main Success Scenario
 
-1. **Adiministrator** logs in the system
-2. **Adiministrator** navigates to the capital city population report generation page
-3. **Adiministrator** choice any groupings (continent, region, top 10, etc.)
-4. **Adiministrator** hits the "Generate report" button
+1. **Administrator** logs in the system
+2. **Administrator** navigates to the capital city population report generation page
+3. **Administrator** choice any groupings (continent, region, top 10, etc.)
+4. **Administrator** hits the "Generate report" button
 
 ## Extensions
 
-1. **Adiministrator position does not exist within the organisation:**
+1. **Administrator position does not exist within the organisation:**
    1. HR advises there is no Statisticians to execute and analyze the report.
 
 ## Sub-variations
