@@ -86,7 +86,7 @@ public class CapitalCityReport {
         }
     }
 
-    // Report generating "All the capital cities in the world organised by largest population to smallest."
+    // Report #17 generating "All the capital cities in the world organised by largest population to smallest."
     public void getAllCapitalCityPopulation(Connection connection)
     {
         try {
@@ -100,7 +100,7 @@ public class CapitalCityReport {
         }
     }
 
-    // Report generating "All the capital cities in a continent organised by largest population to smallest."
+    // Report #18 generating "All the capital cities in a continent organised by largest population to smallest."
     public void getCapitalCityPopulationByContinent(Connection connection)
     {
         try {
@@ -115,7 +115,7 @@ public class CapitalCityReport {
         }
     }
 
-    // Report generating "All the capital cities in a region organised by largest to smallest."
+    // Report #19 generating "All the capital cities in a region organised by largest to smallest."
     public void getCapitalCityPopulationByRegion(Connection connection)
     {
         try {
@@ -130,7 +130,7 @@ public class CapitalCityReport {
         }
     }
 
-    // Report generating "The top N populated capital cities in the world where N is provided by the user."
+    // Report #20 generating "The top N populated capital cities in the world where N is provided by the user."
     public void getTopNCapitalCities(Connection connection, int topNCities)
     {
         try {
@@ -145,7 +145,7 @@ public class CapitalCityReport {
         }
     }
 
-    // Report generating "the top N populated capital cities in a continent where N is provided by the user."
+    // Report #21 generating "the top N populated capital cities in a continent where N is provided by the user."
     public void getTopNCapitalCitiesInOneContinent(Connection connection, int topNCities, String continentStr)
     {
         try {
@@ -160,7 +160,7 @@ public class CapitalCityReport {
         }
     }
 
-    // Report generating "the top N populated capital cities in a region where N is provided by the user."
+    // Report #22 generating "the top N populated capital cities in a region where N is provided by the user."
     public void getTopNCapitalCitiesInOneRegion(Connection connection, int topNCities, String regionStr)
     {
         try {
@@ -175,7 +175,7 @@ public class CapitalCityReport {
         }
     }
 
-    // Report generating "the top N populated capital cities in all continents where N is provided by the user."
+    // Extra report generating "the top N populated capital cities in all continents where N is provided by the user."
     public void getTopNCapitalCitiesInAllContinents(Connection connection, int topNCities)
     {
         try {
@@ -197,7 +197,7 @@ public class CapitalCityReport {
         }
     }
 
-    // Report generating "the top N populated capital cities in all global regions where N is provided by the user."
+    // Extra report generating "the top N populated capital cities in all global regions where N is provided by the user."
     public void getTopNCapitalCitiesInAllRegions(Connection connection, int topNCities)
     {
         try {

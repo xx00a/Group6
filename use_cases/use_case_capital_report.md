@@ -4,19 +4,21 @@
 
 ### Goal in Context
 
-As an *Administrator*, I want to produce a *Capital City Report* that is determined by largest to smallest population grouped by country, region or as a whole in the world as required by the World Health Organisation.
+As an *Administrator*, I want to produce a *Capital City Report* that is organised by various parameters, including capital city name, country, region, continent and population for analysis so that I can provide further analysis as required by the World Health Organisation
 
 ### Scope
 
-The report will detail population data per capital city and can be grouped by region, continent or as a whole in the world.
+The report will entail population data for each capital city in the world.
 
 ### Level
 
-Primary tasks.
+Primary task.
 
 ### Preconditions
 
 World database is running on a server that will hold data used for statistical population gathering.
+
+It is known that the report will contain the following fields: Name, Country, Region/Continent and Population.
 
 ### Success End Condition
 
@@ -28,7 +30,7 @@ If there are no data available, a message saying so should appear. If any error,
 
 ### Primary Actor
 
-Any permitted user of the system within the organisation wishing to generate the report.
+**Administrator**
 
 ### Trigger
 
@@ -36,15 +38,15 @@ A request from the organisation to require capital city population data (with gr
 
 ## Main Success Scenario
 
-1. User logs in the system
-2. User navigates to the capital city population report generation page
-3. User choice any groupings (continent, region, top 10, etc.)
-4. User hits the "Generate report" button
+1. **Administrator** logs in the system
+2. **Administrator** navigates to the capital city population report generation page
+3. **Administrator** choice any groupings (continent, region, top 10, etc.)
+4. **Administrator** hits the "Generate report" button
 
 ## Extensions
 
-1. **Statistician position does not exist within the organisation**
-   1.1 HR advises there is no Statisticians to execute and analyze the report.
+1. **Administrator position does not exist within the organisation:**
+   1. HR advises there is no Statisticians to execute and analyze the report.
 
 ## Sub-variations
 
