@@ -4,11 +4,14 @@ import java.sql.*;
 
 public class MySQLConnection {
 
+
+    // default constructor
     public Connection connect()
     {
       return   connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
     }
 
+    // constructor for connection with parameters
     public Connection connect(String uri, String user, String password)
     {
         try

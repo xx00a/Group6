@@ -1,4 +1,4 @@
-# Use Case: Template
+# Use Case: Produce a City Report
 
 ## CHARACTERISTIC INFORMATION
 
@@ -18,7 +18,7 @@ Primary task.
 
 There are only a finite number of cities globally; therefore, the database will contain a limited number of records for analysis.
 
-It is known that the report will contain the following fields: *Name, Country Code, District, Population*. It is also assumed that the ***[city]*** table includes a foreign key to the country for reporting purposes.
+It is known that the report will contain the following fields: *Name, Country Code, District, Population*. It is also assumed that the ***city*** table includes a foreign key to the country for reporting purposes.
 
 ### Success End Condition
 
@@ -41,7 +41,7 @@ A request is sent to the Administrator from a World Health Organisation requesti
 1. Administrator correctly identifies variables to execute the query.
 2. Administrator is competent on the system and successfully submits a request to the application to process.
 3. The application produces an accurate report that the Administrator can analyse.
-4.Administrator uses data to produce raport for World Health Organisation.
+4. Administrator uses data to produce raport for World Health Organisation.
 
 ## EXTENSIONS
 
