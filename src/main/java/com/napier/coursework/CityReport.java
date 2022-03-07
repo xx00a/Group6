@@ -21,10 +21,10 @@ public class CityReport {
         // Populate capitalCities with all the data for each instance of CapitalCity
         while (rset.next()) {
             City city = new City();
-            city.name = rset.getString("City");
-            city.country = rset.getString("Country");
-            city.district = rset.getString("city.District");
-            city.population = rset.getInt("city.Population");
+            city.setName(rset.getString("City"));
+            city.setCountry(rset.getString("Country"));
+            city.setDistrict(rset.getString("city.District"));
+            city.setPopulation(rset.getInt("city.Population"));
             cities.add(city);
         }
         // Display report title
@@ -33,7 +33,7 @@ public class CityReport {
         for (City city : cities) {
             String cityString =
                     String.format(" %-30s  %-30s  %-30s  %-30s ",
-                            city.name, city.country, city.district, city.population);
+                            city.getName(), city.getCountry(), city.getDistrict(), city.getPopulation());
             // Display report body
             System.out.println(cityString);
         }
