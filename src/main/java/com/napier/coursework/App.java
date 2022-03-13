@@ -24,12 +24,13 @@ public class App {
         // Display results for all the cities in a continent organised by largest population to smallest.
         cityReport.getContinentCitiesByPopulationDesc(connection, "Africa");
         // Display results for all the cities in a region organised by largest population to smallest.
-        cityReport.getRegiondCitiesByPopulationDesc(connection, "Caribbean");
+        cityReport.getRegionCitiesByPopulationDesc(connection, "Caribbean");
         //Display results for all the cities in a country organised by largest population to smallest.
         cityReport.getCountryCitiesByPopulationDesc(connection, "Poland");
         //Display results for all the cities in a district organised by largest population to smallest.
-        cityReport.getDistirctCitiesByPopulationDesc(connection, "Zachodnio-Pomorskie");
-
+        cityReport.getDistrictCitiesByPopulationDesc(connection, "Zachodnio-Pomorskie");
+        // The top N populated cities in the world where N is provided by the user.
+        cityReport.getNumberWorldCitiesByPopulationDesc(connection, 10);
 
 
         CapitalCityReport capitalCityReport = new CapitalCityReport();

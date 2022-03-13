@@ -74,7 +74,7 @@ public class CityReport {
 
 
     // All the cities in a region organised by largest population to smallest.
-    public void getRegiondCitiesByPopulationDesc(Connection connection, String region) {
+    public void getRegionCitiesByPopulationDesc(Connection connection, String region) {
         try {
             //Create the query string
             String query = "\n" +
@@ -108,7 +108,7 @@ public class CityReport {
     }
 
     // All the cities in a district organised by largest population to smallest.
-    public void getDistirctCitiesByPopulationDesc(Connection connection, String district) {
+    public void getDistrictCitiesByPopulationDesc(Connection connection, String district) {
         try {
             //Create the query string
             String query = "\n" +
@@ -122,5 +122,28 @@ public class CityReport {
             System.out.println("Failed to get city details");
         }
     }
+// The top N populated cities in the world where N is provided by the user.
 
+    public void getNumberWorldCitiesByPopulationDesc(Connection connection, int numberOfCities) {
+        try {
+            //Create the query string
+            String query = "\n" +
+                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code ORDER BY 4 DESC LIMIT '%s'".formatted(numberOfCities);
+            //Display report topic
+            System.out.println("\n"  + numberOfCities +  " cities in the World organised by largest population to smallest.\n");
+            createReport(connection, query);
+            // Handle errors
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+        }
+    }
+
+// The top N populated cities in a continent where N is provided by the user.
+
+// The top N populated cities in a region where N is provided by the user.
+
+// The top N populated cities in a country where N is provided by the user.
+
+//  The top N populated cities in a district where N is provided by the user.
 }
