@@ -18,6 +18,7 @@ public class App {
         // Creating CityReport instance
         CityReport cityReport = new CityReport();
 
+
         // Display results for all the cities in the world organised by largest population to smallest.
         cityReport.getWorldCitiesByPopulationDesc(connection);
         // Display results for all the cities in a continent organised by largest population to smallest.
@@ -29,7 +30,7 @@ public class App {
         //Display results for all the cities in a district organised by largest population to smallest.
         cityReport.getDistrictCitiesByPopulationDesc(connection, "Zachodnio-Pomorskie");
         // The top N populated cities in the world where N is provided by the user.
-        cityReport.getNumberWorldCitiesByPopulationDesc(connection, 10);
+        cityReport.getNumberWorldCitiesByPopulationDesc(connection, 1);
         // The top N populated cities in a continent where N is provided by the user.
         cityReport.getNumberContinentCitiesByPopulationDesc(connection, "Africa", 7);
         // The top N populated cities in a region where N is provided by the user.
@@ -91,8 +92,8 @@ public class App {
 //         Disconnect from database
         mySQLConnection.disconnect(connection);
     }
-
-    public String printTest (){
-        return "Test one";
-    }
+  public static void test()
+  {
+    System.out.println("Test in app class executed.");
+  }
 }
