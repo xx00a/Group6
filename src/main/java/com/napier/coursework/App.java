@@ -15,10 +15,9 @@ public class App {
         MySQLConnection mySQLConnection = new MySQLConnection();
 
         Connection connection = mySQLConnection.connect();
-
-
         // Creating CityReport instance
         CityReport cityReport = new CityReport();
+
         // Display results for all the cities in the world organised by largest population to smallest.
         cityReport.getWorldCitiesByPopulationDesc(connection);
         // Display results for all the cities in a continent organised by largest population to smallest.
@@ -91,5 +90,9 @@ public class App {
 
 //         Disconnect from database
         mySQLConnection.disconnect(connection);
+    }
+
+    public String printTest (){
+        return "Test one";
     }
 }
