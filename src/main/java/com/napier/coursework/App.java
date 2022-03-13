@@ -31,7 +31,14 @@ public class App {
         cityReport.getDistrictCitiesByPopulationDesc(connection, "Zachodnio-Pomorskie");
         // The top N populated cities in the world where N is provided by the user.
         cityReport.getNumberWorldCitiesByPopulationDesc(connection, 10);
-
+        // The top N populated cities in a continent where N is provided by the user.
+        cityReport.getNumberContinentCitiesByPopulationDesc(connection, "Africa", 7);
+        // The top N populated cities in a region where N is provided by the user.
+        cityReport.getNumberRegionCitiesByPopulationDesc(connection, "Caribbean", 5);
+        // The top N populated cities in a country where N is provided by the user.
+        cityReport.getNumberCountryCitiesByPopulationDesc(connection, "Poland", 6);
+        // The top N populated cities in a continent where N is provided by the user.
+        cityReport.getNumberDistrictCitiesByPopulationDesc(connection, "New York", 5 );
 
         CapitalCityReport capitalCityReport = new CapitalCityReport();
         // Display results for all the capital cities in the world organised by largest population to smallest.

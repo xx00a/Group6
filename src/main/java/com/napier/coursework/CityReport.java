@@ -128,7 +128,7 @@ public class CityReport {
         try {
             //Create the query string
             String query = "\n" +
-                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code ORDER BY 4 DESC LIMIT '%s'".formatted(numberOfCities);
+                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code ORDER BY 4 DESC LIMIT %s".formatted(numberOfCities);
             //Display report topic
             System.out.println("\n"  + numberOfCities +  " cities in the World organised by largest population to smallest.\n");
             createReport(connection, query);
@@ -141,9 +141,75 @@ public class CityReport {
 
 // The top N populated cities in a continent where N is provided by the user.
 
+    public void getNumberContinentCitiesByPopulationDesc(Connection connection, String continent,  int numberOfCities) {
+        try {
+            //Create the query string
+            String query = "\n" +
+                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code WHERE country.Continent = '%s' ORDER BY 4 DESC LIMIT %s".formatted(continent, numberOfCities);
+            //Display report topic
+            System.out.println(" \n" + numberOfCities + " cities in " + continent + " organised by largest population to smallest. \n");
+            createReport(connection, query);
+            // Handle errors
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+
+        }
+    }
+
+
 // The top N populated cities in a region where N is provided by the user.
+
+    public void getNumberRegionCitiesByPopulationDesc(Connection connection, String region, int numberOfCities) {
+        try {
+            //Create the query string
+            String query = "\n" +
+                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code WHERE country.Region = '%s' ORDER BY 4 DESC LIMIT %s ".formatted(region, numberOfCities);
+            //Display report topic
+            System.out.println("\n" + numberOfCities + " cities in " + region + " organised by largest population to smallest.\n");
+            createReport(connection, query);
+            // Handle errors
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+
+        }
+
+    }
 
 // The top N populated cities in a country where N is provided by the user.
 
+    public void getNumberCountryCitiesByPopulationDesc(Connection connection, String country, int numberOfCities) {
+        try {
+            //Create the query string
+            String query = "\n" +
+                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code WHERE country.Name = '%s' ORDER BY 4 DESC LIMIT %s".formatted(country, numberOfCities);
+            //Display report topic
+            System.out.println("\n " + numberOfCities + " cities in " + country + " organised by largest population to smallest.\n");
+            createReport(connection, query);
+            // Handle errors
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+        }
+    }
+
+
 //  The top N populated cities in a district where N is provided by the user.
+
+    public void getNumberDistrictCitiesByPopulationDesc(Connection connection, String district, int numberOfCities) {
+        try {
+            //Create the query string
+            String query = "\n" +
+                    "SELECT city.Name AS City, country.Name AS Country, city.District, city.Population FROM city  INNER JOIN country  ON city.CountryCode = country.Code WHERE city.District = '%s' ORDER BY 4 DESC LIMIT %S".formatted(district, numberOfCities);
+            //Display report topic
+            System.out.println("\n " + numberOfCities + " in " + district + " organised by largest population to smallest.\n");
+            createReport(connection, query);
+            // Handle errors
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+        }
+    }
+
 }
