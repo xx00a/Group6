@@ -8,7 +8,14 @@ public class MySQLConnection {
     // default constructor
     public Connection connect()
     {
-      return   connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+        // Wait a bit for db to start
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            System.out.println("Could not load SQL driver");
+            System.exit(-1);
+        }
+        return   connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
     }
 
     // constructor for connection with parameters
@@ -33,8 +40,6 @@ public class MySQLConnection {
             System.out.println("Connecting to database...");
             try
             {
-                // Wait a bit for db to start
-                Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection(uri, user, password);
                 System.out.println("Successfully connected");

@@ -2,10 +2,9 @@ version: '3'
 services:
   # Application Dockerfile is in same folder which is .
   db:
-    build: db/.
+    container_name: dockerTestDB
+    build: ../../../db/.
     command: --default-authentication-plugin=mysql_native_password
     restart: always
-
-  # db is in the db folder
-  app:
-    build: .
+    ports:
+      - "3080:3306"

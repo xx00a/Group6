@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         // Connect to database
         MySQLConnection mySQLConnection = new MySQLConnection();
@@ -20,7 +20,7 @@ public class App {
 
 
         // Display results for all the cities in the world organised by largest population to smallest.
-        cityReport.getWorldCitiesByPopulationDesc(connection);
+        cityReport.createGetWorldCitiesByPopulationDescReport(connection);
         // Display results for all the cities in a continent organised by largest population to smallest.
         cityReport.getContinentCitiesByPopulationDesc(connection, "Africa");
         // Display results for all the cities in a region organised by largest population to smallest.

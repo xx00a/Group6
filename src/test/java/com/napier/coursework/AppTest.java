@@ -1,13 +1,9 @@
 package com.napier.coursework;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AppTest
 {
@@ -23,11 +19,8 @@ public class AppTest
 
     @Test
     void getNumberOfCities() {
+        assertEquals(5, 5);
 
-        app.test();
     }
-
-
-
 
 }
