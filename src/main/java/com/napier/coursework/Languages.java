@@ -10,7 +10,7 @@ public class Languages {
     private String name;
     private String language;
     private float percentage;
-    private int population;
+    private long population;
 
     public String getName() {
         return name;
@@ -36,11 +36,11 @@ public class Languages {
         this.percentage = percentage;
     }
 
-    public int getPopulation() {
+    public long getPopulation() {
         return population;
     }
 
-    public void setPopulation(int population) {
+    public void setPopulation(long population) {
         this.population = population;
     }
 }

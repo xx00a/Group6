@@ -29,8 +29,19 @@ public class App {
         MySQLConnection mySQLConnection = new MySQLConnection();
         Connection sqlConnect = mySQLConnection.connect();
 
-        // let's call our report generator
-        ReportEngine theReport = new ReportEngine(argReport, argVar, sqlConnect);
+        try {
+
+            System.out.println("\nReport ID: " + argReport + " (" + argVar + ")");
+            // let's call our report generator
+            ReportEngine theReport = new ReportEngine(argReport, argVar, sqlConnect);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to produce report");
+
+        }
+
+
 
         // Disconnect from database
         mySQLConnection.disconnect(sqlConnect);
