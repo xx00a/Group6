@@ -19,16 +19,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class App {
 
+    static MySQLConnection mySQLConnection;
+    static Connection sqlConnect;
+
     public static void main(String[] args) {
 
+        // Connect to database
+        mySQLConnection = new MySQLConnection();
+        sqlConnect = mySQLConnection.connect();
+
         SpringApplication.run(App.class, args);
+
+        System.out.println("Group6's website is now up and running. Waiting for http request...");
 
     }
 
     @RequestMapping(value = "/report", method = RequestMethod.GET)
     public String getReport(@RequestParam(value = "id") int ID, @RequestParam(value = "grouping") String grouping,
                             @RequestParam(value = "limit") int limit){
-        return generateReport2(6,"Eastern Asia",0);
+        return generateReport(ID,grouping,limit);
     }
 
     private String generateReport2(int argReport, String argVar, int limit) {
@@ -54,9 +63,10 @@ public class App {
             }
         }//*/
 
+        /*
         // Connect to database
         MySQLConnection mySQLConnection = new MySQLConnection();
-        Connection sqlConnect = mySQLConnection.connect();
+        Connection sqlConnect = mySQLConnection.connect();//*/
 
         ReportEngine theReport = null;
 
@@ -73,7 +83,7 @@ public class App {
         }
 
         // Disconnect from database
-        mySQLConnection.disconnect(sqlConnect);
+        // mySQLConnection.disconnect(sqlConnect);
 
         //return Objects.isNull(theReport) ? null : theReport;
         return "Need HTML string here!!!";
