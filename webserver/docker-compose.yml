@@ -1,0 +1,13 @@
+services:
+  webserver:
+    build: ./
+    restart: always
+    networks:
+      - db
+    ports:
+      - "80:80"
+
+  networks:
+    db:
+      external:
+        name: db_default

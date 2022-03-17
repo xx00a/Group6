@@ -4,15 +4,14 @@ import java.sql.*;
 
 public class MySQLConnection {
 
-
     // default constructor
-    public Connection connect()
+    public static Connection connect()
     {
       return   connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
     }
 
     // constructor for connection with parameters
-    public Connection connect(String uri, String user, String password)
+    public static Connection connect(String uri, String user, String password)
     {
         try
         {
@@ -57,7 +56,7 @@ public class MySQLConnection {
     }
 
     // Disconnect from the MySQL database.
-    public void disconnect(Connection connection)
+    public static void disconnect(Connection connection)
     {
         if (connection != null)
         {
