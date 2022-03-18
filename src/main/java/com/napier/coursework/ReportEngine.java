@@ -344,6 +344,11 @@ public class ReportEngine {
                 }
 
             case 2:
+
+                // table headers
+                reportTable.add(new String[]{"Name", "Name"});
+
+                // add row result
                 for (City city : cityArrayList) {
 
                     /// this needs to be completed
@@ -377,6 +382,11 @@ public class ReportEngine {
 
                 break;
             case 4:
+
+                // table headers
+                reportTable.add(new String[]{"Name", "Name"});
+
+                // add row result
                 for (Languages languages : languagesArrayList) {
                     /// this needs to be completed
                     languages.getName();
@@ -384,6 +394,10 @@ public class ReportEngine {
                 }
                 break;
             case 5:
+                // table headers
+                reportTable.add(new String[]{"Name", "Name"});
+
+                // add row result
                 for (Population population : populationArrayList) {
                     /// this needs to be completed
                     population.getName();
