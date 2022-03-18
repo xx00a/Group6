@@ -35,15 +35,55 @@ public class ReportEngine {
     {
         reportSQL = new String[33];
         reportSQL[1] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                ORDER  BY country.population DESC;
+                """;
         reportSQL[2] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE  country.continent LIKE 'XXvarArgXX'
+                ORDER  BY country.population DESC;
+                """;
         reportSQL[3] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE  country.region LIKE 'XXvarArgXX'
+                ORDER  BY country.population DESC;
+                """;
         reportSQL[4] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                ORDER  BY country.population DESC
+                LIMIT  0, YYvarLimitYY;
+                """;
         reportSQL[5] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE  country.continent LIKE 'XXvarArgXX'
+                ORDER  BY country.population DESC
+                LIMIT  0, YYvarLimitYY;
+                """;
         reportSQL[6] = """
                 SELECT country.Code,country.Name,country.Continent,country.Region,
                        country.Population,
@@ -113,12 +153,12 @@ public class ReportEngine {
 
     static {
         reportIndex = new String[33];
-        reportIndex[1] = "All the countries in the world organised by largest population to smallest.";
-        reportIndex[2] = "All the countries in a continent organised by largest population to smallest.";
-        reportIndex[3] = "All the countries in a region organised by largest population to smallest.";
-        reportIndex[4] = "The top N populated countries in the world where N is provided by the user.";
-        reportIndex[5] = "The top N populated countries in a continent where N is provided by the user.";
-        reportIndex[6] = "The top N populated countries in a region where N is provided by the user.";
+        reportIndex[1] = "All the countries in the world organised by largest population to smallest";
+        reportIndex[2] = "All the countries in a continent organised by largest population to smallest";
+        reportIndex[3] = "All the countries in a region organised by largest population to smallest";
+        reportIndex[4] = "The top 5 populated countries in the world";
+        reportIndex[5] = "The top 5 populated countries in a continent";
+        reportIndex[6] = "The top 5 populated countries in a region";
         reportIndex[7] = "All the cities in the world organised by largest population to smallest.";
         reportIndex[8] = "All the cities in a continent organised by largest population to smallest.";
         reportIndex[9] = "All the cities in a region organised by largest population to smallest.";
@@ -305,6 +345,8 @@ public class ReportEngine {
 
             case 2:
                 for (City city : cityArrayList) {
+
+                    /// this needs to be completed
                     city.getName();
 
                 }
@@ -336,21 +378,19 @@ public class ReportEngine {
                 break;
             case 4:
                 for (Languages languages : languagesArrayList) {
+                    /// this needs to be completed
                     languages.getName();
 
                 }
                 break;
             case 5:
                 for (Population population : populationArrayList) {
+                    /// this needs to be completed
                     population.getName();
 
                 }
                 break;
         }
-
-
-        // to-do on agreement: let's dump to a text file with HTML
-
 
     }
 
