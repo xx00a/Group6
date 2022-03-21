@@ -47,8 +47,4 @@ public class App {
         mySQLConnection.disconnect(sqlConnect);
 
     }
-  public static void test()
-  {
-    System.out.println("Test in app class executed.");
-  }
 }
