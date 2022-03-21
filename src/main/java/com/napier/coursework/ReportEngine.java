@@ -96,25 +96,62 @@ public class ReportEngine {
                 LIMIT  0, YYvarLimitYY;
                 """;
         reportSQL[7] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  
+                INNER JOIN country  ON city.CountryCode = country.Code 
+                ORDER BY 4 DESC;
+                """;
         reportSQL[8] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  
+               INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE country.Continent = 'XXvarArgXX'
+               ORDER BY 4 DESC, 1;
+               """;
         reportSQL[9] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE country.Region = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+               """;
         reportSQL[10] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE country.Name = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+               """;
         reportSQL[11] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE city.District = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+               """;
         reportSQL[12] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
+               """;
         reportSQL[13] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE country.Continent = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
+                """;
         reportSQL[14] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE country.Region = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY; 
+                """;
         reportSQL[15] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE country.Name = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY; 
+                """;
         reportSQL[16] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE city.District = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT YYvarLimitYY; 
+                """;
         reportSQL[17] = """
                 ORDER  BY country.population DESC;""";
         reportSQL[18] = """
