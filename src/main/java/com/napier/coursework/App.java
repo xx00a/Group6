@@ -60,6 +60,7 @@ public class App {
             switch (x) {
                 case 0 -> argReport = Integer.parseInt(args[x]);
                 case 1 -> argVar = args[x];
+                case 2 -> argLimit = args[x];
             }
         }//*/
 
@@ -73,8 +74,9 @@ public class App {
         try {
 
             System.out.println("\nReport ID: " + argReport + " (" + argVar + ")");
+
             // let's call our report generator
-            theReport = new ReportEngine(argReport, argVar, sqlConnect);
+            ReportEngine theReport = new ReportEngine(argReport, argVar, sqlConnect);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -82,14 +84,15 @@ public class App {
 
         }
 
+
+
         // Disconnect from database
         // mySQLConnection.disconnect(sqlConnect);
 
         //return Objects.isNull(theReport) ? null : theReport;
         return "Need HTML string here!!!";
     }
-
-    public static void test()
+  public static void test()
   {
     System.out.println("Test in app class executed.");
   }

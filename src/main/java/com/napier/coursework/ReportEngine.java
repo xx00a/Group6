@@ -10,6 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Arrays;
+import java.util.List;
+
 import static com.napier.coursework.QueryHelper.getResultSet;
 
 
@@ -32,15 +35,55 @@ public class ReportEngine {
     {
         reportSQL = new String[33];
         reportSQL[1] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                ORDER  BY country.population DESC;
+                """;
         reportSQL[2] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE  country.continent LIKE 'XXvarArgXX'
+                ORDER  BY country.population DESC;
+                """;
         reportSQL[3] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE  country.region LIKE 'XXvarArgXX'
+                ORDER  BY country.population DESC;
+                """;
         reportSQL[4] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                ORDER  BY country.population DESC
+                LIMIT  0, YYvarLimitYY;
+                """;
         reportSQL[5] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE  country.continent LIKE 'XXvarArgXX'
+                ORDER  BY country.population DESC
+                LIMIT  0, YYvarLimitYY;
+                """;
         reportSQL[6] = """
                 SELECT country.Code,country.Name,country.Continent,country.Region,
                        country.Population,
@@ -48,30 +91,67 @@ public class ReportEngine {
                 FROM   country
                        LEFT JOIN city c
                               ON country.capital = c.id
-                WHERE  country.Region LIKE 'XXXXX'
+                WHERE  country.Region LIKE 'XXvarArgXX'
                 ORDER  BY country.population DESC
-                LIMIT  0, 5;
+                LIMIT  0, YYvarLimitYY;
                 """;
         reportSQL[7] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  
+                INNER JOIN country  ON city.CountryCode = country.Code 
+                ORDER BY 4 DESC;
+                """;
         reportSQL[8] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  
+               INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE country.Continent = 'XXvarArgXX'
+               ORDER BY 4 DESC, 1;
+               """;
         reportSQL[9] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE country.Region = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+               """;
         reportSQL[10] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE country.Name = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+               """;
         reportSQL[11] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE city.District = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+               """;
         reportSQL[12] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
+               """;
         reportSQL[13] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE country.Continent = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
+                """;
         reportSQL[14] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE country.Region = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY; 
+                """;
         reportSQL[15] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE country.Name = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY; 
+                """;
         reportSQL[16] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE city.District = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT YYvarLimitYY; 
+                """;
         reportSQL[17] = """
                 ORDER  BY country.population DESC;""";
         reportSQL[18] = """
@@ -106,16 +186,16 @@ public class ReportEngine {
                 ORDER  BY country.population DESC;""";
     }
 
-    private static String[] reportIndex;
+    private static final String[] reportIndex;
 
     static {
         reportIndex = new String[33];
-        reportIndex[1] = "All the countries in the world organised by largest population to smallest.";
-        reportIndex[2] = "All the countries in a continent organised by largest population to smallest.";
-        reportIndex[3] = "All the countries in a region organised by largest population to smallest.";
-        reportIndex[4] = "The top N populated countries in the world where N is provided by the user.";
-        reportIndex[5] = "The top N populated countries in a continent where N is provided by the user.";
-        reportIndex[6] = "The top N populated countries in a region where N is provided by the user.";
+        reportIndex[1] = "All the countries in the world organised by largest population to smallest";
+        reportIndex[2] = "All the countries in a continent organised by largest population to smallest";
+        reportIndex[3] = "All the countries in a region organised by largest population to smallest";
+        reportIndex[4] = "The top 5 populated countries in the world";
+        reportIndex[5] = "The top 5 populated countries in a continent";
+        reportIndex[6] = "The top 5 populated countries in a region";
         reportIndex[7] = "All the cities in the world organised by largest population to smallest.";
         reportIndex[8] = "All the cities in a continent organised by largest population to smallest.";
         reportIndex[9] = "All the cities in a region organised by largest population to smallest.";
@@ -146,13 +226,15 @@ public class ReportEngine {
 
 
     // begin report generator
-    private void createReport(int reportID, int reportClass, String queryText, Connection mySQLengine) throws SQLException {
+    private void createReport(int reportID, int reportClass, String varArg, String varLimit, Connection mySQLengine) throws SQLException {
 
         // let's insert our variable
-        reportSQL[reportID] = reportSQL[reportID].replaceAll("XXXXX",queryText);
+        reportSQL[reportID] = reportSQL[reportID].replaceAll("XXvarArgXX", varArg);
+        reportSQL[reportID] = reportSQL[reportID].replaceAll("YYvarLimitYY", varLimit);
 
-        System.out.println(queryText);
-        System.out.println("Running "+reportID+": "+reportIndex[reportID]);
+        System.out.println(varArg);
+        System.out.println(varLimit);
+        System.out.println("Running " + reportID + ": " + reportIndex[reportID]);
         System.out.println(reportSQL[reportID]);
 
         // create record set
@@ -166,8 +248,7 @@ public class ReportEngine {
         ArrayList<Population> populationArrayList = new ArrayList<>();
 
         // let's create our classes to start reporting
-        switch (reportClass)
-        {
+        switch (reportClass) {
             case 1:
                 //REPORT_CAPITAL_CITY
 
@@ -279,107 +360,222 @@ public class ReportEngine {
         }
 
         // our data is now collected, let's exploit it
+
+        //let's create our matrix
+        List<String[]> reportTable = new ArrayList<>();
+
         switch (reportClass) {
             case 1:
-                for (CapitalCity capitalCity : capitalCityArrayList) {
-                    capitalCity.getName();
+                // table headers
+                reportTable.add(new String[]{"Name", "Name"});
 
+                // add row result
+                for (CapitalCity capitalCity : capitalCityArrayList) {
+                    reportTable.add(new String[]{
+                            capitalCity.getName(),
+                            capitalCity.getContinent(),
+                            capitalCity.getCountry(),
+                            capitalCity.getRegion(),
+                            Long.toString(capitalCity.getPopulation())
+                    });
                 }
 
             case 2:
+
+                // table headers
+                reportTable.add(new String[]{"Name", "Name"});
+
+                // add row result
                 for (City city : cityArrayList) {
+
+                    /// this needs to be completed
                     city.getName();
 
                 }
                 break;
             case 3:
 
+                // Build table headers for Country Report
+                reportTable.add(new String[]{"Code", "Name", "Continent", "Region", "Population", "Capital"});
 
+                // Add row results to array
                 for (Country country : countryArrayList) {
-
-                    System.out.println(
-                    country.getName());
-                    System.out.println("\r\n");
-
-
-
+                    reportTable.add(new String[]{
+                            country.getCode(),
+                            country.getName(),
+                            country.getContinent(),
+                            country.getRegion(),
+                            Long.toString(country.getPopulation()),
+                            country.getCapital()
+                    });
                 }
+
+                // let's pass the table to the HTML generator
+                // Ray to update HTML string output
+                System.out.println(
+                        generateHTML(reportTable, reportID, reportIndex[reportID], "Country Report")
+                );
+
+
                 break;
             case 4:
+
+                // table headers
+                reportTable.add(new String[]{"Name", "Name"});
+
+                // add row result
                 for (Languages languages : languagesArrayList) {
+                    /// this needs to be completed
                     languages.getName();
 
                 }
                 break;
             case 5:
+                // table headers
+                reportTable.add(new String[]{"Name", "Name"});
+
+                // add row result
                 for (Population population : populationArrayList) {
+                    /// this needs to be completed
                     population.getName();
 
                 }
                 break;
         }
 
-
-
-        // to-do on agreement: let's dump to a text file with HTML
-
-
-
-
     }
 
 
     // begin constructor
-    public ReportEngine(int reportID, String argument, Connection mySQLc) throws SQLException {
+    public ReportEngine(int reportID, String argVar, String argLimit, Connection mySQLc) throws SQLException {
 
         // variables
         int reportClass;
 
         // define report associations
-        rID.put(1,REPORT_COUNTRY);
-        rID.put(2,REPORT_COUNTRY);
-        rID.put(3,REPORT_COUNTRY);
-        rID.put(4,REPORT_COUNTRY);
-        rID.put(5,REPORT_COUNTRY);
-        rID.put(6,REPORT_COUNTRY);
-        rID.put(7,REPORT_CITY);
-        rID.put(8,REPORT_CITY);
-        rID.put(9,REPORT_CITY);
-        rID.put(10,REPORT_CAPITAL_CITY);
-        rID.put(11,REPORT_CITY);
-        rID.put(12,REPORT_CITY);
-        rID.put(13,REPORT_CITY);
-        rID.put(14,REPORT_COUNTRY);
-        rID.put(15,REPORT_COUNTRY);
-        rID.put(16,REPORT_COUNTRY);
-        rID.put(17,REPORT_COUNTRY);
-        rID.put(18,REPORT_COUNTRY);
-        rID.put(19,REPORT_COUNTRY);
-        rID.put(20,REPORT_COUNTRY);
-        rID.put(21,REPORT_LANGUAGES);
-        rID.put(22,REPORT_LANGUAGES);
-        rID.put(23,REPORT_LANGUAGES);
-        rID.put(24,REPORT_LANGUAGES);
-        rID.put(25,REPORT_LANGUAGES);
-        rID.put(26,REPORT_POPULATION);
-        rID.put(27,REPORT_POPULATION);
-        rID.put(28,REPORT_POPULATION);
-        rID.put(29,REPORT_POPULATION);
-        rID.put(30,REPORT_POPULATION);
-        rID.put(31,REPORT_POPULATION);
+        rID.put(1, REPORT_COUNTRY);
+        rID.put(2, REPORT_COUNTRY);
+        rID.put(3, REPORT_COUNTRY);
+        rID.put(4, REPORT_COUNTRY);
+        rID.put(5, REPORT_COUNTRY);
+        rID.put(6, REPORT_COUNTRY);
+        rID.put(7, REPORT_CITY);
+        rID.put(8, REPORT_CITY);
+        rID.put(9, REPORT_CITY);
+        rID.put(10, REPORT_CAPITAL_CITY);
+        rID.put(11, REPORT_CITY);
+        rID.put(12, REPORT_CITY);
+        rID.put(13, REPORT_CITY);
+        rID.put(14, REPORT_COUNTRY);
+        rID.put(15, REPORT_COUNTRY);
+        rID.put(16, REPORT_COUNTRY);
+        rID.put(17, REPORT_COUNTRY);
+        rID.put(18, REPORT_COUNTRY);
+        rID.put(19, REPORT_COUNTRY);
+        rID.put(20, REPORT_COUNTRY);
+        rID.put(21, REPORT_LANGUAGES);
+        rID.put(22, REPORT_LANGUAGES);
+        rID.put(23, REPORT_LANGUAGES);
+        rID.put(24, REPORT_LANGUAGES);
+        rID.put(25, REPORT_LANGUAGES);
+        rID.put(26, REPORT_POPULATION);
+        rID.put(27, REPORT_POPULATION);
+        rID.put(28, REPORT_POPULATION);
+        rID.put(29, REPORT_POPULATION);
+        rID.put(30, REPORT_POPULATION);
+        rID.put(31, REPORT_POPULATION);
 
         // translate our class
         reportClass = rID.get(reportID);
 
         // create the report
-        createReport(reportID,reportClass,argument,mySQLc);
+        createReport(reportID, reportClass, argVar, argLimit, mySQLc);
 
 
         // do things
     }
 
 
-    private void createReport(Connection connection, String query) throws SQLException {
-        getResultSet(connection, query);
+    private String generateHTML(List<String[]> matrix, Integer reportID, String reportDesc, String reportType) {
+
+        // Default report template
+        String htmlOut =
+                """
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>Report</title>
+                        </head>
+                        <style>
+                            table {
+                                border-collapse: collapse;
+                                border: 1px solid;
+                                font-family: sans-serif;
+                            }
+                                        
+                            th, td {
+                                border: 1px solid;
+                                padding: 10px 10px;
+                                text-align: center;
+                            }
+                        </style>
+                        <body style="font-family: Arial,serif; size: 11px;">
+                        XXX-header-XXX
+                        XXX-desc-XXX
+                        XXX-table-XXX
+                        </body>
+                        </html>
+                        """;
+
+        // header
+        String htmlHeader = "<h2 style=\"size: 14px;\">" + reportType + "</h2>";
+        // report description
+        String htmlDesc = "<h3 style=\"color: #666666;\">(Report ID: " + reportID + ") " + reportDesc + "</h3>";
+
+        //build table
+        String htmlTable = """
+                <table>
+                  <tr>
+                   YYY-headers-YYY
+                  </tr>
+                   YYY-rows-YYY
+                </table>
+                """;
+
+        String yyyHeaders = "";
+        String yyyRows = "";
+
+        // build headers
+        for (int i = 0; i < matrix.size(); i++) {
+            String[] values = matrix.get(i);
+
+            yyyRows += "<tr>\r\n";
+
+            for (int y = 0; y < values.length; y++) {
+                switch (i) {
+                    case 0 -> yyyHeaders += "<th>" + values[y] + "</th>\r\n";
+                    default -> yyyRows += "<td>" + values[y] + "</td>\r\n";
+                }
+            }
+
+            yyyRows += "</tr>\r\n";
+
+        }
+
+        // insert data into table
+        htmlTable = htmlTable.replaceAll("YYY-headers-YYY", yyyHeaders);
+        htmlTable = htmlTable.replaceAll("YYY-rows-YYY", yyyRows);
+
+        // build rows
+
+        htmlOut = htmlOut.replaceAll("XXX-header-XXX", htmlHeader);
+        htmlOut = htmlOut.replaceAll("XXX-desc-XXX", htmlDesc);
+        htmlOut = htmlOut.replaceAll("XXX-table-XXX", htmlTable);
+
+        return htmlOut;
+
     }
+
+
 }
