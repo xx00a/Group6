@@ -1,7 +1,8 @@
 package com.napier.coursework;
 
 /*
- * The Country report drives the functionality of a country report and outputs a selected report ID for display
+ * The report engine outputs a selected report ID for display
+ * Last update: March 23, 2022
  */
 
 
@@ -15,11 +16,9 @@ import java.util.List;
 
 import static com.napier.coursework.QueryHelper.getResultSet;
 
-
 public class ReportEngine {
 
-    // begin static references --->
-
+    // begin static references
     Hashtable<Integer, Integer> rID = new Hashtable<>();
 
     // load constants
@@ -32,6 +31,7 @@ public class ReportEngine {
     // sql queries
     String[] reportSQL;
 
+    // Each query MUST correspond with the Report ID indicated on README.me
     {
         reportSQL = new String[33];
         reportSQL[1] = """
@@ -156,47 +156,51 @@ public class ReportEngine {
         reportIndex[1] = "All the countries in the world organised by largest population to smallest";
         reportIndex[2] = "All the countries in a continent organised by largest population to smallest";
         reportIndex[3] = "All the countries in a region organised by largest population to smallest";
-        reportIndex[4] = "The top 5 populated countries in the world";
-        reportIndex[5] = "The top 5 populated countries in a continent";
-        reportIndex[6] = "The top 5 populated countries in a region";
+        reportIndex[4] = "The top YYvarLimitYY populated countries in the world";
+        reportIndex[5] = "The top YYvarLimitYY populated countries in XXvarArgXX";
+        reportIndex[6] = "The top YYvarLimitYY populated countries in XXvarArgXX";
         reportIndex[7] = "All the cities in the world organised by largest population to smallest.";
-        reportIndex[8] = "All the cities in a continent organised by largest population to smallest.";
-        reportIndex[9] = "All the cities in a region organised by largest population to smallest.";
-        reportIndex[10] = "All the cities in a country organised by largest population to smallest.";
-        reportIndex[11] = "All the cities in a district organised by largest population to smallest.";
-        reportIndex[12] = "The top N populated cities in the world where N is provided by the user.";
-        reportIndex[13] = "The top N populated cities in a continent where N is provided by the user.";
-        reportIndex[14] = "The top N populated cities in a region where N is provided by the user.";
-        reportIndex[15] = "The top N populated cities in a country where N is provided by the user.";
-        reportIndex[16] = "The top N populated cities in a district where N is provided by the user.";
+        reportIndex[8] = "All the cities in XXvarArgXX organised by largest population to smallest.";
+        reportIndex[9] = "All the cities in XXvarArgXX organised by largest population to smallest.";
+        reportIndex[10] = "All the cities in XXvarArgXX organised by largest population to smallest.";
+        reportIndex[11] = "All the cities in XXvarArgXX organised by largest population to smallest.";
+        reportIndex[12] = "The top YYvarLimitYY populated cities in the world";
+        reportIndex[13] = "The top YYvarLimitYY populated cities in XXvarArgXX";
+        reportIndex[14] = "The top YYvarLimitYY populated cities in XXvarArgXX";
+        reportIndex[15] = "The top YYvarLimitYY populated cities in XXvarArgXX";
+        reportIndex[16] = "The top YYvarLimitYY populated cities in XXvarArgXX";
         reportIndex[17] = "All the capital cities in the world organised by largest population to smallest.";
-        reportIndex[18] = "All the capital cities in a continent organised by largest population to smallest.";
-        reportIndex[19] = "All the capital cities in a region organised by largest to smallest.";
-        reportIndex[20] = "The top N populated capital cities in the world where N is provided by the user.";
-        reportIndex[21] = "The top N populated capital cities in a continent where N is provided by the user.";
-        reportIndex[22] = "The top N populated capital cities in a region where N is provided by the user.";
+        reportIndex[18] = "All the capital cities in XXvarArgXX organised by largest population to smallest.";
+        reportIndex[19] = "All the capital cities in XXvarArgXX organised by largest to smallest.";
+        reportIndex[20] = "The top YYvarLimitYY populated capital cities in the world";
+        reportIndex[21] = "The top YYvarLimitYY populated capital cities in XXvarArgXX";
+        reportIndex[22] = "The top YYvarLimitYY populated capital cities in XXvarArgXX";
         reportIndex[23] = "The population of people, people living in cities, and people not living in cities in each continent.";
         reportIndex[24] = "The population of people, people living in cities, and people not living in cities in each region.";
         reportIndex[25] = "The population of people, people living in cities, and people not living in cities in each country.";
         reportIndex[26] = "The population of the world.";
-        reportIndex[27] = "The population of a continent.";
-        reportIndex[28] = "The population of a region.";
-        reportIndex[29] = "The population of a country.";
-        reportIndex[30] = "The population of a district.";
-        reportIndex[31] = "The population of a city.";
+        reportIndex[27] = "The population of XXvarArgXX";
+        reportIndex[28] = "The population of XXvarArgXX";
+        reportIndex[29] = "The population of XXvarArgXX";
+        reportIndex[30] = "The population of XXvarArgXX";
+        reportIndex[31] = "The population of XXvarArgXX";
         reportIndex[32] = "The number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic";
     }
 
-
     // begin report generator
-    private void createReport(int reportID, int reportClass, String varArg, String varLimit, Connection mySQLengine) throws SQLException {
+    private String createReport(int reportID, int reportClass, String varArg, String varLimit, Connection mySQLengine) throws SQLException {
+
+        // HTML output to return
+        String htmlOutput = "";
 
         // let's insert our variable
         reportSQL[reportID] = reportSQL[reportID].replaceAll("XXvarArgXX", varArg);
         reportSQL[reportID] = reportSQL[reportID].replaceAll("YYvarLimitYY", varLimit);
 
-        System.out.println(varArg);
-        System.out.println(varLimit);
+        reportIndex[reportID] = reportIndex[reportID].replaceAll("XXvarArgXX", varArg);
+        reportIndex[reportID] = reportIndex[reportID].replaceAll("YYvarLimitYY", varLimit);
+
+        // debug only
         System.out.println("Running " + reportID + ": " + reportIndex[reportID]);
         System.out.println(reportSQL[reportID]);
 
@@ -213,7 +217,7 @@ public class ReportEngine {
         // let's create our classes to start reporting
         switch (reportClass) {
             case 1:
-                //REPORT_CAPITAL_CITY
+                // Report class: REPORT_CAPITAL_CITY
 
                 // cycle through the record set return from mySQL
                 while (rSet.next()) {
@@ -234,7 +238,7 @@ public class ReportEngine {
                 }
                 break;
             case 2:
-                //REPORT_CITY
+                // Report class: REPORT_CITY
 
                 // cycle through the record set return from mySQL
                 while (rSet.next()) {
@@ -255,7 +259,7 @@ public class ReportEngine {
 
                 break;
             case 3:
-                //REPORT_COUNTRY
+                // Report class: REPORT_COUNTRY
 
                 // cycle through the record set return from mySQL
                 while (rSet.next()) {
@@ -278,7 +282,7 @@ public class ReportEngine {
 
                 break;
             case 4:
-                //REPORT_LANGUAGES
+                // Report class: REPORT_LANGUAGES
 
                 // cycle through the record set return from mySQL
                 while (rSet.next()) {
@@ -298,7 +302,7 @@ public class ReportEngine {
 
                 break;
             case 5:
-                //REPORT_POPULATION
+                // Report class: REPORT_POPULATION
 
                 // cycle through the record set return from mySQL
                 while (rSet.next()) {
@@ -375,10 +379,7 @@ public class ReportEngine {
 
                 // let's pass the table to the HTML generator
                 // Ray to update HTML string output
-                System.out.println(
-                        generateHTML(reportTable, reportID, reportIndex[reportID], "Country Report")
-                );
-
+                htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "Country Report");
 
                 break;
             case 4:
@@ -406,16 +407,14 @@ public class ReportEngine {
                 break;
         }
 
+        return htmlOutput;
+
     }
 
-
     // begin constructor
-    public ReportEngine(int reportID, String argVar, String argLimit, Connection mySQLc) throws SQLException {
+    public ReportEngine() throws SQLException {
 
-        // variables
-        int reportClass;
-
-        // define report associations
+        // define report class associations
         rID.put(1, REPORT_COUNTRY);
         rID.put(2, REPORT_COUNTRY);
         rID.put(3, REPORT_COUNTRY);
@@ -448,14 +447,19 @@ public class ReportEngine {
         rID.put(30, REPORT_POPULATION);
         rID.put(31, REPORT_POPULATION);
 
+    }
+
+    public String generateReport(int reportID, String argVar, String argLimit, Connection mySQLc) throws SQLException {
+
+        // variables
+        int reportClass;
+
         // translate our class
         reportClass = rID.get(reportID);
 
         // create the report
-        createReport(reportID, reportClass, argVar, argLimit, mySQLc);
+        return createReport(reportID, reportClass, argVar, argLimit, mySQLc);
 
-
-        // do things
     }
 
 
@@ -539,6 +543,5 @@ public class ReportEngine {
         return htmlOut;
 
     }
-
 
 }

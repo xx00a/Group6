@@ -12,19 +12,11 @@ public class App {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
-        // load arguments
-        int argReport = 0;
-        String argVar = "";
-        String argLimit = "";
-
-        for (int x = 0; x < args.length; x++)
-        {
-            switch (x) {
-                case 0 -> argReport = Integer.parseInt(args[x]);
-                case 1 -> argVar = args[x];
-                case 2 -> argLimit = args[x];
-            }
-        }
+        // Global variables ***** default to ("" or 0) when testing is complete - to be passed from NGINX web application *****
+        String htmlOutput = "";
+        int argReport = 5;
+        String argVar = "North America";
+        String argLimit = "5";
 
         // Connect to database
         MySQLConnection mySQLConnection = new MySQLConnection();
@@ -34,8 +26,13 @@ public class App {
 
             System.out.println("\nReport ID: " + argReport + " (" + argVar + ")");
 
-            // let's call our report generator
-            ReportEngine theReport = new ReportEngine(argReport, argVar, argLimit, sqlConnect);
+            // We create our handy report generator
+            ReportEngine theReport = new ReportEngine();
+
+            // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
+            htmlOutput = theReport.generateReport(argReport, argVar, argLimit, sqlConnect);
+
+            // @RAY you can pass your data here ---->
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -43,10 +40,16 @@ public class App {
 
         }
 
+        // Produce HTML output in console - should be removed when testing complete
+        System.out.println("--- HTML START ---");
+        System.out.println(htmlOutput);
+        System.out.println("--- HTML END ---");
+
         // Disconnect from database
         mySQLConnection.disconnect(sqlConnect);
 
     }
+
   public static void test()
   {
     System.out.println("Test in app class executed.");
