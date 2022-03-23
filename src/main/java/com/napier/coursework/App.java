@@ -36,47 +36,18 @@ public class App {
 
     @RequestMapping(value = "/report", method = RequestMethod.GET)
     public String getReport(@RequestParam(value = "id") int ID, @RequestParam(value = "grouping") String grouping,
-                            @RequestParam(value = "limit") int limit){
-        return generateReport(ID,grouping,limit);
-    }
+                            @RequestParam(value = "limit") String limit) throws ClassNotFoundException, SQLException{
 
-    private String generateReport2(int argReport, String argVar, int limit) {
-        return "<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Hello Docker and Spring Boot!</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <h1>This is Group6's Docker-NGINX-SpringBoot application!</h1>\n" +
-                "</body>\n" +
-                "</html>";
-    }
-
-    private String generateReport(int argReport, String argVar, int limit) {
-        /*
-        for (int x = 0; x < args.length; x++)
-        {
-            switch (x) {
-                case 0 -> argReport = Integer.parseInt(args[x]);
-                case 1 -> argVar = args[x];
-                case 2 -> argLimit = args[x];
-            }
-        }//*/
-
-        /*
-        // Connect to database
-        MySQLConnection mySQLConnection = new MySQLConnection();
-        Connection sqlConnect = mySQLConnection.connect();//*/
-
-        ReportEngine theReport = null;
+        // Create variable for the html report output
+        String htmlOutput = "";
 
         try {
 
-            System.out.println("\nReport ID: " + argReport + " (" + argVar + ")");
+            // We create our handy report generator
+            ReportEngine theReport = new ReportEngine();
 
-            // let's call our report generator
-            ReportEngine theReport = new ReportEngine(argReport, argVar, sqlConnect);
+            // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
+            htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -84,16 +55,12 @@ public class App {
 
         }
 
-
-
-        // Disconnect from database
-        // mySQLConnection.disconnect(sqlConnect);
-
-        //return Objects.isNull(theReport) ? null : theReport;
-        return "Need HTML string here!!!";
+        return htmlOutput;
     }
+
   public static void test()
   {
     System.out.println("Test in app class executed.");
   }
+
 }
