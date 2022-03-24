@@ -6,94 +6,88 @@ package com.napier.coursework;
  */
 
 import java.sql.*;
+import java.util.Objects;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+
+@SpringBootApplication
+@RestController
 public class App {
+
+    // Connect to database
+    static MySQLConnection mySQLConnection = new MySQLConnection();
+    static Connection sqlConnect;
 
     public static void main(String[] args) {
 
-        // Connect to database
-        MySQLConnection mySQLConnection = new MySQLConnection();
+        sqlConnect = MySQLConnection.connect();
 
-        Connection connection = mySQLConnection.connect();
-        // Creating CityReport instance
-        CityReport cityReport = new CityReport();
+        SpringApplication.run(App.class, args);
 
+        System.out.println("Group6's website is now up and running. Waiting for http request...");
 
-        // Display results for all the cities in the world organised by largest population to smallest.
-        cityReport.getWorldCitiesByPopulationDesc(connection);
-        // Display results for all the cities in a continent organised by largest population to smallest.
-        cityReport.getContinentCitiesByPopulationDesc(connection, "Africa");
-        // Display results for all the cities in a region organised by largest population to smallest.
-        cityReport.getRegionCitiesByPopulationDesc(connection, "Caribbean");
-        //Display results for all the cities in a country organised by largest population to smallest.
-        cityReport.getCountryCitiesByPopulationDesc(connection, "Poland");
-        //Display results for all the cities in a district organised by largest population to smallest.
-        cityReport.getDistrictCitiesByPopulationDesc(connection, "Zachodnio-Pomorskie");
-        // The top N populated cities in the world where N is provided by the user.
-        cityReport.getNumberWorldCitiesByPopulationDesc(connection, 1);
-        // The top N populated cities in a continent where N is provided by the user.
-        cityReport.getNumberContinentCitiesByPopulationDesc(connection, "Africa", 7);
-        // The top N populated cities in a region where N is provided by the user.
-        cityReport.getNumberRegionCitiesByPopulationDesc(connection, "Caribbean", 5);
-        // The top N populated cities in a country where N is provided by the user.
-        cityReport.getNumberCountryCitiesByPopulationDesc(connection, "Poland", 6);
-        // The top N populated cities in a continent where N is provided by the user.
-        cityReport.getNumberDistrictCitiesByPopulationDesc(connection, "New York", 5 );
-
-        CapitalCityReport capitalCityReport = new CapitalCityReport();
-        // Display results for all the capital cities in the world organised by largest population to smallest.
-        capitalCityReport.getAllCapitalCityPopulation(connection);
-        // Display results for all the capital cities in a continent organised by largest population to smallest.
-        capitalCityReport.getCapitalCityPopulationByContinent(connection);
-        // Display results for all the capital cities in a region organised by largest population to smallest.
-        capitalCityReport.getCapitalCityPopulationByRegion(connection);
-        // Display results for the top N populated capital cities in the world where N is provided by the user.
-        capitalCityReport.getTopNCapitalCities(connection, 10);
-        // Display results for the top N populated capital cities in a continent where N is provided by the user.
-        capitalCityReport.getTopNCapitalCitiesInOneContinent(connection, 10, "Asia");
-        // Display results for the top N populated capital cities in a region where N is provided by the user.
-        capitalCityReport.getTopNCapitalCitiesInOneRegion(connection, 10, "Western Europe");
-        // Display results for the top N populated capital cities in all continents where N is provided by the user.
-        capitalCityReport.getTopNCapitalCitiesInAllContinents(connection, 10);
-        // Display results for the top N populated capital cities in all global regions where N is provided by the user.
-        capitalCityReport.getTopNCapitalCitiesInAllRegions(connection, 10);
-
-
-        // Start of Country Series of Reports -->
-        // Create new Country Report (from class)
-        CountryReport countryReport = new CountryReport();
-
-        //For now, we will use static references for N until interface is developed
-        //This will cycle through Report IDs 1 to 6
-
-        for (int x = 1; x < 7; x++) {
-            // Call on getReport method to create individual report
-            countryReport.getReport(x, connection);
-        }
-        // End of Country Series of Reports -->
-
-
-        LanguagesReport languagesReport = new LanguagesReport();
-        // Display results
-        languagesReport.getWorldLanguagesByPopulationDesc(connection);
-
-
-        PopulationReport populationReport = new PopulationReport();
-
-
-        populationReport.getPopulationPerContinent(connection);
-        populationReport.getPopulationPerRegion(connection);
-        populationReport.getPopulationPerCountry(connection);
-        populationReport.getPopulationOfWorld(connection);
-        populationReport.getPopulationOfContinent(connection, "Asia");
-        populationReport.getPopulationOfRegion(connection, "Baltic Countries");
-
-
-//         Disconnect from database
-        mySQLConnection.disconnect(connection);
     }
-  public static void test()
-  {
-    System.out.println("Test in app class executed.");
-  }
+
+    @RequestMapping(value = "/report",
+            params = { "id", "grouping", "limit" },
+            method = RequestMethod.GET)
+    @ResponseBody
+    public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
+                            @RequestParam(value = "limit", defaultValue = "1") String limit) throws ClassNotFoundException, SQLException {
+
+        System.out.println(ID + grouping + limit);
+
+        // Create variable for the html report output
+        String htmlOutput = "";
+
+        System.out.println("ID is = "+ ID);
+        System.out.println("grouping is = "+ grouping);
+        System.out.println("limit is = "+ limit);
+
+        try {
+
+            // We create our handy report generator
+            ReportEngine theReport = new ReportEngine();
+
+            // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
+            htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to produce report");
+
+        }
+
+        /*
+         Produce HTML output in console - should be removed when testing complete
+         System.out.println("--- HTML START ---");
+         System.out.println(htmlOutput);
+         System.out.println("--- HTML END ---");
+        */
+
+        return htmlOutput;
+    }
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String produceQueryHome()  throws ClassNotFoundException, SQLException {
+
+        // Create variable for the html output
+        String htmlOutput;
+
+        htmlOutput = """
+                <html>
+                add home page and form to GET variables here
+                <a href="/report?id=5&grouping=North America&limit=10">Test Test Test</a>
+                </html>
+                """;
+
+        return htmlOutput;
+
+    }
+
+    public static void test() {
+        System.out.println("Test in app class executed.");
+    }
 }
