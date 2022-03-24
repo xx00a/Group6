@@ -60,8 +60,6 @@ public class App {
 
         }
 
-        return htmlOutput;
-
         // Produce HTML output in console - should be removed when testing complete
         System.out.println("--- HTML START ---");
         System.out.println(htmlOutput);
@@ -69,6 +67,8 @@ public class App {
 
         // Disconnect from database
         mySQLConnection.disconnect(sqlConnect);
+
+        return htmlOutput;
 
     }
 
