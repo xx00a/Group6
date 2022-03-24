@@ -96,37 +96,92 @@ public class ReportEngine {
                 LIMIT  0, YYvarLimitYY;
                 """;
         reportSQL[7] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  
+                INNER JOIN country  ON city.CountryCode = country.Code 
+                ORDER BY 4 DESC;
+                """;
         reportSQL[8] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  
+               INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE country.Continent = 'XXvarArgXX'
+               ORDER BY 4 DESC, 1;
+               """;
         reportSQL[9] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE country.Region = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+               """;
         reportSQL[10] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE country.Name = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+               """;
         reportSQL[11] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               WHERE city.District = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+               """;
         reportSQL[12] = """
-                ORDER  BY country.population DESC;""";
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
+               """;
         reportSQL[13] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE country.Continent = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
+                """;
         reportSQL[14] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE country.Region = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY; 
+                """;
         reportSQL[15] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE country.Name = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY; 
+                """;
         reportSQL[16] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE city.District = 'XXvarArgXX'
+                ORDER BY 4 DESC LIMIT YYvarLimitYY; 
+                """;
         reportSQL[17] = """
-                ORDER  BY country.population DESC;""";
+                SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population' 
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID 
+                ORDER  BY 3 DESC, 1;""";
         reportSQL[18] = """
-                ORDER  BY country.population DESC;""";
+                SELECT b.Name as 'Name', a.Name as 'Country', a.Continent as 'Continent', 
+                       b.Population as 'Population' 
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID ORDER BY 3, 4 DESC, 1
+                ORDER  BY 3, 4 DESC, 1;""";
         reportSQL[19] = """
-                ORDER  BY country.population DESC;""";
+                SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region', 
+                       b.Population as 'Population' 
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID 
+                ORDER  BY 3, 4 DESC, 1;""";
         reportSQL[20] = """
-                ORDER  BY country.population DESC;""";
+                SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population' 
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID 
+                ORDER  BY 3 DESC, 1 LIMIT YYvarLimitYY;""";
         reportSQL[21] = """
-                ORDER  BY country.population DESC;""";
+                SELECT b.Name as 'Name', a.Name as 'Country', a.Continent as 'Continent', 
+                       b.Population as 'Population' 
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID 
+                WHERE  a.Continent = "XXvarArgXX" 
+                ORDER  BY 4 DESC, 1 LIMIT YYvarLimitYY;""";
         reportSQL[22] = """
-                ORDER  BY country.population DESC;""";
+                SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region', 
+                       b.Population as 'Population' 
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID 
+                WHERE  a.Region = "XXvarArgXX" 
+                ORDER  BY 4 DESC, 1 LIMIT YYvarLimitYY;""";
         reportSQL[23] = """
                 ORDER  BY country.population DESC;""";
         reportSQL[24] = """
@@ -229,8 +284,6 @@ public class ReportEngine {
                     aCapitalCity.setName(rSet.getString("Name"));
                     aCapitalCity.setCountry(rSet.getString("Country"));
                     aCapitalCity.setPopulation(rSet.getLong("Population"));
-                    aCapitalCity.setContinent(rSet.getString("Continent"));
-                    aCapitalCity.setRegion(rSet.getString("Region"));
 
                     // add to record set so we can recall later
                     capitalCityArrayList.add(aCapitalCity);
@@ -333,16 +386,14 @@ public class ReportEngine {
 
         switch (reportClass) {
             case 1:
-                // table headers
-                reportTable.add(new String[]{"Name", "Name"});
+                // Build table headers for the Capital City Report
+                reportTable.add(new String[]{"Name", "Country", "Population"});
 
                 // add row result
                 for (CapitalCity capitalCity : capitalCityArrayList) {
                     reportTable.add(new String[]{
                             capitalCity.getName(),
-                            capitalCity.getContinent(),
                             capitalCity.getCountry(),
-                            capitalCity.getRegion(),
                             Long.toString(capitalCity.getPopulation())
                     });
                 }
@@ -424,19 +475,19 @@ public class ReportEngine {
         rID.put(7, REPORT_CITY);
         rID.put(8, REPORT_CITY);
         rID.put(9, REPORT_CITY);
-        rID.put(10, REPORT_CAPITAL_CITY);
+        rID.put(10, REPORT_CITY);
         rID.put(11, REPORT_CITY);
         rID.put(12, REPORT_CITY);
         rID.put(13, REPORT_CITY);
-        rID.put(14, REPORT_COUNTRY);
-        rID.put(15, REPORT_COUNTRY);
-        rID.put(16, REPORT_COUNTRY);
-        rID.put(17, REPORT_COUNTRY);
-        rID.put(18, REPORT_COUNTRY);
-        rID.put(19, REPORT_COUNTRY);
-        rID.put(20, REPORT_COUNTRY);
-        rID.put(21, REPORT_LANGUAGES);
-        rID.put(22, REPORT_LANGUAGES);
+        rID.put(14, REPORT_CITY);
+        rID.put(15, REPORT_CITY);
+        rID.put(16, REPORT_CITY);
+        rID.put(17, REPORT_CAPITAL_CITY);
+        rID.put(18, REPORT_CAPITAL_CITY);
+        rID.put(19, REPORT_CAPITAL_CITY);
+        rID.put(20, REPORT_CAPITAL_CITY);
+        rID.put(21, REPORT_CAPITAL_CITY);
+        rID.put(22, REPORT_CAPITAL_CITY);
         rID.put(23, REPORT_LANGUAGES);
         rID.put(24, REPORT_LANGUAGES);
         rID.put(25, REPORT_LANGUAGES);
@@ -543,5 +594,6 @@ public class ReportEngine {
         return htmlOut;
 
     }
+
 
 }
