@@ -6,8 +6,6 @@ package com.napier.coursework;
  */
 
 import java.sql.*;
-import java.util.Objects;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,29 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class App {
 
-    static MySQLConnection mySQLConnection;
+    // Connect to database
+    static MySQLConnection mySQLConnection = new MySQLConnection();
     static Connection sqlConnect;
 
     public static void main(String[] args) {
-        // Global variables ***** default to ("" or 0) when testing is complete - to be passed from NGINX web application *****
-        String htmlOutput = "";
-        int argReport = 5;
-        String argVar = "North America";
-        String argLimit = "5";
 
-        // Connect to database
-        mySQLConnection = new MySQLConnection();
-        sqlConnect = mySQLConnection.connect();
+        sqlConnect = MySQLConnection.connect();
 
         SpringApplication.run(App.class, args);
 
         System.out.println("Group6's website is now up and running. Waiting for http request...");
-
     }
 
-    @RequestMapping(value = "/report", method = RequestMethod.GET)
+    @RequestMapping(value = "/report.html", method = RequestMethod.GET)
     public String getReport(@RequestParam(value = "id") int ID, @RequestParam(value = "grouping") String grouping,
-                            @RequestParam(value = "limit") String limit) throws ClassNotFoundException, SQLException{
+                            @RequestParam(value = "limit") String limit) throws ClassNotFoundException, SQLException {
 
         // Create variable for the html report output
         String htmlOutput = "";
@@ -52,7 +43,7 @@ public class App {
             ReportEngine theReport = new ReportEngine();
 
             // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
-            htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
+            htmlOutput = theReport.generateReport(ID, grouping, limit, sqlConnect);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -65,15 +56,28 @@ public class App {
         System.out.println(htmlOutput);
         System.out.println("--- HTML END ---");
 
-        // Disconnect from database
-        mySQLConnection.disconnect(sqlConnect);
+        return htmlOutput;
+
+    }
+
+    @RequestMapping(value = "/index.html", method = RequestMethod.GET)
+    public String produceQueryHome()  throws ClassNotFoundException, SQLException {
+
+        // Create variable for the html output
+        String htmlOutput;
+
+        htmlOutput = """
+                <html>
+                add home page and form to GET variables here
+                <a href="/report.html?id=5&grouping=North America&limit=10">Test Test Test</a>
+                </html>
+                """;
 
         return htmlOutput;
 
     }
 
-  public static void test()
-  {
-    System.out.println("Test in app class executed.");
-  }
+    public static void test() {
+        System.out.println("Test in app class executed.");
+    }
 }

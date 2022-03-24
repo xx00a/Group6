@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.napier.coursework.QueryHelper.getResultSet;
@@ -96,91 +95,91 @@ public class ReportEngine {
                 LIMIT  0, YYvarLimitYY;
                 """;
         reportSQL[7] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
-                FROM city  
-                INNER JOIN country  ON city.CountryCode = country.Code 
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                FROM city
+                INNER JOIN country  ON city.CountryCode = country.Code
                 ORDER BY 4 DESC;
                 """;
         reportSQL[8] = """
-               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
-               FROM city  
-               INNER JOIN country  ON city.CountryCode = country.Code 
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+               FROM city
+               INNER JOIN country  ON city.CountryCode = country.Code
                WHERE country.Continent = 'XXvarArgXX'
                ORDER BY 4 DESC, 1;
                """;
         reportSQL[9] = """
-               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
-               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code
                WHERE country.Region = 'XXvarArgXX' ORDER BY 4 DESC, 1;
                """;
         reportSQL[10] = """
-               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
-               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code
                WHERE country.Name = 'XXvarArgXX' ORDER BY 4 DESC, 1;
                """;
         reportSQL[11] = """
-               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
-               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code
                WHERE city.District = 'XXvarArgXX' ORDER BY 4 DESC, 1;
                """;
         reportSQL[12] = """
-               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
-               FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+               FROM city  INNER JOIN country  ON city.CountryCode = country.Code
                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
                """;
         reportSQL[13] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
-                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code
                 WHERE country.Continent = 'XXvarArgXX'
                 ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[14] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
-                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code
                 WHERE country.Region = 'XXvarArgXX'
-                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY; 
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[15] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
-                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code
                 WHERE country.Name = 'XXvarArgXX'
-                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY; 
+                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[16] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population 
-                FROM city  INNER JOIN country  ON city.CountryCode = country.Code 
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                FROM city  INNER JOIN country  ON city.CountryCode = country.Code
                 WHERE city.District = 'XXvarArgXX'
-                ORDER BY 4 DESC LIMIT YYvarLimitYY; 
+                ORDER BY 4 DESC LIMIT YYvarLimitYY;
                 """;
         reportSQL[17] = """
-                SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population' 
-                FROM   country a INNER JOIN city b ON a.Capital = b.ID 
+                SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population'
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID
                 ORDER  BY 3 DESC, 1;""";
         reportSQL[18] = """
-                SELECT b.Name as 'Name', a.Name as 'Country', a.Continent as 'Continent', 
-                       b.Population as 'Population' 
+                SELECT b.Name as 'Name', a.Name as 'Country', a.Continent as 'Continent',
+                       b.Population as 'Population'
                 FROM   country a INNER JOIN city b ON a.Capital = b.ID ORDER BY 3, 4 DESC, 1
                 ORDER  BY 3, 4 DESC, 1;""";
         reportSQL[19] = """
-                SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region', 
-                       b.Population as 'Population' 
-                FROM   country a INNER JOIN city b ON a.Capital = b.ID 
+                SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region',
+                       b.Population as 'Population'
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID
                 ORDER  BY 3, 4 DESC, 1;""";
         reportSQL[20] = """
-                SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population' 
-                FROM   country a INNER JOIN city b ON a.Capital = b.ID 
+                SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population'
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID
                 ORDER  BY 3 DESC, 1 LIMIT YYvarLimitYY;""";
         reportSQL[21] = """
-                SELECT b.Name as 'Name', a.Name as 'Country', a.Continent as 'Continent', 
-                       b.Population as 'Population' 
-                FROM   country a INNER JOIN city b ON a.Capital = b.ID 
-                WHERE  a.Continent = "XXvarArgXX" 
+                SELECT b.Name as 'Name', a.Name as 'Country', a.Continent as 'Continent',
+                       b.Population as 'Population'
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID
+                WHERE  a.Continent = "XXvarArgXX"
                 ORDER  BY 4 DESC, 1 LIMIT YYvarLimitYY;""";
         reportSQL[22] = """
-                SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region', 
-                       b.Population as 'Population' 
-                FROM   country a INNER JOIN city b ON a.Capital = b.ID 
-                WHERE  a.Region = "XXvarArgXX" 
+                SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region',
+                       b.Population as 'Population'
+                FROM   country a INNER JOIN city b ON a.Capital = b.ID
+                WHERE  a.Region = "XXvarArgXX"
                 ORDER  BY 4 DESC, 1 LIMIT YYvarLimitYY;""";
         reportSQL[23] = """
                 ORDER  BY country.population DESC;""";
@@ -385,7 +384,7 @@ public class ReportEngine {
         List<String[]> reportTable = new ArrayList<>();
 
         switch (reportClass) {
-            case 1:
+            case 1 -> {
                 // Build table headers for the Capital City Report
                 reportTable.add(new String[]{"Name", "Country", "Population"});
 
@@ -397,8 +396,9 @@ public class ReportEngine {
                             Long.toString(capitalCity.getPopulation())
                     });
                 }
-
-            case 2:
+                htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "Capital City Report");
+            }
+            case 2 -> {
 
                 // table headers
                 reportTable.add(new String[]{"Name", "Name"});
@@ -410,8 +410,9 @@ public class ReportEngine {
                     city.getName();
 
                 }
-                break;
-            case 3:
+                htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "City Report");
+            }
+            case 3 -> {
 
                 // Build table headers for Country Report
                 reportTable.add(new String[]{"Code", "Name", "Continent", "Region", "Population", "Capital"});
@@ -431,9 +432,8 @@ public class ReportEngine {
                 // let's pass the table to the HTML generator
                 // Ray to update HTML string output
                 htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "Country Report");
-
-                break;
-            case 4:
+            }
+            case 4 -> {
 
                 // table headers
                 reportTable.add(new String[]{"Name", "Name"});
@@ -444,8 +444,9 @@ public class ReportEngine {
                     languages.getName();
 
                 }
-                break;
-            case 5:
+                htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "Languages Report");
+            }
+            case 5 -> {
                 // table headers
                 reportTable.add(new String[]{"Name", "Name"});
 
@@ -455,7 +456,8 @@ public class ReportEngine {
                     population.getName();
 
                 }
-                break;
+                htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "Population Report");
+            }
         }
 
         return htmlOutput;
@@ -571,9 +573,10 @@ public class ReportEngine {
             yyyRows += "<tr>\r\n";
 
             for (int y = 0; y < values.length; y++) {
-                switch (i) {
-                    case 0 -> yyyHeaders += "<th>" + values[y] + "</th>\r\n";
-                    default -> yyyRows += "<td>" + values[y] + "</td>\r\n";
+                if (i == 0) {
+                    yyyHeaders += "<th>" + values[y] + "</th>\r\n";
+                } else {
+                    yyyRows += "<td>" + values[y] + "</td>\r\n";
                 }
             }
 
