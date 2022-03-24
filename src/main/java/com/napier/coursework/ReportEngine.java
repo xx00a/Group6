@@ -168,19 +168,19 @@ public class ReportEngine {
         reportSQL[20] = """
                 SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population'
                 FROM   country a INNER JOIN city b ON a.Capital = b.ID
-                ORDER  BY 3 DESC, 1 LIMIT YYvarLimitYY;""";
+                ORDER  BY 3 DESC, 1 LIMIT 0, YYvarLimitYY;""";
         reportSQL[21] = """
                 SELECT b.Name as 'Name', a.Name as 'Country', a.Continent as 'Continent',
                        b.Population as 'Population'
                 FROM   country a INNER JOIN city b ON a.Capital = b.ID
                 WHERE  a.Continent = "XXvarArgXX"
-                ORDER  BY 4 DESC, 1 LIMIT YYvarLimitYY;""";
+                ORDER  BY 4 DESC, 1 LIMIT 0, YYvarLimitYY;""";
         reportSQL[22] = """
                 SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region',
                        b.Population as 'Population'
                 FROM   country a INNER JOIN city b ON a.Capital = b.ID
                 WHERE  a.Region = "XXvarArgXX"
-                ORDER  BY 4 DESC, 1 LIMIT YYvarLimitYY;""";
+                ORDER  BY 4 DESC, 1 LIMIT 0, YYvarLimitYY;""";
         reportSQL[23] = """
                 ORDER  BY country.population DESC;""";
         reportSQL[24] = """
@@ -513,7 +513,9 @@ public class ReportEngine {
         int reportClass;
 
         // translate our class
+        System.out.println("From ReportEngine.generateReport === reportID is : "+reportID);
         reportClass = rID.get(reportID);
+        System.out.println("From ReportEngine.generateReport === reportClass is : "+reportClass);
 
         // create the report
         return createReport(reportID, reportClass, argVar, argLimit, mySQLc);
