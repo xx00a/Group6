@@ -1,42 +1,93 @@
 package com.napier.coursework;
 
-import java.sql.*;
+/*
+ * SET08803 Coursework Application
+ *
+ */
 
+import java.sql.*;
+import java.util.Objects;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+
+@SpringBootApplication
+@RestController
 public class App {
+
+    // Connect to database
+    static MySQLConnection mySQLConnection = new MySQLConnection();
+    static Connection sqlConnect;
+
     public static void main(String[] args) {
 
-        // Connect to database
-        MySQLConnection mySQLConnection = new MySQLConnection();
+        sqlConnect = MySQLConnection.connect();
 
-        Connection connection = mySQLConnection.connect();
+        SpringApplication.run(App.class, args);
 
-        CityReport cityReport = new CityReport();
-        // Display results
-        cityReport.getWorldCitiesByPopulationDesc(connection);
-        cityReport.getContinentCitiesByPopulationDesc(connection);
-        cityReport.getRegiondCitiesByPopulationDesc(connection);
+        System.out.println("Group6's website is now up and running. Waiting for http request...");
 
-        CapitalCityReport capitalCityReport = new CapitalCityReport();
-        // Display results
-        capitalCityReport.getWorldCapitalCitiesByPopulationDesc(connection);
+    }
 
+    @RequestMapping(value = "/report",
+            params = { "id", "grouping", "limit" },
+            method = RequestMethod.GET)
+    @ResponseBody
+    public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
+                            @RequestParam(value = "limit", defaultValue = "1") String limit) throws ClassNotFoundException, SQLException {
 
-        CountryReport countryReport = new CountryReport();
-        // Display results
-        countryReport.getWorldCountriesByPopulationDesc(connection);
+        System.out.println(ID + grouping + limit);
 
+        // Create variable for the html report output
+        String htmlOutput = "";
 
-        LanguagesReport languagesReport = new LanguagesReport();
-        // Display results
-        languagesReport.getWorldLanguagesByPopulationDesc(connection);
+        System.out.println("ID is = "+ ID);
+        System.out.println("grouping is = "+ grouping);
+        System.out.println("limit is = "+ limit);
 
+        try {
 
-        PopulationReport populationReport = new PopulationReport();
-        // Display results
-        populationReport.getWorldPopulationDesc(connection);
+            // We create our handy report generator
+            ReportEngine theReport = new ReportEngine();
 
+            // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
+            htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
 
-//         Disconnect from database
-        mySQLConnection.disconnect(connection);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to produce report");
+
+        }
+
+        /*
+         Produce HTML output in console - should be removed when testing complete
+         System.out.println("--- HTML START ---");
+         System.out.println(htmlOutput);
+         System.out.println("--- HTML END ---");
+        */
+
+        return htmlOutput;
+    }
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String produceQueryHome()  throws ClassNotFoundException, SQLException {
+
+        // Create variable for the html output
+        String htmlOutput;
+
+        htmlOutput = """
+                <html>
+                add home page and form to GET variables here
+                <a href="/report?id=5&grouping=North America&limit=10">Test Test Test</a>
+                </html>
+                """;
+
+        return htmlOutput;
+
+    }
+
+    public static void test() {
+        System.out.println("Test in app class executed.");
     }
 }
