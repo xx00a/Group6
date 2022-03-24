@@ -241,6 +241,7 @@ public class ReportEngine {
         reportIndex[32] = "The number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic";
     }
 
+
     // begin report generator
     private String createReport(int reportID, int reportClass, String varArg, String varLimit, Connection mySQLengine) throws SQLException {
 
@@ -466,6 +467,7 @@ public class ReportEngine {
         return htmlOutput;
 
     }
+
 
     // begin constructor
     public ReportEngine() throws SQLException {

@@ -1,11 +1,13 @@
 package com.napier.coursework;
 
 /*
- * SET08803 Coursework Application - current version #130
+ * SET08803 Coursework Application
  *
  */
 
 import java.sql.*;
+import java.util.Objects;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,7 @@ public class App {
         SpringApplication.run(App.class, args);
 
         System.out.println("Group6's website is now up and running. Waiting for http request...");
+
     }
 
     @RequestMapping(value = "/report",
@@ -39,13 +42,17 @@ public class App {
         // Create variable for the html report output
         String htmlOutput = "";
 
+        System.out.println("ID is = "+ ID);
+        System.out.println("grouping is = "+ grouping);
+        System.out.println("limit is = "+ limit);
+
         try {
 
             // We create our handy report generator
             ReportEngine theReport = new ReportEngine();
 
             // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
-            htmlOutput = theReport.generateReport(ID, grouping, limit, sqlConnect);
+            htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -61,7 +68,6 @@ public class App {
         */
 
         return htmlOutput;
-
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
