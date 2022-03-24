@@ -368,11 +368,12 @@ public class ReportEngine {
 
                     // set values for array item
                     aPopulation.setName(rSet.getString("Name"));
-                    aPopulation.setInCities(rSet.getLong("Name"));
-                    aPopulation.setTotalPopulation(rSet.getLong("Name"));
-                    aPopulation.setInCitiesPercentage(rSet.getFloat("Name"));
-                    aPopulation.setNotInCities(rSet.getLong("Name"));
-                    aPopulation.setNotInCitiesPercentage(rSet.getFloat("Name"));
+                    aPopulation.setTotalPopulation(rSet.getLong("Total Population"));
+                    aPopulation.setNotInCities(rSet.getLong("NOT in cities"));
+                    aPopulation.setNotInCitiesPercentage(rSet.getFloat("NOT in cities(%)"));
+                    aPopulation.setInCities(rSet.getLong("IN cities"));
+                    aPopulation.setInCitiesPercentage(rSet.getFloat("IN cities(%)"));
+
 
                     // add to record set so we can recall later
                     populationArrayList.add(aPopulation);
@@ -452,12 +453,18 @@ public class ReportEngine {
             }
             case 5 -> {
                 // table headers
-                reportTable.add(new String[]{"Name", "Name"});
+                reportTable.add(new String[]{"Name", "Total Population", "NOT in cities", "NOT in cities(%)", "IN cities", "IN cities(%)"});
 
                 // add row result
                 for (Population population : populationArrayList) {
-                    /// this needs to be completed
-                    population.getName();
+                    reportTable.add(new String[]{
+                            population.getName(),
+                            Long.toString(population.getTotalPopulation()),
+                            Long.toString(population.getNotInCities()),
+                            Float.toString(population.getNotInCitiesPercentage()),
+                            Long.toString(population.getInCities()),
+                            Float.toString(population.getInCitiesPercentage()),
+                    });
 
                 }
                 htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Population Report");
