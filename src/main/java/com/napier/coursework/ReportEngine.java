@@ -247,19 +247,22 @@ public class ReportEngine {
         // HTML output to return
         String htmlOutput = "";
 
-        // let's insert our variable
-        reportSQL[reportID] = reportSQL[reportID].replaceAll("XXvarArgXX", varArg);
-        reportSQL[reportID] = reportSQL[reportID].replaceAll("YYvarLimitYY", varLimit);
+        String tmpSQL = reportSQL[reportID];
+        String tmpDesc = reportIndex[reportID];
 
-        reportIndex[reportID] = reportIndex[reportID].replaceAll("XXvarArgXX", varArg);
-        reportIndex[reportID] = reportIndex[reportID].replaceAll("YYvarLimitYY", varLimit);
+        // let's insert our variable
+        tmpSQL = tmpSQL.replaceAll("XXvarArgXX", varArg);
+        tmpSQL = tmpSQL.replaceAll("YYvarLimitYY", varLimit);
+
+        tmpDesc = tmpDesc.replaceAll("XXvarArgXX", varArg);
+        tmpDesc = tmpDesc.replaceAll("YYvarLimitYY", varLimit);
 
         // debug only
-        System.out.println("Running " + reportID + ": " + reportIndex[reportID]);
-        System.out.println(reportSQL[reportID]);
+        System.out.println("Running Report ID (" + reportID + "): (Desc) = " + tmpDesc);
+        System.out.println(tmpSQL);
 
         // create record set
-        ResultSet rSet = getResultSet(mySQLengine, reportSQL[reportID]);
+        ResultSet rSet = getResultSet(mySQLengine, tmpSQL);
 
         //create array list for report classes
         ArrayList<CapitalCity> capitalCityArrayList = new ArrayList<>();
@@ -396,7 +399,7 @@ public class ReportEngine {
                             Long.toString(capitalCity.getPopulation())
                     });
                 }
-                htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "Capital City Report");
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Capital City Report");
             }
             case 2 -> {
 
@@ -410,7 +413,7 @@ public class ReportEngine {
                     city.getName();
 
                 }
-                htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "City Report");
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "City Report");
             }
             case 3 -> {
 
@@ -431,7 +434,7 @@ public class ReportEngine {
 
                 // let's pass the table to the HTML generator
                 // Ray to update HTML string output
-                htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "Country Report");
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Country Report");
             }
             case 4 -> {
 
@@ -444,7 +447,7 @@ public class ReportEngine {
                     languages.getName();
 
                 }
-                htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "Languages Report");
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Languages Report");
             }
             case 5 -> {
                 // table headers
@@ -456,7 +459,7 @@ public class ReportEngine {
                     population.getName();
 
                 }
-                htmlOutput = generateHTML(reportTable, reportID, reportIndex[reportID], "Population Report");
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Population Report");
             }
         }
 

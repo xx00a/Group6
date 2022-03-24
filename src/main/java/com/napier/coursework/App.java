@@ -8,10 +8,7 @@ package com.napier.coursework;
 import java.sql.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 @RestController
@@ -30,9 +27,14 @@ public class App {
         System.out.println("Group6's website is now up and running. Waiting for http request...");
     }
 
-    @RequestMapping(value = "/report.html", method = RequestMethod.GET)
-    public String getReport(@RequestParam(value = "id") int ID, @RequestParam(value = "grouping") String grouping,
-                            @RequestParam(value = "limit") String limit) throws ClassNotFoundException, SQLException {
+    @RequestMapping(value = "/report",
+            params = { "id", "grouping", "limit" },
+            method = RequestMethod.GET)
+    @ResponseBody
+    public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
+                            @RequestParam(value = "limit", defaultValue = "1") String limit) throws ClassNotFoundException, SQLException {
+
+        System.out.println(ID + grouping + limit);
 
         // Create variable for the html report output
         String htmlOutput = "";
@@ -51,16 +53,18 @@ public class App {
 
         }
 
-        // Produce HTML output in console - should be removed when testing complete
-        System.out.println("--- HTML START ---");
-        System.out.println(htmlOutput);
-        System.out.println("--- HTML END ---");
+        /*
+         Produce HTML output in console - should be removed when testing complete
+         System.out.println("--- HTML START ---");
+         System.out.println(htmlOutput);
+         System.out.println("--- HTML END ---");
+        */
 
         return htmlOutput;
 
     }
 
-    @RequestMapping(value = "/index.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String produceQueryHome()  throws ClassNotFoundException, SQLException {
 
         // Create variable for the html output
@@ -69,7 +73,7 @@ public class App {
         htmlOutput = """
                 <html>
                 add home page and form to GET variables here
-                <a href="/report.html?id=5&grouping=North America&limit=10">Test Test Test</a>
+                <a href="/report?id=5&grouping=North America&limit=10">Test Test Test</a>
                 </html>
                 """;
 
