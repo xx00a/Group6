@@ -6,36 +6,53 @@ package com.napier.coursework;
  */
 
 import java.sql.*;
-import java.util.*;
+import java.util.Objects;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+
+@SpringBootApplication
+@RestController
 public class App {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+    // Connect to database
+    static MySQLConnection mySQLConnection = new MySQLConnection();
+    static Connection sqlConnect;
 
-        // load arguments
-        int argReport = 0;
-        String argVar = "";
-        String argLimit = "";
+    public static void main(String[] args) {
 
-        for (int x = 0; x < args.length; x++)
-        {
-            switch (x) {
-                case 0 -> argReport = Integer.parseInt(args[x]);
-                case 1 -> argVar = args[x];
-                case 2 -> argLimit = args[x];
-            }
-        }
+        sqlConnect = MySQLConnection.connect();
 
-        // Connect to database
-        MySQLConnection mySQLConnection = new MySQLConnection();
-        Connection sqlConnect = mySQLConnection.connect();
+        SpringApplication.run(App.class, args);
+
+        System.out.println("Group6's website is now up and running. Waiting for http request...");
+
+    }
+
+    @RequestMapping(value = "/report",
+            params = { "id", "grouping", "limit" },
+            method = RequestMethod.GET)
+    @ResponseBody
+    public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
+                            @RequestParam(value = "limit", defaultValue = "1") String limit) throws ClassNotFoundException, SQLException {
+
+        System.out.println(ID + grouping + limit);
+
+        // Create variable for the html report output
+        String htmlOutput = "";
+
+        System.out.println("ID is = "+ ID);
+        System.out.println("grouping is = "+ grouping);
+        System.out.println("limit is = "+ limit);
 
         try {
 
-            System.out.println("\nReport ID: " + argReport + " (" + argVar + ")");
+            // We create our handy report generator
+            ReportEngine theReport = new ReportEngine();
 
-            // let's call our report generator
-            ReportEngine theReport = new ReportEngine(argReport, argVar, argLimit, sqlConnect);
+            // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
+            htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -43,8 +60,34 @@ public class App {
 
         }
 
-        // Disconnect from database
-        mySQLConnection.disconnect(sqlConnect);
+        /*
+         Produce HTML output in console - should be removed when testing complete
+         System.out.println("--- HTML START ---");
+         System.out.println(htmlOutput);
+         System.out.println("--- HTML END ---");
+        */
 
+        return htmlOutput;
+    }
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String produceQueryHome()  throws ClassNotFoundException, SQLException {
+
+        // Create variable for the html output
+        String htmlOutput;
+
+        htmlOutput = """
+                <html>
+                add home page and form to GET variables here
+                <a href="/report?id=5&grouping=North America&limit=10">Test Test Test</a>
+                </html>
+                """;
+
+        return htmlOutput;
+
+    }
+
+    public static void test() {
+        System.out.println("Test in app class executed.");
     }
 }
