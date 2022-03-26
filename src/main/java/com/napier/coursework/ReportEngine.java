@@ -197,17 +197,17 @@ public class ReportEngine {
                 SELECT  country.Name AS Country, country.Continent AS Continent,
                 country.Region AS Region, country.Population  
                 FROM country 
-                ORDER BY country.Name;""";
+                WHERE country.Name = YYvarArgXX;""";
         reportSQL[30] = """
                 SELECT city.District, Sum(city.Population) AS Population 
                 FROM city  
-                GROUP BY city.District;""";
+                WHERE city.District = YYvarArgXX;""";
         reportSQL[31] = """
                 SELECT city.Name AS City, country.Name AS Country, city.District, 
                 city.Population 
                 FROM city  
                 INNER JOIN country  ON city.CountryCode = country.Code 
-                ORDER BY city.Name;""";
+                WHERE city.name = YYvarArgXX;""";
         reportSQL[32] = """
                 SELECT countrylanguage.Language, Sum(country.Population) AS Speakers, 
                 AVG(countrylanguage.Percentage) AS Percentage 
