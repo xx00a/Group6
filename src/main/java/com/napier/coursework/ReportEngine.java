@@ -165,17 +165,41 @@ public class ReportEngine {
         reportSQL[22] = """
                 ORDER  BY country.population DESC;""";
         reportSQL[23] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.continent,
+                (SUM(DISTINCT(country.population))) AS 'Total Population',
+                (SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',
+                ((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',
+                SUM(city. population) AS 'IN cities',
+                (((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'
+                FROM country JOIN city ON city.countrycode = country.code
+                GROUP by country.continent;""";
         reportSQL[24] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.region,
+                (SUM(DISTINCT(country.population))) AS 'Total Population',
+                (SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',
+                ((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',
+                SUM(city.population) AS 'IN cities',
+                (((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'
+                FROM country JOIN city ON city.countrycode = country.code
+                GROUP by country.region;""";
         reportSQL[25] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.name,
+                (SUM(DISTINCT(country.population))) AS 'Total Population',
+                (SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',
+                ((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',
+                SUM(city. population) AS 'IN cities',
+                (((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'
+                FROM country JOIN city ON city.countrycode = country.code
+                GROUP by country.name;""";
         reportSQL[26] = """
-                ORDER  BY country.population DESC;""";
+                SELECT (SUM(DISTINCT(country.population))) AS 'Total Population Of World'
+                FROM country JOIN city ON city.countrycode = country.code;""";
         reportSQL[27] = """
-                ORDER  BY country.population DESC;""";
+                SELECT (SUM(DISTINCT(country.population))) AS 'Population of a continent'
+                FROM country JOIN city ON city.countrycode = country.code WHERE country.continent = '';""";
         reportSQL[28] = """
-                ORDER  BY country.population DESC;""";
+                SELECT (SUM(DISTINCT(country.population))) AS 'Population of a region'
+                FROM country JOIN city ON city.countrycode = country.code WHERE country.region = '';""";
         reportSQL[29] = """
                 ORDER  BY country.population DESC;""";
         reportSQL[30] = """
@@ -482,9 +506,9 @@ public class ReportEngine {
         rID.put(20, REPORT_COUNTRY);
         rID.put(21, REPORT_LANGUAGES);
         rID.put(22, REPORT_LANGUAGES);
-        rID.put(23, REPORT_LANGUAGES);
-        rID.put(24, REPORT_LANGUAGES);
-        rID.put(25, REPORT_LANGUAGES);
+        rID.put(23, REPORT_POPULATION);
+        rID.put(24, REPORT_POPULATION);
+        rID.put(25, REPORT_POPULATION);
         rID.put(26, REPORT_POPULATION);
         rID.put(27, REPORT_POPULATION);
         rID.put(28, REPORT_POPULATION);
