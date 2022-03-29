@@ -194,13 +194,30 @@ public class ReportEngine {
         reportSQL[28] = """
                 ORDER  BY country.population DESC;""";
         reportSQL[29] = """
-                ORDER  BY country.population DESC;""";
+                SELECT  country.Name AS Country, country.Continent AS Continent,
+                country.Region AS Region, country.Population  
+                FROM country 
+                WHERE country.Name = YYvarArgXX;""";
         reportSQL[30] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.District, Sum(city.Population) AS Population 
+                FROM city  
+                WHERE city.District = YYvarArgXX;""";
         reportSQL[31] = """
-                ORDER  BY country.population DESC;""";
+                SELECT city.Name AS City, country.Name AS Country, city.District, 
+                city.Population 
+                FROM city  
+                INNER JOIN country  ON city.CountryCode = country.Code 
+                WHERE city.name = YYvarArgXX;""";
         reportSQL[32] = """
-                ORDER  BY country.population DESC;""";
+                SELECT countrylanguage.Language, Sum(country.Population) AS Speakers, 
+                AVG(countrylanguage.Percentage) AS Percentage 
+                FROM countrylanguage  
+                INNER JOIN country ON countrylanguage.CountryCode = country.Code
+                WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English" 
+                OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"
+                OR countrylanguage.Language="Arabic" 
+                GROUP BY countrylanguage.Language 
+                ORDER BY Speakers DESC;""";
     }
 
     private static final String[] reportIndex;
@@ -504,6 +521,7 @@ public class ReportEngine {
         rID.put(29, REPORT_POPULATION);
         rID.put(30, REPORT_POPULATION);
         rID.put(31, REPORT_POPULATION);
+        rID.put(32, REPORT_LANGUAGES);
 
     }
 
