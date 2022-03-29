@@ -521,6 +521,7 @@ public class ReportEngine {
         rID.put(29, REPORT_POPULATION);
         rID.put(30, REPORT_POPULATION);
         rID.put(31, REPORT_POPULATION);
+        rID.put(32, REPORT_LANGUAGES);
 
     }
 
