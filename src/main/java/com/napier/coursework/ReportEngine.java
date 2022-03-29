@@ -2,7 +2,7 @@ package com.napier.coursework;
 
 /*
  * The report engine outputs a selected report ID for display
- *  Current working version: March 24, 2022
+ * Last update: March 23, 2022
  */
 
 
@@ -183,16 +183,42 @@ public class ReportEngine {
                 ORDER  BY 4 DESC, 1 LIMIT 0, YYvarLimitYY;""";
         reportSQL[23] = """
                 ORDER  BY country.population DESC;""";
+        reportSQL[23] = """
+                SELECT country.continent,
+                (SUM(DISTINCT(country.population))) AS 'Total Population',
+                (SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',
+                ((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',
+                SUM(city. population) AS 'IN cities',
+                (((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'
+                FROM country JOIN city ON city.countrycode = country.code
+                GROUP by country.continent;""";
         reportSQL[24] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.region,
+                (SUM(DISTINCT(country.population))) AS 'Total Population',
+                (SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',
+                ((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',
+                SUM(city.population) AS 'IN cities',
+                (((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'
+                FROM country JOIN city ON city.countrycode = country.code
+                GROUP by country.region;""";
         reportSQL[25] = """
-                ORDER  BY country.population DESC;""";
+                SELECT country.name,
+                (SUM(DISTINCT(country.population))) AS 'Total Population',
+                (SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',
+                ((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',
+                SUM(city. population) AS 'IN cities',
+                (((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'
+                FROM country JOIN city ON city.countrycode = country.code
+                GROUP by country.name;""";
         reportSQL[26] = """
-                ORDER  BY country.population DESC;""";
+                SELECT (SUM(DISTINCT(country.population))) AS 'Total Population Of World'
+                FROM country JOIN city ON city.countrycode = country.code;""";
         reportSQL[27] = """
-                ORDER  BY country.population DESC;""";
+                SELECT (SUM(DISTINCT(country.population))) AS 'Population of a continent'
+                FROM country JOIN city ON city.countrycode = country.code WHERE country.continent = '';""";
         reportSQL[28] = """
-                ORDER  BY country.population DESC;""";
+                SELECT (SUM(DISTINCT(country.population))) AS 'Population of a region'
+                FROM country JOIN city ON city.countrycode = country.code WHERE country.region = '';""";
         reportSQL[29] = """
                 ORDER  BY country.population DESC;""";
         reportSQL[30] = """
@@ -288,6 +314,7 @@ public class ReportEngine {
                     aCapitalCity.setCountry(rSet.getString("Country"));
                     aCapitalCity.setPopulation(rSet.getLong("Population"));
 
+
                     // add to record set so we can recall later
                     capitalCityArrayList.add(aCapitalCity);
 
@@ -368,11 +395,12 @@ public class ReportEngine {
 
                     // set values for array item
                     aPopulation.setName(rSet.getString("Name"));
-                    aPopulation.setInCities(rSet.getLong("Name"));
-                    aPopulation.setTotalPopulation(rSet.getLong("Name"));
-                    aPopulation.setInCitiesPercentage(rSet.getFloat("Name"));
-                    aPopulation.setNotInCities(rSet.getLong("Name"));
-                    aPopulation.setNotInCitiesPercentage(rSet.getFloat("Name"));
+                    aPopulation.setTotalPopulation(rSet.getLong("Total Population"));
+                    aPopulation.setNotInCities(rSet.getLong("NOT in cities"));
+                    aPopulation.setNotInCitiesPercentage(rSet.getFloat("NOT in cities(%)"));
+                    aPopulation.setInCities(rSet.getLong("IN cities"));
+                    aPopulation.setInCitiesPercentage(rSet.getFloat("IN cities(%)"));
+
 
                     // add to record set so we can recall later
                     populationArrayList.add(aPopulation);
@@ -452,12 +480,19 @@ public class ReportEngine {
             }
             case 5 -> {
                 // table headers
-                reportTable.add(new String[]{"Name", "Name"});
+                reportTable.add(new String[]{"Name", "Total Population", "NOT in cities", "NOT in cities(%)", "IN cities", "IN cities(%)"});
 
                 // add row result
                 for (Population population : populationArrayList) {
-                    /// this needs to be completed
-                    population.getName();
+                    reportTable.add(new String[]{
+                            population.getName(),
+                            Long.toString(population.getTotalPopulation()),
+                            Long.toString(population.getNotInCities()),
+                            Float.toString(population.getNotInCitiesPercentage()),
+                            Long.toString(population.getInCities()),
+                            Float.toString(population.getInCitiesPercentage()),
+                    }
+                    );
 
                 }
                 htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Population Report");
@@ -486,18 +521,18 @@ public class ReportEngine {
         rID.put(11, REPORT_CITY);
         rID.put(12, REPORT_CITY);
         rID.put(13, REPORT_CITY);
-        rID.put(14, REPORT_CITY);
-        rID.put(15, REPORT_CITY);
-        rID.put(16, REPORT_CITY);
-        rID.put(17, REPORT_CAPITAL_CITY);
-        rID.put(18, REPORT_CAPITAL_CITY);
-        rID.put(19, REPORT_CAPITAL_CITY);
-        rID.put(20, REPORT_CAPITAL_CITY);
-        rID.put(21, REPORT_CAPITAL_CITY);
-        rID.put(22, REPORT_CAPITAL_CITY);
-        rID.put(23, REPORT_LANGUAGES);
-        rID.put(24, REPORT_LANGUAGES);
-        rID.put(25, REPORT_LANGUAGES);
+        rID.put(14, REPORT_COUNTRY);
+        rID.put(15, REPORT_COUNTRY);
+        rID.put(16, REPORT_COUNTRY);
+        rID.put(17, REPORT_COUNTRY);
+        rID.put(18, REPORT_COUNTRY);
+        rID.put(19, REPORT_COUNTRY);
+        rID.put(20, REPORT_COUNTRY);
+        rID.put(21, REPORT_LANGUAGES);
+        rID.put(22, REPORT_LANGUAGES);
+        rID.put(23, REPORT_POPULATION);
+        rID.put(24, REPORT_POPULATION);
+        rID.put(25, REPORT_POPULATION);
         rID.put(26, REPORT_POPULATION);
         rID.put(27, REPORT_POPULATION);
         rID.put(28, REPORT_POPULATION);
