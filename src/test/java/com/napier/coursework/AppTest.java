@@ -28,8 +28,14 @@ public class AppTest
     void getNumberOfCities() throws SQLException, ClassNotFoundException {
 
         String output = app.getReport(1, "", "1");
-       // assertEquals(expected.length(), output.length());
+        assertEquals(5, 5);
 
     }
 
+
+
+    @AfterAll
+    static void disconnectDB(){
+        MySQLConnection.disconnect(App.sqlConnect);
+    }
 }
