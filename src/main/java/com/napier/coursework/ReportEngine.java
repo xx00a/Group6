@@ -606,9 +606,9 @@ public class ReportEngine {
         rID.put(11, REPORT_CITY);
         rID.put(12, REPORT_CITY);
         rID.put(13, REPORT_CITY);
-        rID.put(14, REPORT_COUNTRY);
-        rID.put(15, REPORT_COUNTRY);
-        rID.put(16, REPORT_COUNTRY);
+        rID.put(14, REPORT_CITY);
+        rID.put(15, REPORT_CITY);
+        rID.put(16, REPORT_CITY);
         rID.put(17, REPORT_COUNTRY);
         rID.put(18, REPORT_COUNTRY);
         rID.put(19, REPORT_COUNTRY);
