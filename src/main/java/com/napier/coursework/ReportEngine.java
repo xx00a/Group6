@@ -97,153 +97,218 @@ public class ReportEngine {
         reportSQL[7] = """
                 SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
                 FROM city
-                INNER JOIN country  ON city.CountryCode = country.Code
+                         INNER JOIN country ON city.CountryCode = country.Code
                 ORDER BY 4 DESC;
                 """;
         reportSQL[8] = """
-               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
-               FROM city
-               INNER JOIN country  ON city.CountryCode = country.Code
-               WHERE country.Continent = 'XXvarArgXX'
-               ORDER BY 4 DESC, 1;
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                FROM city
+                INNER JOIN country  ON city.CountryCode = country.Code
+                WHERE country.Continent = 'XXvarArgXX'
+                ORDER BY 4 DESC, 1;
                """;
         reportSQL[9] = """
-               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
-               FROM city  INNER JOIN country  ON city.CountryCode = country.Code
-               WHERE country.Region = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                FROM city
+                         INNER JOIN country ON city.CountryCode = country.Code
+                WHERE country.Region = 'XXvarArgXX'
+                ORDER BY 4 DESC, 1;
                """;
         reportSQL[10] = """
-               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
-               FROM city  INNER JOIN country  ON city.CountryCode = country.Code
-               WHERE country.Name = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                FROM city
+                         INNER JOIN country ON city.CountryCode = country.Code
+                WHERE country.Name = 'XXvarArgXX'
+                ORDER BY 4 DESC, 1;
                """;
         reportSQL[11] = """
-               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
-               FROM city  INNER JOIN country  ON city.CountryCode = country.Code
-               WHERE city.District = 'XXvarArgXX' ORDER BY 4 DESC, 1;
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                FROM city
+                         INNER JOIN country ON city.CountryCode = country.Code
+                WHERE city.District = 'XXvarArgXX'
+                ORDER BY 4 DESC, 1;
                """;
         reportSQL[12] = """
-               SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
-               FROM city  INNER JOIN country  ON city.CountryCode = country.Code
-               ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
+                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                FROM city
+                         INNER JOIN country ON city.CountryCode = country.Code
+                ORDER BY 4 DESC
+                LIMIT 0, YYvarLimitYY;
                """;
         reportSQL[13] = """
                 SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
-                FROM city  INNER JOIN country  ON city.CountryCode = country.Code
+                FROM city
+                         INNER JOIN country ON city.CountryCode = country.Code
                 WHERE country.Continent = 'XXvarArgXX'
-                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
+                ORDER BY 4 DESC
+                LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[14] = """
                 SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
-                FROM city  INNER JOIN country  ON city.CountryCode = country.Code
+                FROM city
+                         INNER JOIN country ON city.CountryCode = country.Code
                 WHERE country.Region = 'XXvarArgXX'
-                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
+                ORDER BY 4 DESC
+                LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[15] = """
                 SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
-                FROM city  INNER JOIN country  ON city.CountryCode = country.Code
+                FROM city
+                         INNER JOIN country ON city.CountryCode = country.Code
                 WHERE country.Name = 'XXvarArgXX'
-                ORDER BY 4 DESC LIMIT 0, YYvarLimitYY;
+                ORDER BY 4 DESC
+                LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[16] = """
                 SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
-                FROM city  INNER JOIN country  ON city.CountryCode = country.Code
+                FROM city
+                         INNER JOIN country ON city.CountryCode = country.Code
                 WHERE city.District = 'XXvarArgXX'
-                ORDER BY 4 DESC LIMIT YYvarLimitYY;
+                ORDER BY 4 DESC
+                LIMIT YYvarLimitYY;
                 """;
         reportSQL[17] = """
                 SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population'
-                FROM   country a INNER JOIN city b ON a.Capital = b.ID
-                ORDER  BY 3 DESC, 1;""";
+                FROM country a
+                         INNER JOIN city b ON a.Capital = b.ID
+                ORDER BY 3 DESC, 1;
+                """;
         reportSQL[18] = """
-                SELECT b.Name as 'Name', a.Name as 'Country', a.Continent as 'Continent',
+                SELECT b.Name       as 'Name',
+                       a.Name       as 'Country',
+                       a.Region     as 'Region',
                        b.Population as 'Population'
-                FROM   country a INNER JOIN city b ON a.Capital = b.ID ORDER BY 3, 4 DESC, 1
-                ORDER  BY 3, 4 DESC, 1;""";
+                FROM country a
+                         INNER JOIN city b ON a.Capital = b.ID
+                ORDER BY 3, 4 DESC, 1;
+                """;
         reportSQL[19] = """
                 SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region',
                        b.Population as 'Population'
                 FROM   country a INNER JOIN city b ON a.Capital = b.ID
-                ORDER  BY 3, 4 DESC, 1;""";
+                ORDER  BY 3, 4 DESC, 1;
+                """;
         reportSQL[20] = """
                 SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population'
-                FROM   country a INNER JOIN city b ON a.Capital = b.ID
-                ORDER  BY 3 DESC, 1 LIMIT 0, YYvarLimitYY;""";
+                FROM country a
+                         INNER JOIN city b ON a.Capital = b.ID
+                ORDER BY 3 DESC, 1
+                LIMIT 0, YYvarLimitYY;
+                """;
         reportSQL[21] = """
-                SELECT b.Name as 'Name', a.Name as 'Country', a.Continent as 'Continent',
+                SELECT b.Name       as 'Name',
+                       a.Name       as 'Country',
+                       a.Continent  as 'Continent',
                        b.Population as 'Population'
-                FROM   country a INNER JOIN city b ON a.Capital = b.ID
-                WHERE  a.Continent = "XXvarArgXX"
-                ORDER  BY 4 DESC, 1 LIMIT 0, YYvarLimitYY;""";
+                FROM country a
+                         INNER JOIN city b ON a.Capital = b.ID
+                WHERE a.Continent = 'XXvarArgXX'
+                ORDER BY 4 DESC, 1
+                LIMIT 0, YYvarLimitYY;
+                """;
         reportSQL[22] = """
-                SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region',
+                SELECT b.Name       as 'Name',
+                       a.Name       as 'Country',
+                       a.Region     as 'Region',
                        b.Population as 'Population'
-                FROM   country a INNER JOIN city b ON a.Capital = b.ID
-                WHERE  a.Region = "XXvarArgXX"
-                ORDER  BY 4 DESC, 1 LIMIT 0, YYvarLimitYY;""";
-        reportSQL[23] = """
-                ORDER  BY country.population DESC;""";
+                FROM country a
+                         INNER JOIN city b ON a.Capital = b.ID
+                WHERE a.Region = 'XXvarArgXX'
+                ORDER BY 4 DESC, 1
+                LIMIT 0, YYvarLimitYY;
+                """;
         reportSQL[23] = """
                 SELECT country.continent,
-                (SUM(DISTINCT(country.population))) AS 'Total Population',
-                (SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',
-                ((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',
-                SUM(city. population) AS 'IN cities',
-                (((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'
-                FROM country JOIN city ON city.countrycode = country.code
-                GROUP by country.continent;""";
+                       (SUM(DISTINCT (country.population)))                        AS 'Total Population',
+                       (SUM(DISTINCT (country.population)) - SUM(city.population)) AS 'NOT in cities',
+                       ((SUM(DISTINCT (country.population)) - SUM(city.population))) / (SUM(DISTINCT (country.population))) *
+                       100                                                         AS 'NOT in cities(%)',
+                       SUM(city.population)                                        AS 'IN cities',
+                       (((SUM(DISTINCT (city.population))) / (SUM(DISTINCT (country.population))) *
+                         100))                                                     AS 'IN cities(%)'
+                FROM country
+                         JOIN city ON city.countrycode = country.code
+                GROUP by country.continent;
+                """;
         reportSQL[24] = """
                 SELECT country.region,
-                (SUM(DISTINCT(country.population))) AS 'Total Population',
-                (SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',
-                ((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',
-                SUM(city.population) AS 'IN cities',
-                (((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'
-                FROM country JOIN city ON city.countrycode = country.code
-                GROUP by country.region;""";
+                       (SUM(DISTINCT (country.population)))                        AS 'Total Population',
+                       (SUM(DISTINCT (country.population)) - SUM(city.population)) AS 'NOT in cities',
+                       ((SUM(DISTINCT (country.population)) - SUM(city.population))) / (SUM(DISTINCT (country.population))) *
+                       100                                                         AS 'NOT in cities(%)',
+                       SUM(city.population)                                        AS 'IN cities',
+                       (((SUM(DISTINCT (city.population))) / (SUM(DISTINCT (country.population))) *
+                         100))                                                     AS 'IN cities(%)'
+                FROM country
+                         JOIN city ON city.countrycode = country.code
+                GROUP by country.region;
+                """;
         reportSQL[25] = """
                 SELECT country.name,
-                (SUM(DISTINCT(country.population))) AS 'Total Population',
-                (SUM(DISTINCT(country.population)) - SUM(city.population)) AS 'NOT in cities',
-                ((SUM(DISTINCT(country.population)) - SUM(city.population))) / (SUM(DISTINCT(country.population)))*100 AS 'NOT in cities(%)',
-                SUM(city. population) AS 'IN cities',
-                (((SUM(DISTINCT(city.population))) / (SUM(DISTINCT(country.population)))*100)) AS 'IN cities(%)'
-                FROM country JOIN city ON city.countrycode = country.code
-                GROUP by country.name;""";
+                       (SUM(DISTINCT (country.population)))                        AS 'Total Population',
+                       (SUM(DISTINCT (country.population)) - SUM(city.population)) AS 'NOT in cities',
+                       ((SUM(DISTINCT (country.population)) - SUM(city.population))) / (SUM(DISTINCT (country.population))) *
+                       100                                                         AS 'NOT in cities(%)',
+                       SUM(city.population)                                        AS 'IN cities',
+                       (((SUM(DISTINCT (city.population))) / (SUM(DISTINCT (country.population))) *
+                         100))                                                     AS 'IN cities(%)'
+                FROM country
+                         JOIN city ON city.countrycode = country.code
+                GROUP by country.name;
+                """;
         reportSQL[26] = """
-                SELECT (SUM(DISTINCT(country.population))) AS 'Total Population Of World'
-                FROM country JOIN city ON city.countrycode = country.code;""";
+                SELECT (SUM(DISTINCT (country.population))) AS 'Total Population Of World'
+                FROM country
+                         JOIN city ON city.countrycode = country.code;
+                """;
         reportSQL[27] = """
-                SELECT (SUM(DISTINCT(country.population))) AS 'Population of a continent'
-                FROM country JOIN city ON city.countrycode = country.code WHERE country.continent = '';""";
+                SELECT (SUM(DISTINCT (country.population))) AS 'Population of a continent'
+                FROM country
+                         JOIN city ON city.countrycode = country.code
+                WHERE country.continent = '';
+                """;
         reportSQL[28] = """
-                SELECT (SUM(DISTINCT(country.population))) AS 'Population of a region'
-                FROM country JOIN city ON city.countrycode = country.code WHERE country.region = '';""";
+                SELECT (SUM(DISTINCT (country.population))) AS 'Population of a region'
+                FROM country
+                         JOIN city ON city.countrycode = country.code
+                WHERE country.region = '';
+                """;
         reportSQL[29] = """
-                SELECT  country.Name AS Country, country.Continent AS Continent,
-                country.Region AS Region, country.Population  
-                FROM country 
-                WHERE country.Name = YYvarArgXX;""";
+                SELECT country.Name      AS Country,
+                       country.Continent AS Continent,
+                       country.Region    AS Region,
+                       country.Population
+                FROM country
+                WHERE country.Name = 'YYvarArgXX';
+                """;
         reportSQL[30] = """
-                SELECT city.District, Sum(city.Population) AS Population 
-                FROM city  
-                WHERE city.District = YYvarArgXX;""";
+                SELECT city.District, Sum(city.Population) AS Population
+                FROM city
+                WHERE city.District = 'YYvarArgXX';
+                """;
         reportSQL[31] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, 
-                city.Population 
-                FROM city  
-                INNER JOIN country  ON city.CountryCode = country.Code 
-                WHERE city.name = YYvarArgXX;""";
+                SELECT city.Name    AS City,
+                       country.Name AS Country,
+                       city.District,
+                       city.Population
+                FROM city
+                         INNER JOIN country ON city.CountryCode = country.Code
+                WHERE city.Name = 'YYvarArgXX';
+                """;
         reportSQL[32] = """
-                SELECT countrylanguage.Language, Sum(country.Population) AS Speakers, 
-                AVG(countrylanguage.Percentage) AS Percentage 
-                FROM countrylanguage  
-                INNER JOIN country ON countrylanguage.CountryCode = country.Code
-                WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English" 
-                OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"
-                OR countrylanguage.Language="Arabic" 
-                GROUP BY countrylanguage.Language 
-                ORDER BY Speakers DESC;""";
+                SELECT countrylanguage.Language,
+                       Sum(country.Population)         AS Speakers,
+                       AVG(countrylanguage.Percentage) AS Percentage
+                FROM countrylanguage
+                         INNER JOIN country ON countrylanguage.CountryCode = country.Code
+                WHERE countrylanguage.Language = 'Chinese'
+                   OR countrylanguage.Language = 'English'
+                   OR countrylanguage.Language = 'Hindi'
+                   OR countrylanguage.Language = 'Spanish'
+                   OR countrylanguage.Language = 'Arabic'
+                GROUP BY countrylanguage.Language
+                ORDER BY Speakers DESC;
+                """;
     }
 
     private static final String[] reportIndex;
@@ -379,7 +444,6 @@ public class ReportEngine {
                     countryArrayList.add(aCountry);
                 }
 
-
                 break;
             case 4:
                 // Report class: REPORT_LANGUAGES
@@ -443,21 +507,25 @@ public class ReportEngine {
                             capitalCity.getName(),
                             capitalCity.getCountry(),
                             Long.toString(capitalCity.getPopulation())
-                    });
+                    }
+                    );
                 }
                 htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Capital City Report");
             }
             case 2 -> {
 
                 // table headers
-                reportTable.add(new String[]{"Name", "Name"});
+                reportTable.add(new String[]{"Name", "Country", "District", "Population"});
 
                 // add row result
                 for (City city : cityArrayList) {
-
-                    /// this needs to be completed
-                    city.getName();
-
+                    reportTable.add(new String[]{
+                                    city.getName(),
+                                    city.getCountry(),
+                                    city.getDistrict(),
+                                    Long.toString(city.getPopulation())
+                            }
+                    );
                 }
                 htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "City Report");
             }
