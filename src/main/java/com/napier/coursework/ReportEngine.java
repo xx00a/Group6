@@ -668,7 +668,7 @@ public class ReportEngine {
                                 text-align: center;
                             }
                         </style>
-                        <body style="font-family: Arial,serif; size: 11px;">
+                        <body style="font-family: Arial,serif; size: 11px; background-color: #D3D3D3;">
                         XXX-header-XXX
                         XXX-desc-XXX
                         XXX-table-XXX

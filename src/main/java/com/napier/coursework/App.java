@@ -77,140 +77,191 @@ public class App {
 
         htmlOutput = """
                 <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Group 6 Coursework</title>
-                </head>
-                <style>
-                    table {
-                        border-collapse: collapse;
-                        border: 1px solid;
-                        font-family: sans-serif;
-                    }
-                            
-                    th, td {
-                        border: 1px solid;
-                        padding: 10px 10px;
-                        text-align: center;
-                    }
-                            
-                    body {
-                        background-color: #D3D3D3;
-                        position: relative;
-                        text-align: center;
-                        font-family: Arial,serif; size: 11px;
-                    }
-                            
-                </style>
-                <body>
-                <h1>SET08803 2021-2 TR2 001 - Software Engineering Methods</h1>
-                <h2>Coursework - Part 2 - <a href="https://github.com/xx00a/Group6">Group 6</a>
-                </h2>
-                <p>Please select report number that you would like to generate:</p>
-                <div class="selectIDdropdown">
-                  <select id="reportID">
-                        <option value="1">Report 1</option>
-                        <option value="2">Report 2</option>
-                        <option value="3">Report 3</option>
-                        <option value="4">Report 4</option>
-                        <option value="5">Report 5</option>
-                        <option value="6">Report 6</option>
-                        <option value="7">Report 7</option>
-                        <option value="8">Report 8</option>
-                        <option value="9">Report 9</option>
-                        <option value="10">Report 10</option>
-                        <option value="11">Report 11</option>
-                        <option value="12">Report 12</option>
-                        <option value="13">Report 13</option>
-                        <option value="14">Report 14</option>
-                        <option value="15">Report 15</option>
-                        <option value="16">Report 16</option>
-                        <option value="17">Report 17</option>
-                        <option value="18">Report 18</option>
-                        <option value="19">Report 19</option>
-                        <option value="20">Report 20</option>
-                        <option value="21">Report 21</option>
-                        <option value="22">Report 22</option>
-                        <option value="23">Report 23</option>
-                        <option value="24">Report 24</option>
-                        <option value="25">Report 25</option>
-                        <option value="26">Report 26</option>
-                        <option value="27">Report 27</option>
-                        <option value="28">Report 28</option>
-                        <option value="29">Report 29</option>
-                        <option value="30">Report 30</option>
-                        <option value="31">Report 31</option>
-                        <option value="32">Report 32</option>
-                    </select>
-                </div>
-                <p>Please select the grouping option you would like to use <i>(for regions or continents)</i></p>
-                 
-                <label> Choose a Region from this list: <label>           
-                <div class="selectRegiondropdown">
-                  <select id="regionID">
-                        <option value="Southern and Central Asia">Southern and Central Asia</option>
-                        <option value="Central Africa">Central Africa</option>
-                        <option value="Southern Europe">Southern Europe</option>
-                        <option value="Middle East">Middle East</option>
-                        <option value="South America">South America</option>
-                        <option value="Polynesia">Polynesia</option>
-                        <option value="Antarctica">Antarctica</option>
-                        <option value="Australia and New Zealand">Australia and New Zealand</option>
-                        <option value="Western Europe">Western Europe</option>
-                        <option value="Eastern Africa">Eastern Africa</option>
-                        <option value="Western Africa">Western Africa</option>
-                        <option value="Eastern Europe">Eastern Europe</option>
-                        <option value="Central America">Central America</option>
-                        <option value="North America">North America</option>
-                        <option value="Southeast Asia">Southeast Asia</option>
-                        <option value="Southern Africa">Southern Africa</option>
-                        <option value="Eastern Asia">Eastern Asia</option>
-                        <option value="Nordic Countries">Nordic Countries</option>
-                        <option value="Northern Africa">Northern Africa</option>
-                        <option value="Baltic Countries">Baltic Countries</option>
-                        <option value="Micronesia">Micronesia</option>
-                        <option value="British Islands">British Islands</option>
-                        <option value="Micronesia/Caribbean">Micronesia/Caribbean</option>
-                        <option value="Caribbean">Caribbean</option>
-                    </select>
-                </div>
-                <label> Choose a Continent from this list: <label>
-                <div class="selectContinentdropdown">
-                  <select id="continentID">
-                        <option value="Africa">Africa</option>
-                        <option value="Antarctica">Antarctica</option>
-                        <option value="Asia">Asia</option>
-                        <option value="Europe">Europe</option>
-                        <option value="North America">North America</option>
-                        <option value="Oceania">Oceania</option>
-                        <option value="South America">South America</option>
-                    </select>
-                </div>
-                <p>
-                    Please enter a limit of results <i>(default is 1)</i>
-                </p>
-                <div class="selectLimit">
-                    <input id="limitOf" type="text" placeholder="number of results...">
-                </div>
-                            
-                <button onclick="submit()"> GENERATE REPORT</button>
-                            
-                <script>
-                    function submit() {
-                        var a = document.getElementById("reportID");
-                        var reportNumber = (a.options[a.selectedIndex].index) + 1;
-                        var groupingType = document.getElementById("grouping");
-                        var limitType = document.getElementById("limitOf");
-                            
-                        window.open("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
-                        //console.log("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
-                            
-                            
-                    }
-                </script>
-                </body>
-                </html>
+                                       <html lang="en">
+                                       <head>
+                                           <meta charset="UTF-8">
+                                           <title>Group 6 Coursework</title>
+                                       </head>
+                                       <style>
+                                           table {
+                                               border-collapse: collapse;
+                                               border: 1px solid;
+                                               font-family: sans-serif;
+                                           }
+                                                  \s
+                                           th, td {
+                                               border: 1px solid;
+                                               padding: 10px 10px;
+                                               text-align: center;
+                                           }
+                                                  \s
+                                           body {
+                                               background-color: #D3D3D3;
+                                               position: relative;
+                                               text-align: center;
+                                               font-family: Arial,serif; size: 11px;
+                                           }
+                                          \s
+                       
+                                       </style>
+                                       <body onload="onload()">
+                                       <h1>SET08803 2021-2 TR2 001 - Software Engineering Methods</h1>
+                                       <h2>Coursework - Part 2 - <a href="https://github.com/xx00a/Group6">Group 6</a>
+                                       </h2>
+                                       <p>Please select report number that you would like to generate:</p>
+                                       <div class="selectIDdropdown">
+                                         <select id="reportID" onchange="change()" onmousedown="erase()">
+                                               <option value="0">Select...</option>\s
+                       						<option value="1">Report 1</option>\s
+                                               <option value="2">Report 2</option> <!-- continent -->
+                                               <option value="3">Report 3</option> <!-- region -->
+                                               <option value="4">Report 4</option>
+                                               <option value="5">Report 5</option>
+                                               <option value="6">Report 6</option>
+                                               <option value="7">Report 7</option>
+                                               <option value="8">Report 8</option> <!-- continent -->
+                                               <option value="9">Report 9</option> <!-- region -->
+                                               <option value="10">Report 10</option> <!-- country -->
+                                               <option value="11">Report 11</option> <!-- district -->
+                                               <option value="12">Report 12</option>
+                                               <option value="13">Report 13</option> <!-- continent -->
+                                               <option value="14">Report 14</option> <!-- region -->
+                                               <option value="15">Report 15</option> <!-- country -->
+                                               <option value="16">Report 16</option> <!-- district -->
+                                               <option value="17">Report 17</option>
+                                               <option value="18">Report 18</option> <!-- continent -->
+                                               <option value="19">Report 19</option> <!-- region -->
+                                               <option value="20">Report 20</option>
+                                               <option value="21">Report 21</option> <!-- continent -->
+                                               <option value="22">Report 22</option> <!-- region -->
+                                               <option value="23">Report 23</option>
+                                               <option value="24">Report 24</option>
+                                               <option value="25">Report 25</option>
+                                               <option value="26">Report 26</option>
+                                               <option value="27">Report 27</option> <!-- continent -->
+                                               <option value="28">Report 28</option> <!-- region -->
+                                               <option value="29">Report 29</option> <!-- country -->
+                                               <option value="30">Report 30</option> <!-- district -->
+                                               <option value="31">Report 31</option> <!-- city -->
+                                               <option value="32">Report 32</option>
+                                           </select>
+                                       </div>
+                       
+                       				<div id="selectionCriteria"></div>
+                       				
+                       				<select id="groupingTypeDropdown" size="10"></select>
+                       				<br>
+                                       <input id="limitOf" type="text" placeholder="number of results...">
+                                       <br>
+                                       <button id="buttonGenerate" onclick="submit()"> GENERATE REPORT</button>
+                                         		
+                       							
+                                       <script>
+                       					function onload(){
+                       						document.getElementById("groupingTypeDropdown").style.display = "none";		
+                       						document.getElementById("limitOf").style.display = "none";		
+                       						document.getElementById("buttonGenerate").style.display = "none";		
+                       					}
+                                           function submit() {
+                                               var a = document.getElementById("reportID");
+                                               var reportNumber = (a.options[a.selectedIndex].index);
+                                               var groupingType = document.getElementById("groupingTypeDropdown");
+                                               var limitType = document.getElementById("limitOf");
+                                                  \s
+                                               window.open("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
+                                               //console.log("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
+                                                                             \s
+                                           }
+                       					
+                       					
+                       					function erase(){
+                       						var selectobject = document.getElementById("groupingTypeDropdown");
+                       
+                       						for (var i=0; i < selectobject.length; i++) {
+                       							selectobject.remove(i);
+                       							i--;
+                       							
+                       						}
+                       					}
+                       					
+                       					
+                       					function change(){
+                       
+                       						var x = document.getElementById("selectionCriteria");
+                                               var a = document.getElementById("reportID");
+                                               var reportNumber = (a.options[a.selectedIndex].index);
+                       						
+                       						var selectobject = document.getElementById("groupingTypeDropdown");
+                       						
+                       						
+                       											
+                       						if(reportNumber > 0){
+                       							document.getElementById("limitOf").style.display = "inline";		
+                       							document.getElementById("buttonGenerate").style.display = "inline";	
+                       						}else{
+                       							document.getElementById("groupingTypeDropdown").style.display = "none";		
+                       							document.getElementById("limitOf").style.display = "none";		
+                       							document.getElementById("buttonGenerate").style.display = "none";	
+                       						}
+                       												
+                       						
+                       						if(reportNumber == 2 || reportNumber == 8 || reportNumber == 13 || reportNumber == 18 || reportNumber == 21 || reportNumber == 27){
+                       							x.innerHTML = "Please select continent:";
+                       							document.getElementById("groupingTypeDropdown").style.display = "inline";	
+                       							selectobject.appendChild(new Option("Africa", "Africa"));
+                       							selectobject.appendChild(new Option("Antarctica", "Antarctica"));
+                       							selectobject.appendChild(new Option("Asia", "Asia"));
+                       							selectobject.appendChild(new Option("Europe", "Europe"));
+                       							selectobject.appendChild(new Option("North America", "North America"));
+                       							selectobject.appendChild(new Option("Oceania", "Oceania"));
+                       							selectobject.appendChild(new Option("South America","South America"));
+                       						}
+                       						else if(reportNumber == 3 || reportNumber == 9 || reportNumber == 14 || reportNumber == 19 || reportNumber == 22 || reportNumber == 28){
+                       							x.innerHTML = "Please select region:";
+                       							document.getElementById("groupingTypeDropdown").style.display = "inline";
+                       							selectobject.appendChild(new Option("Southern and Central Asia","Southern and Central Asia"));
+                       							selectobject.appendChild(new Option("Central Africa","Central Africa"));
+                       							selectobject.appendChild(new Option("Southern Europe","Southern Europe"));
+                       							selectobject.appendChild(new Option("Middle East","Middle East"));
+                       							selectobject.appendChild(new Option("South America","South America"));
+                       							selectobject.appendChild(new Option("Polynesia","Polynesia"));
+                       							selectobject.appendChild(new Option("Antarctica","Antarctica"));
+                       							selectobject.appendChild(new Option("Australia and New Zealand","Australia and New Zealand"));
+                       							selectobject.appendChild(new Option("Western Europe","Western Europe"));
+                       							selectobject.appendChild(new Option("Eastern Africa","Eastern Africa"));
+                       							selectobject.appendChild(new Option("Western Africa","Western Africa"));
+                       							selectobject.appendChild(new Option("Eastern Europe","Eastern Europe"));
+                       							selectobject.appendChild(new Option("Central America","Central America"));
+                       							selectobject.appendChild(new Option("North America","North America"));
+                       							selectobject.appendChild(new Option("Southeast Asia","Southeast Asia"));
+                       							selectobject.appendChild(new Option("Southern Africa","Southern Africa"));
+                       							selectobject.appendChild(new Option("Eastern Asia","Eastern Asia"));
+                       							selectobject.appendChild(new Option("Nordic Countries","Nordic Countries"));
+                       							selectobject.appendChild(new Option("Northern Africa","Northern Africa"));
+                       							selectobject.appendChild(new Option("Baltic Countries","Baltic Countries"));
+                       							selectobject.appendChild(new Option("Micronesia","Micronesia"));
+                       							selectobject.appendChild(new Option("British Islands","British Islands"));
+                       							selectobject.appendChild(new Option("Micronesia/Caribbean","Micronesia/Caribbean"));
+                       							selectobject.appendChild(new Option("Caribbean","Caribbean"));
+                       						}
+                       						else if(reportNumber == 10 || reportNumber == 15 || reportNumber == 29){
+                       							x.innerHTML = "Please select country:";
+                       						}
+                       						else if(reportNumber == 11 || reportNumber == 16 || reportNumber == 30){
+                       							x.innerHTML = "Please select district:";
+                       						}
+                       						else if(reportNumber == 31){
+                       							x.innerHTML = "Please select city:";
+                       						}else{
+                       							x.innerHTML = " ";
+                       							document.getElementById("groupingTypeDropdown").style.display = "none";
+                       						}
+                       						
+                       					}
+                       					
+                                       </script>
+                                       </body>
+                                       </html>
                     """;
 
         return htmlOutput;
