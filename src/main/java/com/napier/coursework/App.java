@@ -12,6 +12,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
+
+// Set this class as the Spring Boot application and as the REST API controller
 @SpringBootApplication
 @RestController
 public class App {
@@ -22,14 +24,18 @@ public class App {
 
     public static void main(String[] args) {
 
+        // Initialise the connection to the "world" database on the MySQL db server
         sqlConnect = MySQLConnection.connect();
 
+        // Start our Spring Boot application
         SpringApplication.run(App.class, args);
 
+        // Add a line in the console log to wait for a request to come through
         System.out.println("Group6's website is now up and running. Waiting for http request...");
 
     }
 
+    // Coursework API where report generation request will go through and will be returned to the NGINX webserver
     @RequestMapping(value = "/report",
             params = { "id", "grouping", "limit" },
             method = RequestMethod.GET)
@@ -37,14 +43,8 @@ public class App {
     public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
                             @RequestParam(value = "limit", defaultValue = "1") String limit) throws ClassNotFoundException, SQLException {
 
-        System.out.println(ID + grouping + limit);
-
         // Create variable for the html report output
         String htmlOutput = "";
-
-        System.out.println("ID is = "+ ID);
-        System.out.println("grouping is = "+ grouping);
-        System.out.println("limit is = "+ limit);
 
         try {
 
@@ -57,7 +57,6 @@ public class App {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to produce report");
-
         }
 
         /*
