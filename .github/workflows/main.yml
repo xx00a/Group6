@@ -17,12 +17,12 @@ jobs:
           distribution: 'adopt'
       - name: Integration Tests
         run: |
-          docker build -t databaseTest ./db 
-          docker run --name dbTest -dp 33060:3306 databaseTest
+          docker build -t database_test ./db 
+          docker run --name db_test -dp 33060:3306 database_test
           mvn -Dtest=com.napier.coursework.AppIntegrationTest test
-          docker stop dbTest
-          docker rm dbTest
-          docker image rm dbTest
+          docker stop db_test
+          docker rm db_test
+          docker image rm db_test
   build:
     name: Group 6 application
     runs-on: ubuntu-20.04
