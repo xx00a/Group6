@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class App {
 
-    // Connect to database
-    static MySQLConnection mySQLConnection = new MySQLConnection();
-    static Connection sqlConnect;
+
+    public static Connection sqlConnect;
 
     public static void main(String[] args) {
 
@@ -41,7 +40,7 @@ public class App {
             method = RequestMethod.GET)
     @ResponseBody
     public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
-                            @RequestParam(value = "limit", defaultValue = "1") String limit) throws ClassNotFoundException, SQLException {
+                            @RequestParam(value = "limit", defaultValue = "1") String limit){
 
         // Create variable for the html report output
         String htmlOutput = "";
@@ -70,7 +69,7 @@ public class App {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String produceQueryHome()  throws ClassNotFoundException, SQLException {
+    public String produceQueryHome(){
 
         // Create variable for the html output
         String htmlOutput;
