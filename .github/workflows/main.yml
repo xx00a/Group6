@@ -22,7 +22,7 @@ jobs:
           mvn -Dtest=com.napier.coursework.AppIntegrationTest test
           docker stop db_test
           docker rm db_test
-          docker image rm db_test
+          docker image rm database_test
   build:
     name: Group 6 application
     runs-on: ubuntu-20.04
