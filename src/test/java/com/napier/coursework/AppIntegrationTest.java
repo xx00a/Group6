@@ -17,7 +17,7 @@ public class AppIntegrationTest
     static void init()
     {
         app = new App();
-        App.sqlConnect = MySQLConnection.connect();
+        App.sqlConnect = MySQLConnection.connect("jdbc:mysql://localhost:3306/world?useSSL=false", "root", "example");
     }
 
     @Test
