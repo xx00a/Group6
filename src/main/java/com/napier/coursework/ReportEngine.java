@@ -95,48 +95,53 @@ public class ReportEngine {
                 LIMIT  0, YYvarLimitYY;
                 """;
         reportSQL[7] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
-                ORDER BY 4 DESC;
+                ORDER BY 4 DESC
+                 LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[8] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                 INNER JOIN country  ON city.CountryCode = country.Code
                 WHERE country.Continent = 'XXvarArgXX'
-                ORDER BY 4 DESC, 1;
+                ORDER BY 4 DESC, 1
+                LIMIT 0, YYvarLimitYY;
                """;
         reportSQL[9] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
                 WHERE country.Region = 'XXvarArgXX'
-                ORDER BY 4 DESC, 1;
+                ORDER BY 4 DESC, 1
+                LIMIT 0, YYvarLimitYY;
                """;
         reportSQL[10] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
                 WHERE country.Name = 'XXvarArgXX'
-                ORDER BY 4 DESC, 1;
+                ORDER BY 4 DESC, 1
+                 LIMIT 0, YYvarLimitYY;
                """;
         reportSQL[11] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
                 WHERE city.District = 'XXvarArgXX'
-                ORDER BY 4 DESC, 1;
+                ORDER BY 4 DESC, 1
+                 LIMIT 0, YYvarLimitYY;
                """;
         reportSQL[12] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
                 ORDER BY 4 DESC
                 LIMIT 0, YYvarLimitYY;
                """;
         reportSQL[13] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
                 WHERE country.Continent = 'XXvarArgXX'
@@ -144,7 +149,7 @@ public class ReportEngine {
                 LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[14] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
                 WHERE country.Region = 'XXvarArgXX'
@@ -152,7 +157,7 @@ public class ReportEngine {
                 LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[15] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
                 WHERE country.Name = 'XXvarArgXX'
@@ -160,7 +165,7 @@ public class ReportEngine {
                 LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[16] = """
-                SELECT city.Name AS City, country.Name AS Country, city.District, city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
                 WHERE city.District = 'XXvarArgXX'

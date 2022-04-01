@@ -1,9 +1,6 @@
 package com.napier.coursework;
 
-/*
- * SET08803 Coursework Application
- * Current working version: March 30, 2022
- */
+ // SET08803 Coursework Application
 
 import java.sql.*;
 import java.util.Objects;
