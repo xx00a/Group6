@@ -25,8 +25,8 @@ This repository is maintained and contributed by the following Group 6 members:
 
 7 requirements of 32 have been implemented, which is 22%.
 
-| ID    | Name | Met  | Screenshot |
-|-------|------|------|------------|
+| ID    | Name | Met | Screenshot |
+|-------|------|--|------------|
 | 1 |  All the countries in the world organised by largest population to smallest. | YES | ![](https://github.com/xx00a/Group6/blob/master/screenshots/ReportID_1.png?raw=true) |
 | 2 |  All the countries in a continent organised by largest population to smallest. | YES | ![](https://github.com/xx00a/Group6/blob/master/screenshots/ReportID_2.png?raw=true) |
 | 3 |  All the countries in a region organised by largest population to smallest. | YES | ![](https://github.com/xx00a/Group6/blob/master/screenshots/ReportID_3.png?raw=true) |
