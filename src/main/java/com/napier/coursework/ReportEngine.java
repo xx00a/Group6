@@ -26,6 +26,7 @@ public class ReportEngine {
     static int REPORT_COUNTRY = 3;
     static int REPORT_LANGUAGES = 4;
     static int REPORT_POPULATION = 5;
+    static int REPORT_POPULATION_SHORT = 6;
 
     // sql queries
     String[] reportSQL;
@@ -220,7 +221,7 @@ public class ReportEngine {
                 LIMIT 0, YYvarLimitYY;
                 """;
         reportSQL[23] = """
-                SELECT country.continent,
+                SELECT country.continent AS 'Name',
                        (SUM(DISTINCT (country.population)))                        AS 'Total Population',
                        (SUM(DISTINCT (country.population)) - SUM(city.population)) AS 'NOT in cities',
                        ((SUM(DISTINCT (country.population)) - SUM(city.population))) / (SUM(DISTINCT (country.population))) *
@@ -233,7 +234,7 @@ public class ReportEngine {
                 GROUP by country.continent;
                 """;
         reportSQL[24] = """
-                SELECT country.region,
+                SELECT country.region AS 'Name',
                        (SUM(DISTINCT (country.population)))                        AS 'Total Population',
                        (SUM(DISTINCT (country.population)) - SUM(city.population)) AS 'NOT in cities',
                        ((SUM(DISTINCT (country.population)) - SUM(city.population))) / (SUM(DISTINCT (country.population))) *
@@ -246,7 +247,7 @@ public class ReportEngine {
                 GROUP by country.region;
                 """;
         reportSQL[25] = """
-                SELECT country.name,
+                SELECT country.name AS 'Name',
                        (SUM(DISTINCT (country.population)))                        AS 'Total Population',
                        (SUM(DISTINCT (country.population)) - SUM(city.population)) AS 'NOT in cities',
                        ((SUM(DISTINCT (country.population)) - SUM(city.population))) / (SUM(DISTINCT (country.population))) *
@@ -259,41 +260,38 @@ public class ReportEngine {
                 GROUP by country.name;
                 """;
         reportSQL[26] = """
-                SELECT (SUM(DISTINCT (country.population))) AS 'Total Population Of World'
+                SELECT 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
                 FROM country
                          JOIN city ON city.countrycode = country.code;
                 """;
         reportSQL[27] = """
-                SELECT (SUM(DISTINCT (country.population))) AS 'Population of a continent'
+                SELECT country.continent AS 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
                 FROM country
                          JOIN city ON city.countrycode = country.code
                 WHERE country.continent = 'XXvarArgXX';
                 """;
         reportSQL[28] = """
-                SELECT (SUM(DISTINCT (country.population))) AS 'Population of a region'
+                SELECT country.region AS 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
                 FROM country
                          JOIN city ON city.countrycode = country.code
                 WHERE country.region = 'XXvarArgXX';
                 """;
         reportSQL[29] = """
-                SELECT country.Code,country.Name AS Name,country.Continent,country.Region,
-                       country.Population,
-                       c.name AS 'Capital'
-                FROM   country
-                       LEFT JOIN city c
-                              ON country.capital = c.id
+                SELECT country.Name AS 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
+                FROM country
+                         JOIN city ON city.countrycode = country.code
                 WHERE country.Name = 'XXvarArgXX';
                 """;
         reportSQL[30] = """
-                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
-                FROM city
-                         INNER JOIN country ON city.CountryCode = country.Code
+                SELECT city.District AS 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
+                FROM country
+                         JOIN city ON city.countrycode = country.code
                 WHERE city.District = 'XXvarArgXX';
                 """;
         reportSQL[31] = """
-                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
-                FROM city
-                         INNER JOIN country ON city.CountryCode = country.Code
+                SELECT city.Name AS 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
+                FROM country
+                         JOIN city ON city.countrycode = country.code
                 WHERE city.Name = 'XXvarArgXX';
                 """;
 
@@ -377,6 +375,7 @@ public class ReportEngine {
         ArrayList<Country> countryArrayList = new ArrayList<>();
         ArrayList<Languages> languagesArrayList = new ArrayList<>();
         ArrayList<Population> populationArrayList = new ArrayList<>();
+        ArrayList<Population_Short> populationShortArrayList = new ArrayList<>();
 
         // let's create our classes to start reporting
         switch (reportClass) {
@@ -486,6 +485,25 @@ public class ReportEngine {
                 }
 
                 break;
+            case 6:
+                // Report class: REPORT_POPULATION_SHORT
+
+                // cycle through the record set return from mySQL
+                while (rSet.next()) {
+
+                    // create object
+                    Population_Short aPopulation = new Population_Short();
+
+                    // set values for array item
+                    aPopulation.setName(rSet.getString("Name"));
+                    aPopulation.setTotalPopulation(rSet.getLong("Total Population"));
+
+
+                    // add to record set so we can recall later
+                    populationShortArrayList.add(aPopulation);
+                }
+
+                break;
 
         }
 
@@ -580,6 +598,22 @@ public class ReportEngine {
                 }
                 htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Population Report");
             }
+
+            case 6 -> {
+                // table headers
+                reportTable.add(new String[]{"Name", "Total Population"});
+
+                // add row result
+                for (Population_Short populationShort : populationShortArrayList) {
+                    reportTable.add(new String[]{
+                                    populationShort.getName(),
+                                    Long.toString(populationShort.getTotalPopulation()),
+                            }
+                    );
+
+                }
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Population Report");
+            }
         }
 
         return htmlOutput;
@@ -607,21 +641,21 @@ public class ReportEngine {
         rID.put(14, REPORT_CITY);
         rID.put(15, REPORT_CITY);
         rID.put(16, REPORT_CITY);
-        rID.put(17, REPORT_COUNTRY);
-        rID.put(18, REPORT_COUNTRY);
-        rID.put(19, REPORT_COUNTRY);
-        rID.put(20, REPORT_COUNTRY);
-        rID.put(21, REPORT_LANGUAGES);
-        rID.put(22, REPORT_LANGUAGES);
+        rID.put(17, REPORT_CAPITAL_CITY);
+        rID.put(18, REPORT_CAPITAL_CITY);
+        rID.put(19, REPORT_CAPITAL_CITY);
+        rID.put(20, REPORT_CAPITAL_CITY);
+        rID.put(21, REPORT_CAPITAL_CITY);
+        rID.put(22, REPORT_CAPITAL_CITY);
         rID.put(23, REPORT_POPULATION);
         rID.put(24, REPORT_POPULATION);
         rID.put(25, REPORT_POPULATION);
-        rID.put(26, REPORT_POPULATION);
-        rID.put(27, REPORT_POPULATION);
-        rID.put(28, REPORT_POPULATION);
-        rID.put(29, REPORT_COUNTRY);
-        rID.put(30, REPORT_CITY);
-        rID.put(31, REPORT_CITY);
+        rID.put(26, REPORT_POPULATION_SHORT);
+        rID.put(27, REPORT_POPULATION_SHORT);
+        rID.put(28, REPORT_POPULATION_SHORT);
+        rID.put(29, REPORT_POPULATION_SHORT);
+        rID.put(30, REPORT_POPULATION_SHORT);
+        rID.put(31, REPORT_POPULATION_SHORT);
         rID.put(32, REPORT_LANGUAGES);
 
     }

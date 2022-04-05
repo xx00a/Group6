@@ -113,8 +113,8 @@ public class App {
                                     <option value="2">Report 2</option> <!-- continent -->
                                     <option value="3">Report 3</option> <!-- region -->
                                     <option value="4">Report 4</option>
-                                    <option value="5">Report 5</option>
-                                    <option value="6">Report 6</option>
+                                    <option value="5">Report 5</option>  <!-- continent -->
+                                    <option value="6">Report 6</option>  <!-- region -->
                                     <option value="7">Report 7</option>
                                     <option value="8">Report 8</option> <!-- continent -->
                                     <option value="9">Report 9</option> <!-- region -->
@@ -202,7 +202,7 @@ public class App {
                 		}
                 								
                 		
-                		if(reportNumber == 2 || reportNumber == 8 || reportNumber == 13 || reportNumber == 18 || reportNumber == 21 || reportNumber == 27){
+                		if(reportNumber == 2 || reportNumber == 5 || reportNumber == 8 || reportNumber == 13 || reportNumber == 18 || reportNumber == 21 || reportNumber == 27){
                 			x.innerHTML = "Please select continent:";
                 			document.getElementById("groupingTypeDropdown").style.display = "inline";	
                 			selectobject.appendChild(new Option("Africa", "Africa"));
@@ -213,7 +213,7 @@ public class App {
                 			selectobject.appendChild(new Option("Oceania", "Oceania"));
                 			selectobject.appendChild(new Option("South America","South%20America"));
                 		}
-                		else if(reportNumber == 3 || reportNumber == 9 || reportNumber == 14 || reportNumber == 19 || reportNumber == 22 || reportNumber == 28){
+                		else if(reportNumber == 3 || reportNumber == 6 || reportNumber == 9 || reportNumber == 14 || reportNumber == 19 || reportNumber == 22 || reportNumber == 28){
                 			x.innerHTML = "Please select region:";
                 			document.getElementById("groupingTypeDropdown").style.display = "inline";
                 			selectobject.appendChild(new Option("Southern and Central Asia","Southern%20and%20Central%20Asia"));
@@ -486,9 +486,21 @@ public class App {
                 		}
                 		else if(reportNumber == 11 || reportNumber == 16 || reportNumber == 30){
                 			x.innerHTML = "Please select district:";
+                			document.getElementById("groupingTypeDropdown").style.display = "inline";	
+                			selectobject.appendChild(new Option("Upolu", "Upolu"));
+                			selectobject.appendChild(new Option("Tahiti", "Tahiti"));
+                			selectobject.appendChild(new Option("Fakaofo", "Fakaofo"));
+                			selectobject.appendChild(new Option("Seoul", "Seoul"));
+                			selectobject.appendChild(new Option("Wallis", "Wallis"));
                 		}
                 		else if(reportNumber == 31){
                 			x.innerHTML = "Please select city:";
+                			document.getElementById("groupingTypeDropdown").style.display = "inline";	
+                			selectobject.appendChild(new Option("New York", "New%20York"));
+                			selectobject.appendChild(new Option("London", "London"));
+                			selectobject.appendChild(new Option("Peking", "Jakarta"));
+                			selectobject.appendChild(new Option("Hanoi", "Hanoi"));
+                			selectobject.appendChild(new Option("Tokyo", "Tokyo"));
                 		}else{
                 			x.innerHTML = " ";
                 			document.getElementById("groupingTypeDropdown").style.display = "none";
