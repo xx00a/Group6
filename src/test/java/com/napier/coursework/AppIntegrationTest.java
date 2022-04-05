@@ -3,10 +3,16 @@ package com.napier.coursework;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.sql.SQLException;
-
+import org.springframework.util.Assert;
 import static org.junit.jupiter.api.Assertions.*;
+
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+
 
 public class AppIntegrationTest
 {
@@ -21,12 +27,17 @@ public class AppIntegrationTest
     }
 
     @Test
-    void getReportTestDefaultValues() {
-        assertNotNull(app.getReport(1, "", "1"));
+    void getReportTestDefaultValues()
+    {
+        String htmlResult = app.getReport(1, "", "10");
+
+        assertTrue(htmlResult.contains("China"));
+
     }
 
     @AfterAll
-    static void disconnectDB(){
+    static void disconnectDB()
+    {
       MySQLConnection.disconnect(App.sqlConnect);
     }
 }
