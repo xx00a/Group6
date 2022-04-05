@@ -98,8 +98,7 @@ public class ReportEngine {
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
-                ORDER BY 4 DESC
-                 LIMIT 0, YYvarLimitYY;
+                ORDER BY 4 DESC;
                 """;
         reportSQL[8] = """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
@@ -129,9 +128,7 @@ public class ReportEngine {
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
-                WHERE city.District = 'XXvarArgXX'
-                ORDER BY 4 DESC, 1
-                 LIMIT 0, YYvarLimitYY;
+                ORDER BY 4 DESC;
                """;
         reportSQL[12] = """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
@@ -270,47 +267,43 @@ public class ReportEngine {
                 SELECT (SUM(DISTINCT (country.population))) AS 'Population of a continent'
                 FROM country
                          JOIN city ON city.countrycode = country.code
-                WHERE country.continent = '';
+                WHERE country.continent = 'XXvarArgXX';
                 """;
         reportSQL[28] = """
                 SELECT (SUM(DISTINCT (country.population))) AS 'Population of a region'
                 FROM country
                          JOIN city ON city.countrycode = country.code
-                WHERE country.region = '';
+                WHERE country.region = 'XXvarArgXX';
                 """;
         reportSQL[29] = """
-                SELECT country.Name      AS Country,
-                       country.Continent AS Continent,
-                       country.Region    AS Region,
-                       country.Population
-                FROM country
-                WHERE country.Name = 'YYvarArgXX';
+                SELECT country.Code,country.Name AS Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE country.Name = 'XXvarArgXX';
                 """;
         reportSQL[30] = """
-                SELECT city.District, Sum(city.Population) AS Population
-                FROM city
-                WHERE city.District = 'YYvarArgXX';
-                """;
-        reportSQL[31] = """
-                SELECT city.Name    AS City,
-                       country.Name AS Country,
-                       city.District,
-                       city.Population
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
-                WHERE city.Name = 'YYvarArgXX';
+                WHERE city.District = 'XXvarArgXX';
                 """;
+        reportSQL[31] = """
+                SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
+                FROM city
+                         INNER JOIN country ON city.CountryCode = country.Code
+                WHERE city.Name = 'XXvarArgXX';
+                """;
+
         reportSQL[32] = """
                 SELECT countrylanguage.Language,
                        Sum(country.Population)         AS Speakers,
                        AVG(countrylanguage.Percentage) AS Percentage
                 FROM countrylanguage
                          INNER JOIN country ON countrylanguage.CountryCode = country.Code
-                WHERE countrylanguage.Language = 'Chinese'
-                   OR countrylanguage.Language = 'English'
-                   OR countrylanguage.Language = 'Hindi'
-                   OR countrylanguage.Language = 'Spanish'
-                   OR countrylanguage.Language = 'Arabic'
+                WHERE countrylanguage.Language = 'YYvarArgXX'
                 GROUP BY countrylanguage.Language
                 ORDER BY Speakers DESC;
                 """;
@@ -626,9 +619,9 @@ public class ReportEngine {
         rID.put(26, REPORT_POPULATION);
         rID.put(27, REPORT_POPULATION);
         rID.put(28, REPORT_POPULATION);
-        rID.put(29, REPORT_POPULATION);
-        rID.put(30, REPORT_POPULATION);
-        rID.put(31, REPORT_POPULATION);
+        rID.put(29, REPORT_COUNTRY);
+        rID.put(30, REPORT_CITY);
+        rID.put(31, REPORT_CITY);
         rID.put(32, REPORT_LANGUAGES);
 
     }
