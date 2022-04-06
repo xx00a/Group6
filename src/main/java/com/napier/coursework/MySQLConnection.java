@@ -7,7 +7,7 @@ public class MySQLConnection {
     // default constructor
     public static Connection connect()
     {
-      return   connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+      return   connect("jdbc:mysql://localhost:3333/world?useSSL=false", "napier", "uef6INs6SxwLmbkh");
     }
 
     // constructor for connection with parameters
@@ -33,12 +33,12 @@ public class MySQLConnection {
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(5000);
                 // Connect to database
                 con = DriverManager.getConnection(uri, user, password);
                 System.out.println("Successfully connected");
                 // Wait a bit
-                Thread.sleep(10000);
+                Thread.sleep(1000);
                 // Exit for loop
                 return con;
             }
