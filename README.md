@@ -23,7 +23,7 @@ This repository is maintained and contributed by the following Group 6 members:
 
 ## Requirements Met
 
-7 requirements of 32 have been implemented, which is 22%.
+32 requirements of 32 have been implemented, which is 100%.
 
 | ID    | Name | Met | Screenshot |
 |-------|------|--|------------|
