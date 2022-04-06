@@ -102,8 +102,8 @@ public class App {
                             
                             </style>
                             <body onload="onload()">
-                            <h1>SET08803 2021-2 TR2 001 - Software Engineering Methods</h1>
-                            <h2>Coursework - Part 2 - <a href="https://github.com/xx00a/Group6">Group 6</a>
+                            <h1 style="font-size:20px; font-family:Garamond;">SET08803 2021-2 TR2 001 - Software Engineering Methods</h1>
+                            <h2 style="font-size:20px; font-family:Garamond;">Coursework - Part 2 - <a href="https://github.com/xx00a/Group6">Group 6</a>
                             </h2>
                             <p>Please select report number that you would like to generate:</p>
                             <div class="selectIDdropdown">
