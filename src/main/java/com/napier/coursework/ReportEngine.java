@@ -26,6 +26,7 @@ public class ReportEngine {
     static int REPORT_COUNTRY = 3;
     static int REPORT_LANGUAGES = 4;
     static int REPORT_POPULATION = 5;
+    static int REPORT_xxxxxx = 6;
 
     // sql queries
     String[] reportSQL;
@@ -231,7 +232,7 @@ public class ReportEngine {
                 GROUP by country.continent;
                 """;
         reportSQL[24] = """
-                SELECT country.region,
+                SELECT country.region as 'Name',
                        (SUM(DISTINCT (country.population)))                        AS 'Total Population',
                        (SUM(DISTINCT (country.population)) - SUM(city.population)) AS 'NOT in cities',
                        ((SUM(DISTINCT (country.population)) - SUM(city.population))) / (SUM(DISTINCT (country.population))) *
@@ -488,6 +489,9 @@ public class ReportEngine {
                 }
 
                 break;
+            case 6:
+
+                break;
 
         }
 
@@ -582,6 +586,10 @@ public class ReportEngine {
                 }
                 htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Population Report");
             }
+            case 6 ->
+                    {
+
+                    }
         }
 
         return htmlOutput;
