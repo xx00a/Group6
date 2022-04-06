@@ -298,15 +298,15 @@ public class ReportEngine {
                 """;
 
         reportSQL[32] = """
-                SELECT countrylanguage.Language, Sum(country.Population) AS Population, 
-                        AVG(countrylanguage.Percentage) AS Percentage 
-                FROM countrylanguage  INNER JOIN country ON 
-                        countrylanguage.CountryCode = country.Code
+                WITH data as 
+                (SELECT countrylanguage.Language AS Language, Sum(country.Population) AS Population 
+                FROM countrylanguage  INNER JOIN country ON countrylanguage.CountryCode = country.Code
                 WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English" 
                 OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"
                 OR countrylanguage.Language="Arabic" 
-                GROUP BY countrylanguage.Language 
-                ORDER BY Population DESC;;
+                GROUP BY countrylanguage.Language ORDER BY Population DESC)
+                SELECT *, (Population/(SELECT Sum(country.Population) from country))*100 as Percentage 
+                FROM data GROUP BY Language;
                 """;
     }
 
