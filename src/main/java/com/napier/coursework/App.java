@@ -140,7 +140,7 @@ public class App {
                                     <option value="29">Report 29</option> <!-- country -->
                                     <option value="30">Report 30</option> <!-- district -->
                                     <option value="31">Report 31</option> <!-- city -->
-                                    <option value="32">Report 32</option>
+                                    <option value="32">Report 32</option> <!-- languages -->
                                 </select>
                             </div>
                             
@@ -489,6 +489,7 @@ public class App {
                 			document.getElementById("groupingTypeDropdown").style.display = "inline";	
                 			selectobject.appendChild(new Option("Upolu", "Upolu"));
                 			selectobject.appendChild(new Option("Tahiti", "Tahiti"));
+                			selectobject.appendChild(new Option("Buenos Aires", "Buenos%20Aires"));
                 			selectobject.appendChild(new Option("Fakaofo", "Fakaofo"));
                 			selectobject.appendChild(new Option("Seoul", "Seoul"));
                 			selectobject.appendChild(new Option("Wallis", "Wallis"));
@@ -500,7 +501,19 @@ public class App {
                 			selectobject.appendChild(new Option("London", "London"));
                 			selectobject.appendChild(new Option("Peking", "Jakarta"));
                 			selectobject.appendChild(new Option("Hanoi", "Hanoi"));
+                			selectobject.appendChild(new Option("Edinburgh", "Edinburgh"));
+                			selectobject.appendChild(new Option("Taipei", "Taipei"));
                 			selectobject.appendChild(new Option("Tokyo", "Tokyo"));
+                		}	
+                		else if(reportNumber == 32){
+                			x.innerHTML = "Please select language:";
+                			document.getElementById("groupingTypeDropdown").style.display = "inline";	
+                			selectobject.appendChild(new Option("Chinese", "Chinese"));
+                			selectobject.appendChild(new Option("English", "English"));
+                			selectobject.appendChild(new Option("Hindi", "Hindi"));
+                			selectobject.appendChild(new Option("Spanish", "Spanish"));
+                			selectobject.appendChild(new Option("Arabic", "Arabic"));
+                			selectobject.appendChild(new Option("French", "French"));
                 		}else{
                 			x.innerHTML = " ";
                 			document.getElementById("groupingTypeDropdown").style.display = "none";
