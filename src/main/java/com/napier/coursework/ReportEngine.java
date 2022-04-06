@@ -129,6 +129,7 @@ public class ReportEngine {
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
+                WHERE city.District = 'XXvarArgXX'
                 ORDER BY 4 DESC;
                """;
         reportSQL[12] = """
@@ -167,7 +168,6 @@ public class ReportEngine {
                 FROM city
                          INNER JOIN country ON city.CountryCode = country.Code
                 WHERE city.District = 'XXvarArgXX'
-                ORDER BY 4 DESC
                 LIMIT YYvarLimitYY;
                 """;
         reportSQL[17] = """
@@ -183,12 +183,14 @@ public class ReportEngine {
                        b.Population as 'Population'
                 FROM country a
                          INNER JOIN city b ON a.Capital = b.ID
+                WHERE a.Continent = 'XXvarArgXX'
                 ORDER BY 3, 4 DESC, 1;
                 """;
         reportSQL[19] = """
                 SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region',
                        b.Population as 'Population'
                 FROM   country a INNER JOIN city b ON a.Capital = b.ID
+                WHERE a.Region = 'XXvarArgXX'
                 ORDER  BY 3, 4 DESC, 1;
                 """;
         reportSQL[20] = """
