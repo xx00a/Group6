@@ -27,6 +27,7 @@ This repository is maintained and contributed by the following Group 6 members:
 
 | ID    | Name | Met | Screenshot |
 |-------|------|--|------------|
+| 0 |  Index page of the web app. | YES | ![](https://github.com/xx00a/Group6/blob/feature/screenshot/screenshots/index.png?raw=true) |
 | 1 |  All the countries in the world organised by largest population to smallest. | YES | ![](https://github.com/xx00a/Group6/blob/feature/screenshot/screenshots/ReportID_1.png?raw=true) |
 | 2 |  All the countries in a continent organised by largest population to smallest. | YES | ![](https://github.com/xx00a/Group6/blob/feature/screenshot/screenshots/ReportID_2.png?raw=true) |
 | 3 |  All the countries in a region organised by largest population to smallest. | YES | ![](https://github.com/xx00a/Group6/blob/feature/screenshot/screenshots/ReportID_3.png?raw=true) |
