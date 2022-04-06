@@ -105,7 +105,7 @@ public class App {
                             <h1 style="font-size:20px; font-family:Garamond;">SET08803 2021-2 TR2 001 - Software Engineering Methods</h1>
                             <h2 style="font-size:20px; font-family:Garamond;">Coursework - Part 2 - <a href="https://github.com/xx00a/Group6">Group 6</a>
                             </h2>
-                            <p>Please select report number that you would like to generate:</p>
+                            <p style="font-family:Garamond;">Please select report number that you would like to generate:</p>
                             <div class="selectIDdropdown">
                               <select id="reportID" onchange="change()" onmousedown="erase()">
                                     <option value="0">Select...</option>\s
@@ -150,7 +150,7 @@ public class App {
                 <br>
                             <input id="limitOf" type="text" placeholder="number of results...">
                             <br>
-                            <button id="buttonGenerate" onclick="submit()"> GENERATE REPORT</button>
+                            <button id="buttonGenerate" onclick="submit()" style="font-family:Garamond;"> GENERATE REPORT</button>
                               		
                 			
                             <script>
@@ -505,16 +505,7 @@ public class App {
                 			selectobject.appendChild(new Option("Taipei", "Taipei"));
                 			selectobject.appendChild(new Option("Tokyo", "Tokyo"));
                 		}	
-                		else if(reportNumber == 32){
-                			x.innerHTML = "Please select language:";
-                			document.getElementById("groupingTypeDropdown").style.display = "inline";	
-                			selectobject.appendChild(new Option("Chinese", "Chinese"));
-                			selectobject.appendChild(new Option("English", "English"));
-                			selectobject.appendChild(new Option("Hindi", "Hindi"));
-                			selectobject.appendChild(new Option("Spanish", "Spanish"));
-                			selectobject.appendChild(new Option("Arabic", "Arabic"));
-                			selectobject.appendChild(new Option("French", "French"));
-                		}else{
+                		else{
                 			x.innerHTML = " ";
                 			document.getElementById("groupingTypeDropdown").style.display = "none";
                 		}
