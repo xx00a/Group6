@@ -11,6 +11,7 @@ public class Languages {
     private String language;
     private float percentage;
     private long population;
+    private long speakers;
 
     public String getName() {
         return name;
@@ -42,5 +43,13 @@ public class Languages {
 
     public void setPopulation(long population) {
         this.population = population;
+    }
+
+    public long getSpeakers() {
+        return speakers;
+    }
+
+    public void setSpeakers(long speakers) {
+        this.speakers = speakers;
     }
 }

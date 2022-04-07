@@ -15,7 +15,6 @@ public class AppTest
 
     static App app;
 
-
     @BeforeAll
     static void init()
     {
@@ -31,8 +30,6 @@ public class AppTest
         assertEquals(5, 5);
 
     }
-
-
 
     @AfterAll
     static void disconnectDB(){
