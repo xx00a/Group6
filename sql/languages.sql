@@ -46,12 +46,14 @@ SELECT countrylanguage.Language, Sum(country.Population) AS Speakers, AVG(countr
         WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English" OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"
         OR countrylanguage.Language="Arabic" GROUP BY countrylanguage.Language ORDER BY Speakers DESC;
 
-WITH data as
-         (SELECT countrylanguage.Language AS Language, Sum(country.Population) AS Population
-          FROM countrylanguage  INNER JOIN country ON countrylanguage.CountryCode = country.Code
-          WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English"
-             OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"
-             OR countrylanguage.Language="Arabic"
-          GROUP BY countrylanguage.Language ORDER BY Population DESC)
-SELECT *, (Population/(SELECT Sum(country.Population) from country))*100 as Percentage
+WITH data as (
+    SELECT countrylanguage.Language AS Language, Sum(country.Population) AS Population,
+           Sum(countrylanguage.Percentage/100*country.Population) as Speakers
+    FROM countrylanguage
+             INNER JOIN country ON countrylanguage.CountryCode = country.Code
+    WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English"
+       OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"
+       OR countrylanguage.Language="Arabic"
+    GROUP BY countrylanguage.Language ORDER BY Speakers DESC)
+SELECT *, (Speakers/(SELECT Sum(country.Population) from country))*100 as Percentage
 FROM data GROUP BY Language;
