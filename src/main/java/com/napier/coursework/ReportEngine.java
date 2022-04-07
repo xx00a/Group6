@@ -298,14 +298,16 @@ public class ReportEngine {
                 """;
 
         reportSQL[32] = """
-                WITH data as 
-                (SELECT countrylanguage.Language AS Language, Sum(country.Population) AS Population 
-                FROM countrylanguage  INNER JOIN country ON countrylanguage.CountryCode = country.Code
+                WITH data as (
+                SELECT countrylanguage.Language AS Language, Sum(country.Population) AS Population, 
+                Sum(countrylanguage.Percentage/100*country.Population) as Speakers 
+                FROM countrylanguage  
+                INNER JOIN country ON countrylanguage.CountryCode = country.Code
                 WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English" 
-                OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"
+                OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"         
                 OR countrylanguage.Language="Arabic" 
-                GROUP BY countrylanguage.Language ORDER BY Population DESC)
-                SELECT *, (Population/(SELECT Sum(country.Population) from country))*100 as Percentage 
+                GROUP BY countrylanguage.Language ORDER BY Speakers DESC) 
+                SELECT *, (Speakers/(SELECT Sum(country.Population) from country))*100 as Percentage 
                 FROM data GROUP BY Language;
                 """;
     }
@@ -458,6 +460,7 @@ public class ReportEngine {
                     //aLanguages.setName(rSet.getString("Name"));
                     aLanguages.setLanguage(rSet.getString("Language"));
                     aLanguages.setPopulation(rSet.getLong("Population"));
+                    aLanguages.setSpeakers(rSet.getLong("Speakers"));
                     aLanguages.setPercentage(rSet.getFloat("Percentage"));
 
                     // add to record set so we can recall later
@@ -572,13 +575,14 @@ public class ReportEngine {
             case 4 -> {
 
                 // table headers
-                reportTable.add(new String[]{"Language", "Population", "Percentage"});
+                reportTable.add(new String[]{"Language", "Population", "Speakers","Percentage"});
 
                 // add row result
                 for (Languages languages : languagesArrayList) {
                     reportTable.add(new String[]{
                             languages.getLanguage(),
                             Long.toString(languages.getPopulation()),
+                            Long.toString(languages.getSpeakers()),
                             Float.toString(languages.getPercentage()),
                     });
 
