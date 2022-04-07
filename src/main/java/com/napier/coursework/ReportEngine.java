@@ -298,14 +298,17 @@ public class ReportEngine {
                 """;
 
         reportSQL[32] = """
-                SELECT countrylanguage.Language,
-                       Sum(country.Population)         AS Speakers,
-                       AVG(countrylanguage.Percentage) AS Percentage
-                FROM countrylanguage
-                         INNER JOIN country ON countrylanguage.CountryCode = country.Code
-                WHERE countrylanguage.Language = 'YYvarArgXX'
-                GROUP BY countrylanguage.Language
-                ORDER BY Speakers DESC;
+                WITH data as (
+                SELECT countrylanguage.Language AS Language, Sum(country.Population) AS Population, 
+                Sum(countrylanguage.Percentage/100*country.Population) as Speakers 
+                FROM countrylanguage  
+                INNER JOIN country ON countrylanguage.CountryCode = country.Code
+                WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English" 
+                OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"         
+                OR countrylanguage.Language="Arabic" 
+                GROUP BY countrylanguage.Language ORDER BY Speakers DESC) 
+                SELECT *, (Speakers/(SELECT Sum(country.Population) from country))*100 as Percentage 
+                FROM data GROUP BY Language;
                 """;
     }
 
@@ -344,7 +347,7 @@ public class ReportEngine {
         reportIndex[29] = "The population of XXvarArgXX";
         reportIndex[30] = "The population of XXvarArgXX";
         reportIndex[31] = "The population of XXvarArgXX";
-        reportIndex[32] = "The number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic";
+        reportIndex[32] = "The number of people who speak the following languages (Chinese, English, Hindi, Spanish, Arabic) from greatest number to smallest, including the percentage of the world population";
     }
 
 
@@ -454,9 +457,10 @@ public class ReportEngine {
                     Languages aLanguages = new Languages();
 
                     // set values for array item
-                    aLanguages.setName(rSet.getString("Name"));
+                    //aLanguages.setName(rSet.getString("Name"));
                     aLanguages.setLanguage(rSet.getString("Language"));
                     aLanguages.setPopulation(rSet.getLong("Population"));
+                    aLanguages.setSpeakers(rSet.getLong("Speakers"));
                     aLanguages.setPercentage(rSet.getFloat("Percentage"));
 
                     // add to record set so we can recall later
@@ -571,12 +575,17 @@ public class ReportEngine {
             case 4 -> {
 
                 // table headers
-                reportTable.add(new String[]{"Name", "Name"});
+                reportTable.add(new String[]{"Language", "Population", "Speakers","Percentage"});
 
                 // add row result
                 for (Languages languages : languagesArrayList) {
-                    /// this needs to be completed
-                    languages.getName();
+                    reportTable.add(new String[]{
+                            languages.getLanguage(),
+                            Long.toString(languages.getPopulation()),
+                            Long.toString(languages.getSpeakers()),
+                            Float.toString(languages.getPercentage()),
+                    });
+
 
                 }
                 htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Languages Report");
