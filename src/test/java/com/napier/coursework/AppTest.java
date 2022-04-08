@@ -19,20 +19,20 @@ public class AppTest
     static void init()
     {
         app = new App();
-       // App.sqlConnect = MySQLConnection.connect("jdbc:mysql://localhost:3306/world?useSSL=false", "root", "example");
+        App.sqlConnect = MySQLConnection.connect("jdbc:mysql://localhost:33060/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
 
     }
 
     @Test
     void getNumberOfCities() throws SQLException, ClassNotFoundException {
 
-        //String output = app.getReport(1, "", "1");
-        assertEquals(5, 5);
+        String htmlResult = app.getReport(1, "", "10");
+        assertTrue(htmlResult.contains("China"));
 
     }
 
     @AfterAll
     static void disconnectDB(){
-      //  MySQLConnection.disconnect(App.sqlConnect);
+        MySQLConnection.disconnect(App.sqlConnect);
     }
 }
