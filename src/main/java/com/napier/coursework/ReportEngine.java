@@ -2,7 +2,7 @@ package com.napier.coursework;
 
 /*
  * The report engine outputs a selected report ID for display
- * Last update: April 7, 2022
+ * Last update: March 23, 2022
  */
 
 
@@ -35,83 +35,65 @@ public class ReportEngine {
     {
         reportSQL = new String[33];
         reportSQL[1] = """
-                        SELECT country.Code,
-                               country.Name,
-                               country.Continent,
-                               country.Region,
-                               country.Population,
-                               c.name AS 'Capital'
-                        FROM country
-                                 LEFT JOIN city c
-                                           ON country.capital = c.id
-                        ORDER BY country.population DESC;
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                ORDER  BY country.population DESC;
                 """;
         reportSQL[2] = """
-                        SELECT country.Code,
-                               country.Name,
-                               country.Continent,
-                               country.Region,
-                               country.Population,
-                               c.name AS 'Capital'
-                        FROM country
-                                 LEFT JOIN city c
-                                           ON country.capital = c.id
-                        WHERE country.continent LIKE 'XXvarArgXX'
-                        ORDER BY country.population DESC;
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE  country.continent LIKE 'XXvarArgXX'
+                ORDER  BY country.population DESC;
                 """;
         reportSQL[3] = """
-                        SELECT country.Code,
-                               country.Name,
-                               country.Continent,
-                               country.Region,
-                               country.Population,
-                               c.name AS 'Capital'
-                        FROM country
-                                 LEFT JOIN city c
-                                           ON country.capital = c.id
-                        WHERE country.region LIKE 'XXvarArgXX'
-                        ORDER BY country.population DESC;
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE  country.region LIKE 'XXvarArgXX'
+                ORDER  BY country.population DESC;
                 """;
         reportSQL[4] = """
-                        SELECT country.Code,
-                               country.Name,
-                               country.Continent,
-                               country.Region,
-                               country.Population,
-                               c.name AS 'Capital'
-                        FROM country
-                                 LEFT JOIN city c
-                                           ON country.capital = c.id
-                        ORDER BY country.population DESC
-                        LIMIT 0, YYvarLimitYY;
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                ORDER  BY country.population DESC
+                LIMIT  0, YYvarLimitYY;
                 """;
         reportSQL[5] = """
-                        SELECT country.Code,
-                               country.Name,
-                               country.Continent,
-                               country.Region,
-                               country.Population,
-                               c.name AS 'Capital'
-                        FROM country
-                                 LEFT JOIN city c
-                                           ON country.capital = c.id
-                        WHERE country.continent LIKE 'XXvarArgXX'
-                        ORDER BY country.population DESC
-                        LIMIT 0, YYvarLimitYY;
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE  country.continent LIKE 'XXvarArgXX'
+                ORDER  BY country.population DESC
+                LIMIT  0, YYvarLimitYY;
                 """;
         reportSQL[6] = """
-                        SELECT country.Code,
-                               country.Name,
-                               country.Continent,
-                               country.Region,
-                               country.Population,
-                               c.name AS 'Capital'
-                        FROM country
-                                 LEFT JOIN city c
-                                           ON country.capital = c.id
-                        WHERE country.Region LIKE 'XXvarArgXX'
-                        ORDER BY country.population DESC
-                        LIMIT 0, YYvarLimitYY;
+                SELECT country.Code,country.Name,country.Continent,country.Region,
+                       country.Population,
+                       c.name AS 'Capital'
+                FROM   country
+                       LEFT JOIN city c
+                              ON country.capital = c.id
+                WHERE  country.Region LIKE 'XXvarArgXX'
+                ORDER  BY country.population DESC
+                LIMIT  0, YYvarLimitYY;
                 """;
         reportSQL[7] = """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
@@ -317,21 +299,16 @@ public class ReportEngine {
 
         reportSQL[32] = """
                 WITH data as (
-                    SELECT countrylanguage.Language                                   as 'Language',
-                           Sum(country.Population)                                    as 'Population',
-                           Sum(countrylanguage.Percentage / 100 * country.Population) as 'Speakers'
-                    FROM countrylanguage
-                             INNER JOIN country ON countrylanguage.CountryCode = country.Code
-                    WHERE countrylanguage.Language = 'Chinese'
-                       OR countrylanguage.Language = 'English'
-                       OR countrylanguage.Language = 'Hindi'
-                       OR countrylanguage.Language = 'Spanish'
-                       OR countrylanguage.Language = 'Arabic'
-                    GROUP BY countrylanguage.Language
-                    ORDER BY Speakers DESC)
-                SELECT *, (Speakers / (SELECT Sum(country.Population) from country)) * 100 as 'Percentage'
-                FROM data
-                GROUP BY Language;
+                SELECT countrylanguage.Language AS Language, Sum(country.Population) AS Population, 
+                Sum(countrylanguage.Percentage/100*country.Population) as Speakers 
+                FROM countrylanguage  
+                INNER JOIN country ON countrylanguage.CountryCode = country.Code
+                WHERE countrylanguage.Language= "Chinese" OR countrylanguage.Language="English" 
+                OR countrylanguage.Language="Hindi" OR countrylanguage.Language="Spanish"         
+                OR countrylanguage.Language="Arabic" 
+                GROUP BY countrylanguage.Language ORDER BY Speakers DESC) 
+                SELECT *, (Speakers/(SELECT Sum(country.Population) from country))*100 as Percentage 
+                FROM data GROUP BY Language;
                 """;
     }
 
