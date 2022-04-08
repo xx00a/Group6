@@ -66,7 +66,7 @@ public class App {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String produceQueryHome()  throws ClassNotFoundException, SQLException {
+    public String produceQueryHome(){
 
         // Create variable for the html output
         String htmlOutput;
