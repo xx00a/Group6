@@ -35,6 +35,7 @@ public class App {
     @RequestMapping(value = "/report",
             params = { "id", "grouping", "limit" },
             method = RequestMethod.GET)
+
     @ResponseBody
     public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
                             @RequestParam(value = "limit", defaultValue = "1") String limit){
@@ -54,14 +55,6 @@ public class App {
             System.out.println(e.getMessage());
             System.out.println("Failed to produce report");
         }
-
-        /*
-         Produce HTML output in console - should be removed when testing complete
-         System.out.println("--- HTML START ---");
-         System.out.println(htmlOutput);
-         System.out.println("--- HTML END ---");
-        */
-
         return htmlOutput;
     }
 

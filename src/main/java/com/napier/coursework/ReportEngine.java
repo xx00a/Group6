@@ -298,14 +298,14 @@ public class ReportEngine {
                 """;
 
         reportSQL[32] = """
-WITH data as (SELECT countrylanguage.Language AS Language, 
-Round(Sum(countrylanguage.Percentage/100*country.Population), 0) as Speakers FROM countrylanguage 
-INNER JOIN country ON countrylanguage.CountryCode = country.Code
-WHERE Language IN ('Chinese','English','Hindi','Spanish','Arabic') and Percentage > 0 
-GROUP BY countrylanguage.Language ORDER BY Speakers DESC) SELECT *, 
-(Speakers/(SELECT Sum(country.Population) from country))*100 as Percentage
-FROM data GROUP BY Language;
-                """;
+                WITH data as (SELECT countrylanguage.Language AS Language, 
+                Round(Sum(countrylanguage.Percentage/100*country.Population), 0) as Speakers FROM countrylanguage 
+                INNER JOIN country ON countrylanguage.CountryCode = country.Code
+                WHERE Language IN ('Chinese','English','Hindi','Spanish','Arabic') and Percentage > 0 
+                GROUP BY countrylanguage.Language ORDER BY Speakers DESC) SELECT *, 
+                (Speakers/(SELECT Sum(country.Population) from country))*100 as Percentage
+                FROM data GROUP BY Language;
+                                """;
     }
 
     private static final String[] reportIndex;
