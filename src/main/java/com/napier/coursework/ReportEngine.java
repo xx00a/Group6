@@ -378,6 +378,132 @@ public class ReportEngine {
         ArrayList<Population> populationArrayList = new ArrayList<>();
         ArrayList<Population_Short> populationShortArrayList = new ArrayList<>();
 
+        switchOne(reportClass, rSet, capitalCityArrayList, cityArrayList, countryArrayList, languagesArrayList, populationArrayList, populationShortArrayList);
+
+        // our data is now collected, let's exploit it
+
+        //let's create our matrix
+        List<String[]> reportTable = new ArrayList<>();
+
+        htmlOutput = switchTwo(reportID, reportClass, htmlOutput, tmpDesc, capitalCityArrayList, cityArrayList, countryArrayList, languagesArrayList, populationArrayList, populationShortArrayList, reportTable);
+
+        return htmlOutput;
+
+    }
+
+    private String switchTwo(int reportID, int reportClass, String htmlOutput, String tmpDesc, ArrayList<CapitalCity> capitalCityArrayList, ArrayList<City> cityArrayList, ArrayList<Country> countryArrayList, ArrayList<Languages> languagesArrayList, ArrayList<Population> populationArrayList, ArrayList<Population_Short> populationShortArrayList, List<String[]> reportTable) {
+        switch (reportClass) {
+            case 1 -> {
+                // Build table headers for the Capital City Report
+                reportTable.add(new String[]{"Name", "Country", "Population"});
+
+                // add row result
+                for (CapitalCity capitalCity : capitalCityArrayList) {
+                    reportTable.add(new String[]{
+                            capitalCity.getName(),
+                            capitalCity.getCountry(),
+                            Long.toString(capitalCity.getPopulation())
+                    }
+                    );
+                }
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Capital City Report");
+            }
+            case 2 -> {
+
+                // table headers
+                reportTable.add(new String[]{"Name", "Country", "District", "Population"});
+
+                // add row result
+                for (City city : cityArrayList) {
+                    reportTable.add(new String[]{
+                                    city.getName(),
+                                    city.getCountry(),
+                                    city.getDistrict(),
+                                    Long.toString(city.getPopulation())
+                            }
+                    );
+                }
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "City Report");
+            }
+            case 3 -> {
+
+                // Build table headers for Country Report
+                reportTable.add(new String[]{"Code", "Name", "Continent", "Region", "Population", "Capital"});
+
+                // Add row results to array
+                for (Country country : countryArrayList) {
+                    reportTable.add(new String[]{
+                            country.getCode(),
+                            country.getName(),
+                            country.getContinent(),
+                            country.getRegion(),
+                            Long.toString(country.getPopulation()),
+                            country.getCapital()
+                    });
+                }
+
+                // let's pass the table to the HTML generator
+                // Ray to update HTML string output
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Country Report");
+            }
+            case 4 -> {
+
+                // table headers
+                reportTable.add(new String[]{"Language", /*"Population",*/ "Speakers","Percentage"});
+
+                // add row result
+                for (Languages languages : languagesArrayList) {
+                    reportTable.add(new String[]{
+                            languages.getLanguage(),
+                            //Long.toString(languages.getPopulation()),
+                            Long.toString(languages.getSpeakers()),
+                            Float.toString(languages.getPercentage()),
+                    });
+
+
+                }
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Languages Report");
+            }
+            case 5 -> {
+                // table headers
+                reportTable.add(new String[]{"Name", "Total Population", "NOT in cities", "NOT in cities(%)", "IN cities", "IN cities(%)"});
+
+                // add row result
+                for (Population population : populationArrayList) {
+                    reportTable.add(new String[]{
+                            population.getName(),
+                            Long.toString(population.getTotalPopulation()),
+                            Long.toString(population.getNotInCities()),
+                            Float.toString(population.getNotInCitiesPercentage()),
+                            Long.toString(population.getInCities()),
+                            Float.toString(population.getInCitiesPercentage()),
+                    }
+                    );
+
+                }
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Population Report");
+            }
+
+            case 6 -> {
+                // table headers
+                reportTable.add(new String[]{"Name", "Total Population"});
+
+                // add row result
+                for (Population_Short populationShort : populationShortArrayList) {
+                    reportTable.add(new String[]{
+                                    populationShort.getName(),
+                                    Long.toString(populationShort.getTotalPopulation()),
+                            }
+                    );
+
+                }
+                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Population Report");
+            }
+        }
+        return htmlOutput;
+    }
+
+    private void switchOne(int reportClass, ResultSet rSet, ArrayList<CapitalCity> capitalCityArrayList, ArrayList<City> cityArrayList, ArrayList<Country> countryArrayList, ArrayList<Languages> languagesArrayList, ArrayList<Population> populationArrayList, ArrayList<Population_Short> populationShortArrayList) throws SQLException {
         // let's create our classes to start reporting
         switch (reportClass) {
             case 1:
@@ -508,123 +634,6 @@ public class ReportEngine {
                 break;
 
         }
-
-        // our data is now collected, let's exploit it
-
-        //let's create our matrix
-        List<String[]> reportTable = new ArrayList<>();
-
-        switch (reportClass) {
-            case 1 -> {
-                // Build table headers for the Capital City Report
-                reportTable.add(new String[]{"Name", "Country", "Population"});
-
-                // add row result
-                for (CapitalCity capitalCity : capitalCityArrayList) {
-                    reportTable.add(new String[]{
-                            capitalCity.getName(),
-                            capitalCity.getCountry(),
-                            Long.toString(capitalCity.getPopulation())
-                    }
-                    );
-                }
-                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Capital City Report");
-            }
-            case 2 -> {
-
-                // table headers
-                reportTable.add(new String[]{"Name", "Country", "District", "Population"});
-
-                // add row result
-                for (City city : cityArrayList) {
-                    reportTable.add(new String[]{
-                                    city.getName(),
-                                    city.getCountry(),
-                                    city.getDistrict(),
-                                    Long.toString(city.getPopulation())
-                            }
-                    );
-                }
-                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "City Report");
-            }
-            case 3 -> {
-
-                // Build table headers for Country Report
-                reportTable.add(new String[]{"Code", "Name", "Continent", "Region", "Population", "Capital"});
-
-                // Add row results to array
-                for (Country country : countryArrayList) {
-                    reportTable.add(new String[]{
-                            country.getCode(),
-                            country.getName(),
-                            country.getContinent(),
-                            country.getRegion(),
-                            Long.toString(country.getPopulation()),
-                            country.getCapital()
-                    });
-                }
-
-                // let's pass the table to the HTML generator
-                // Ray to update HTML string output
-                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Country Report");
-            }
-            case 4 -> {
-
-                // table headers
-                reportTable.add(new String[]{"Language", /*"Population",*/ "Speakers","Percentage"});
-
-                // add row result
-                for (Languages languages : languagesArrayList) {
-                    reportTable.add(new String[]{
-                            languages.getLanguage(),
-                            //Long.toString(languages.getPopulation()),
-                            Long.toString(languages.getSpeakers()),
-                            Float.toString(languages.getPercentage()),
-                    });
-
-
-                }
-                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Languages Report");
-            }
-            case 5 -> {
-                // table headers
-                reportTable.add(new String[]{"Name", "Total Population", "NOT in cities", "NOT in cities(%)", "IN cities", "IN cities(%)"});
-
-                // add row result
-                for (Population population : populationArrayList) {
-                    reportTable.add(new String[]{
-                            population.getName(),
-                            Long.toString(population.getTotalPopulation()),
-                            Long.toString(population.getNotInCities()),
-                            Float.toString(population.getNotInCitiesPercentage()),
-                            Long.toString(population.getInCities()),
-                            Float.toString(population.getInCitiesPercentage()),
-                    }
-                    );
-
-                }
-                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Population Report");
-            }
-
-            case 6 -> {
-                // table headers
-                reportTable.add(new String[]{"Name", "Total Population"});
-
-                // add row result
-                for (Population_Short populationShort : populationShortArrayList) {
-                    reportTable.add(new String[]{
-                                    populationShort.getName(),
-                                    Long.toString(populationShort.getTotalPopulation()),
-                            }
-                    );
-
-                }
-                htmlOutput = generateHTML(reportTable, reportID, tmpDesc, "Population Report");
-            }
-        }
-
-        return htmlOutput;
-
     }
 
 
