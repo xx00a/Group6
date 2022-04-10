@@ -37,6 +37,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Unit Tests
+        docker build -t database_test ./db
+        docker run --name db_test -dp 33060:3306 database_test
         run: mvn -Dtest=com.napier.coursework.AppUnitTest test
       - name: Package and Run docker compose
         run: |
