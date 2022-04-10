@@ -38,9 +38,12 @@ jobs:
           distribution: 'adopt'
       - name: Unit Tests
         run: |
-        docker build -t database_test ./db
-        docker run --name db_test -dp 33060:3306 database_test
-        mvn -Dtest=com.napier.coursework.AppUnitTest test
+          docker build -t database_test ./db
+          docker run --name db_test -dp 33060:3306 database_test
+          mvn -Dtest=com.napier.coursework.AppUnitTest test
+          docker stop db_test
+          docker rm db_test
+          docker image rm database_test
       - name: Package and Run docker compose
         run: |
           mvn package -DskipTests
