@@ -3,7 +3,7 @@ package com.napier.coursework;
  // SET08803 Coursework Application
 
 import java.sql.*;
-import java.util.Objects;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -41,21 +41,28 @@ public class App {
                             @RequestParam(value = "limit", defaultValue = "1") String limit){
 
         // Create variable for the html report output
-        String htmlOutput = "";
 
         try {
+//
+//            // We create our handy report generator
+//            ReportEngine theReport = new ReportEngine();
+//
+//            // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
+//          //  htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
 
-            // We create our handy report generator
-            ReportEngine theReport = new ReportEngine();
+            ReportEngine reportEngine = new ReportEngine();
+            Reports report =  ReportEngine.getReportById(ID);
+            ResultSet dataFromDb = reportEngine.getDataFromDatabase(sqlConnect, report);
+            return reportEngine.generateHtmlOutput(dataFromDb, report);
 
-            // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
-            htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
+
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to produce report");
         }
-        return htmlOutput;
+
+        return "";
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
