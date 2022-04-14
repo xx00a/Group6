@@ -1,6 +1,6 @@
 package com.napier.coursework;
 
- // SET08803 Coursework Application
+// SET08803 Coursework Application
 
 import java.sql.*;
 
@@ -33,17 +33,17 @@ public class App {
 
     // Coursework API where report generation request will go through and will be returned to the NGINX webserver
     @RequestMapping(value = "/report",
-            params = { "id", "grouping", "limit" },
+            params = {"id", "grouping", "limit"},
             method = RequestMethod.GET)
 
     @ResponseBody
     public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
-                            @RequestParam(value = "limit", defaultValue = "1") String limit){
+                            @RequestParam(value = "limit", defaultValue = "1") String limit) {
 
         try {
             // Create  the html report output
             ReportEngine reportEngine = new ReportEngine();
-            Reports report =  ReportEngine.getReportById(ID);
+            Reports report = ReportEngine.getReportById(ID);
             ResultSet dataFromDb = reportEngine.getDataFromDatabase(sqlConnect, report, grouping, limit);
             return reportEngine.generateHtmlOutput(dataFromDb, report, grouping, limit);
 
@@ -56,7 +56,7 @@ public class App {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String produceQueryHome(){
+    public String produceHomePage() {
 
         // Create variable for the html output
         String htmlOutput;
