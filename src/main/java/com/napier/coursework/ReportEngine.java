@@ -16,10 +16,15 @@ import static com.napier.coursework.QueryHelper.getResultSet;
 public class ReportEngine {
 
 
-     public ResultSet getDataFromDatabase(Connection connection, Reports report) throws SQLException
+    public ResultSet getDataFromDatabase(Connection connection, Reports report, String grouping, String limit) throws SQLException
      {
-         return getResultSet(connection, report.getQuery());
+         String queryString = report.getQuery();
+         queryString = queryString.replaceAll("XXvarArgXX", grouping);
+         queryString= queryString.replaceAll("YYvarLimitYY", limit);
+         return getResultSet(connection, queryString);
      }
+
+
 
     public static Reports getReportById(int reportId)
     {
@@ -34,10 +39,10 @@ public class ReportEngine {
     }
 
 
-    public String generateHtmlOutput(ResultSet dataFromDb, Reports report) throws SQLException {
 
-        String htmlOutput =  generateHeaderOfHtml(report);
+    public String generateHtmlOutput(ResultSet dataFromDb, Reports report, String grouping, String limit) throws SQLException {
 
+        String htmlOutput =  generateHtmlHeader(report, grouping, limit);
         htmlOutput += "<table>";
         htmlOutput += generateTableHeaders(report);
         htmlOutput += generateTableRows(dataFromDb, report);
@@ -47,8 +52,11 @@ public class ReportEngine {
     }
 
 
-    private String generateHeaderOfHtml(Reports report)
+    private String generateHtmlHeader(Reports report, String grouping, String limit)
     {
+        String description = report.getReportName();
+        description = description.replaceAll("XXvarArgXX", grouping);
+        description= description.replaceAll("YYvarLimitYY", limit);
       String pageHeader =
               """
                    <!DOCTYPE html>
@@ -72,7 +80,7 @@ public class ReportEngine {
                    </style>
                    <body style="font-family: Arial,serif; size: 11px; background-color: #D3D3D3;">
                   """;
-        String name = "<h2 style=\"size: 14px;\">" + report.getReportName() + "</h2>";
+        String name = "<h2 style=\"size: 14px;\">" + description + "</h2>";
         pageHeader += name;
 
       return pageHeader;

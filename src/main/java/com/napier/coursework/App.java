@@ -40,22 +40,12 @@ public class App {
     public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
                             @RequestParam(value = "limit", defaultValue = "1") String limit){
 
-        // Create variable for the html report output
-
         try {
-//
-//            // We create our handy report generator
-//            ReportEngine theReport = new ReportEngine();
-//
-//            // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
-//          //  htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
-
+            // Create  the html report output
             ReportEngine reportEngine = new ReportEngine();
             Reports report =  ReportEngine.getReportById(ID);
-            ResultSet dataFromDb = reportEngine.getDataFromDatabase(sqlConnect, report);
-            return reportEngine.generateHtmlOutput(dataFromDb, report);
-
-
+            ResultSet dataFromDb = reportEngine.getDataFromDatabase(sqlConnect, report, grouping, limit);
+            return reportEngine.generateHtmlOutput(dataFromDb, report, grouping, limit);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

@@ -13,4 +13,28 @@ public class AppUnitTest
         assertEquals(Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC, report);
     }
 
+    @Test
+    void generateHtmlOutput(){
+
+    }
+
+    @Test
+    void generateHtmlHeader(){
+
+    }
+
+    @Test
+    void generateTableHeaders(){
+
+
+    }
+
+    @Test
+    void generateTableRows(){
+
+    }
+
+    @Test
+    void generateHtmlFooter(){
+    }
 }

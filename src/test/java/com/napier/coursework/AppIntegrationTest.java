@@ -12,8 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-
-
 public class AppIntegrationTest
 {
 
@@ -27,11 +25,17 @@ public class AppIntegrationTest
     }
 
     @Test
-    void getReportTestDefaultValues()
+    void getDataFromDatabase()
     {
-        String htmlResult = app.getReport(1, "", "10");
 
-        assertTrue(htmlResult.contains("China"));
+    }
+    @Test
+    void getReport(){
+
+    }
+
+    @Test
+    void produceQueryHome(){
 
     }
 
