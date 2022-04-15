@@ -1,5 +1,8 @@
 name: Build for Group 6 application
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -25,6 +28,6 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          automatic_release_tag: "latest"
+          automatic_release_tag: "Latest release"
           files: |
             ./target/*.jar
