@@ -1,9 +1,9 @@
 package com.napier.coursework;
 
- // SET08803 Coursework Application
+// SET08803 Coursework Application
 
 import java.sql.*;
-import java.util.Objects;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class App {
 
-    // Connect to database
-    static MySQLConnection mySQLConnection = new MySQLConnection();
-    static Connection sqlConnect;
+
+    public static Connection sqlConnect;
 
     public static void main(String[] args) {
 
@@ -34,40 +33,30 @@ public class App {
 
     // Coursework API where report generation request will go through and will be returned to the NGINX webserver
     @RequestMapping(value = "/report",
-            params = { "id", "grouping", "limit" },
+            params = {"id", "grouping", "limit"},
             method = RequestMethod.GET)
+
     @ResponseBody
     public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
-                            @RequestParam(value = "limit", defaultValue = "1") String limit) throws ClassNotFoundException, SQLException {
-
-        // Create variable for the html report output
-        String htmlOutput = "";
+                            @RequestParam(value = "limit", defaultValue = "1") String limit) {
 
         try {
-
-            // We create our handy report generator
-            ReportEngine theReport = new ReportEngine();
-
-            // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
-            htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
+            // Create  the html report output
+            ReportEngine reportEngine = new ReportEngine();
+            Reports report = ReportEngine.getReportById(ID);
+            ResultSet dataFromDb = reportEngine.getDataFromDatabase(sqlConnect, report, grouping, limit);
+            return reportEngine.generateHtmlOutput(dataFromDb, report, grouping, limit);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to produce report");
         }
 
-        /*
-         Produce HTML output in console - should be removed when testing complete
-         System.out.println("--- HTML START ---");
-         System.out.println(htmlOutput);
-         System.out.println("--- HTML END ---");
-        */
-
-        return htmlOutput;
+        return "";
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String produceQueryHome()  throws ClassNotFoundException, SQLException {
+    public String produceHomePage() {
 
         // Create variable for the html output
         String htmlOutput;

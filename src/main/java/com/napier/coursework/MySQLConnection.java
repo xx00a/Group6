@@ -7,7 +7,7 @@ public class MySQLConnection {
     // default constructor
     public static Connection connect()
     {
-        return   connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+      return   connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
     }
 
     // constructor for connection with parameters
