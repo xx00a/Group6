@@ -56,4 +56,16 @@ public class AppUnitTest {
         String expected = "</body></html>";
         assertEquals(expected, testResult);
     }
+
+    @Test
+    void produceHomePage() {
+        App app;
+        app = new App();
+        String testResult =  app.produceHomePage();
+        assertNotNull(testResult);
+        assertTrue(testResult.contains("Bolivia"));
+        assertTrue(testResult.contains("Barbados"));
+        assertTrue(testResult.contains("<p style=\"font-family:Garamond;\">Please select report number that you would like to generate:</p>"));
+    }
+
 }

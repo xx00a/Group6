@@ -37,27 +37,33 @@ public class AppIntegrationTest {
     }
 
     @Test
-    void generateTableRows() {
-        //reportEngine.generateTableRows()
+    void generateTableRows() throws SQLException {
+        ResultSet dataFromDb = reportEngine.getDataFromDatabase(App.sqlConnect, Reports.REPORT_ALL_CITIES_IN_COUNTRY, "Poland", "3");
+        String testResult = reportEngine.generateTableRows(dataFromDb, Reports.REPORT_ALL_CITIES_IN_COUNTRY);
+        assertNotNull(testResult);
+        assertTrue(testResult.contains("Warszawa"));
+        assertTrue(testResult.contains("Poland"));
+        assertTrue(testResult.contains("Kraków"));
+        String expected = "<tr><td>Warszawa</td><td>Poland</td><td>Mazowieckie</td><td>1615369</td>" +
+                "</tr><tr><td>Lódz</td><td>Poland</td><td>Lodzkie</td><td>800110</td></tr>" +
+                "<tr><td>Kraków</td><td>Poland</td><td>Malopolskie</td><td>738150</td></tr>";
+        assertEquals(expected, testResult);
     }
 
     @Test
-    void getDataFromDatabase() {
-
+    void getDataFromDatabase() throws SQLException {
+        ResultSet testResult = reportEngine.getDataFromDatabase(App.sqlConnect, Reports.REPORT_ALL_CITIES_IN_COUNTRY, "Poland", "3");
+        assertNotNull(testResult);
     }
 
     @Test
-    void getReportShouldReturnCorrectReportHtmlOutput() {
+    void getReportShouldReturnCorrectReportHtmlOutput() throws SQLException {
         String testResult = app.getReport(8, "Africa", "10");
         assertNotNull(testResult);
         assertTrue(testResult.contains("All the cities in Africa organised by largest population to smallest."));
         assertTrue(testResult.contains("Kairo"));
     }
 
-    @Test
-    void produceHomePage() {
-
-    }
 
     @AfterAll
     static void disconnectDB() {
