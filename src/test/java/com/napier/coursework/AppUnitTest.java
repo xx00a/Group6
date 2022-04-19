@@ -44,21 +44,21 @@ public class AppUnitTest {
     }
 
     @Test
-    void generateTableHeaders() {
+    void generateTableHeadersShouldReturnCorrectTableHeaders() {
         String testResult = reportEngine.generateTableHeaders(Reports.REPORT_ALL_CITIES_IN_CONTINENT);
         String expected = "<tr><th>Name</th><th>Country</th><th>District</th><th>Population</th></tr>";
         assertEquals(expected, testResult);
     }
 
     @Test
-    void generateHtmlFooter() {
+    void generateHtmlFooterShouldReturnCorrectFooter() {
         String testResult = reportEngine.generateHtmlFooter();
         String expected = "</body></html>";
         assertEquals(expected, testResult);
     }
 
     @Test
-    void produceHomePage() {
+    void produceHomePageShouldReturnCorrectHomePage() {
         App app;
         app = new App();
         String testResult =  app.produceHomePage();
@@ -68,4 +68,10 @@ public class AppUnitTest {
         assertTrue(testResult.contains("<p style=\"font-family:Garamond;\">Please select report number that you would like to generate:</p>"));
     }
 
+    @Test
+    void getIdShouldReturnCorrectId(){
+      Integer testResult = Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC.getId();
+        assertNotNull(testResult);
+        assertEquals(1, testResult);
+    }
 }
