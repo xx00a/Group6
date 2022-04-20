@@ -69,9 +69,46 @@ public class AppUnitTest {
     }
 
     @Test
+    void getDataFromDatabaseShouldThrowExceptionOnEmptyReport(){
+        ReportEngine reportEngine = new ReportEngine();
+        Exception exception = assertThrows(NullPointerException.class, ()->{
+          reportEngine.getDataFromDatabase(null, null, null, null);
+        });
+        assertNotNull(exception);
+        assertEquals("Cannot invoke \"com.napier.coursework.Reports.getQuery()\" because \"report\" is null", exception.getMessage());
+    }
+
+    @Test
+    void getDataFromDatabaseShouldThrowExceptionOnEmptyGrouping(){
+        ReportEngine reportEngine = new ReportEngine();
+        Exception exception = assertThrows(NullPointerException.class, ()->{
+            reportEngine.getDataFromDatabase(null, Reports.REPORT_ALL_CITIES_IN_COUNTRY, null, null);
+        });
+        assertNotNull(exception);
+        assertEquals("Cannot invoke \"String.length()\" because \"replacement\" is null", exception.getMessage());
+    }
+
+    @Test
+   void getResultSetShouldThrowExceptionOnError() {
+      Exception exception = assertThrows(NullPointerException.class, ()->{
+          QueryHelper.getResultSet(null ,null);
+      });
+      assertNotNull(exception);
+      assertEquals("Cannot invoke \"java.sql.Connection.createStatement()\" because \"connection\" is null", exception.getMessage());
+    }
+
+
+    @Test
     void getIdShouldReturnCorrectId(){
       Integer testResult = Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC.getId();
         assertNotNull(testResult);
         assertEquals(1, testResult);
+    }
+
+    @Test
+    void getReportByIdShouldReturnDefaultValue(){
+        Reports reportById = ReportEngine.getReportById(10000);
+        assertEquals(Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC, reportById);
+        assertNotEquals(Reports.REPORT_ALL_CITIES_IN_CONTINENT, reportById);
     }
 }

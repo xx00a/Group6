@@ -37,7 +37,7 @@ public class AppIntegrationTest {
     }
 
     @Test
-    void generateTableRows() throws SQLException {
+    void generateTableRowsShouldReturnCorrectTableRows() throws SQLException {
         ResultSet dataFromDb = reportEngine.getDataFromDatabase(App.sqlConnect, Reports.REPORT_ALL_CITIES_IN_COUNTRY, "Poland", "3");
         String testResult = reportEngine.generateTableRows(dataFromDb, Reports.REPORT_ALL_CITIES_IN_COUNTRY);
         assertNotNull(testResult);
@@ -51,7 +51,7 @@ public class AppIntegrationTest {
     }
 
     @Test
-    void getDataFromDatabase() throws SQLException {
+    void getDataFromDatabaseShouldReturnResultSet() throws SQLException {
         ResultSet testResult = reportEngine.getDataFromDatabase(App.sqlConnect, Reports.REPORT_ALL_CITIES_IN_COUNTRY, "Poland", "3");
         assertNotNull(testResult);
     }
@@ -63,7 +63,6 @@ public class AppIntegrationTest {
         assertTrue(testResult.contains("All the cities in Africa organised by largest population to smallest."));
         assertTrue(testResult.contains("Kairo"));
     }
-
 
     @AfterAll
     static void disconnectDB() {
