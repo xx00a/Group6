@@ -1,8 +1,5 @@
 name: Build for Group 6 application
-on:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
   IntegrationTests:
