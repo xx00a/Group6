@@ -88,38 +88,38 @@ public class App {
                                     font-family: Arial,serif; size: 11px;
                                 }
                                \s
-                            
+                          
                             </style>
                             <body onload="onload()">
-                            <h1 style="font-size:20px; font-family:Garamond;">SET08803 2021-2 TR2 001 - Software Engineering Methods</h1>
-                            <h2 style="font-size:20px; font-family:Garamond;">Coursework - Part 2 - <a href="https://github.com/xx00a/Group6">Group 6</a>
+                            <h1>SET08803 2021-2 TR2 001 - Software Engineering Methods</h1>
+                            <h2>Coursework - Part 2 - <a href="https://github.com/xx00a/Group6">Group 6</a>
                             </h2>
-                            <p style="font-family:Garamond;">Please select report number that you would like to generate:</p>
+                            <p>Please select report number that you would like to generate:</p>
                             <div class="selectIDdropdown">
                               <select id="reportID" onchange="change()" onmousedown="erase()">
                                     <option value="0">Select...</option>\s
                 		<option value="1">Report 1</option>\s
                                     <option value="2">Report 2</option> <!-- continent -->
-                                    <option value="3">Report 3</option> <!-- region -->
-                                    <option value="4">Report 4</option>
-                                    <option value="5">Report 5</option>  <!-- continent -->
-                                    <option value="6">Report 6</option>  <!-- region -->
+                                    <option value="3">Report 3</option> <!-- region -->\s
+                                    <option value="4">Report 4</option> <!-- NEEDS A USER INPUT FOR NUMBER -->
+                                    <option value="5">Report 5</option>  <!-- continent --> <!-- NEEDS A USER INPUT FOR NUMBER -->
+                                    <option value="6">Report 6</option>  <!-- region --> <!-- NEEDS A USER INPUT FOR NUMBER -->
                                     <option value="7">Report 7</option>
                                     <option value="8">Report 8</option> <!-- continent -->
                                     <option value="9">Report 9</option> <!-- region -->
                                     <option value="10">Report 10</option> <!-- country -->
                                     <option value="11">Report 11</option> <!-- district -->
-                                    <option value="12">Report 12</option>
-                                    <option value="13">Report 13</option> <!-- continent -->
-                                    <option value="14">Report 14</option> <!-- region -->
-                                    <option value="15">Report 15</option> <!-- country -->
-                                    <option value="16">Report 16</option> <!-- district -->
+                                    <option value="12">Report 12</option> <!-- NEEDS A USER INPUT FOR NUMBER -->
+                                    <option value="13">Report 13</option> <!-- continent --> <!-- NEEDS A USER INPUT FOR NUMBER -->
+                                    <option value="14">Report 14</option> <!-- region --> <!-- NEEDS A USER INPUT FOR NUMBER -->
+                                    <option value="15">Report 15</option> <!-- country --> <!-- NEEDS A USER INPUT FOR NUMBER -->
+                                    <option value="16">Report 16</option> <!-- district --> <!-- NEEDS A USER INPUT FOR NUMBER -->
                                     <option value="17">Report 17</option>
                                     <option value="18">Report 18</option> <!-- continent -->
                                     <option value="19">Report 19</option> <!-- region -->
-                                    <option value="20">Report 20</option>
-                                    <option value="21">Report 21</option> <!-- continent -->
-                                    <option value="22">Report 22</option> <!-- region -->
+                                    <option value="20">Report 20</option> <!-- NEEDS A USER INPUT FOR NUMBER -->
+                                    <option value="21">Report 21</option> <!-- continent --> <!-- NEEDS A USER INPUT FOR NUMBER -->
+                                    <option value="22">Report 22</option> <!-- region --> <!-- NEEDS A USER INPUT FOR NUMBER -->
                                     <option value="23">Report 23</option>
                                     <option value="24">Report 24</option>
                                     <option value="25">Report 25</option>
@@ -129,17 +129,17 @@ public class App {
                                     <option value="29">Report 29</option> <!-- country -->
                                     <option value="30">Report 30</option> <!-- district -->
                                     <option value="31">Report 31</option> <!-- city -->
-                                    <option value="32">Report 32</option> <!-- languages -->
+                                    <option value="32">Report 32</option>
                                 </select>
                             </div>
-                            
+                          
                 <div id="selectionCriteria"></div>
-                            				
+                          				
                 <select id="groupingTypeDropdown" size="10"></select>
                 <br>
                             <input id="limitOf" type="text" placeholder="number of results...">
                             <br>
-                            <button id="buttonGenerate" onclick="submit()" style="font-family:Garamond;"> GENERATE REPORT</button>
+                            <button id="buttonGenerate" onclick="submit()"> GENERATE REPORT</button>
                               		
                 			
                             <script>
@@ -162,7 +162,7 @@ public class App {
                 	
                 	function erase(){
                 		var selectobject = document.getElementById("groupingTypeDropdown");
-                            
+                          
                 		for (var i=0; i < selectobject.length; i++) {
                 			selectobject.remove(i);
                 			i--;
@@ -172,7 +172,7 @@ public class App {
                 	
                 	
                 	function change(){
-                            
+                          
                 		var x = document.getElementById("selectionCriteria");
                                     var a = document.getElementById("reportID");
                                     var reportNumber = (a.options[a.selectedIndex].index);
@@ -189,7 +189,12 @@ public class App {
                 			document.getElementById("limitOf").style.display = "none";		
                 			document.getElementById("buttonGenerate").style.display = "none";	
                 		}
-                								
+                		
+                		if(reportNumber == 4 || reportNumber == 5 || reportNumber == 6 || reportNumber == 12 || reportNumber == 13 || reportNumber == 14 || reportNumber == 15 || reportNumber == 16 || reportNumber == 20 || reportNumber == 21 || reportNumber == 22){
+                			document.getElementById("limitOf").style.display = "inline";						
+                		}else{
+                			document.getElementById("limitOf").style.display = "none";
+                		}
                 		
                 		if(reportNumber == 2 || reportNumber == 5 || reportNumber == 8 || reportNumber == 13 || reportNumber == 18 || reportNumber == 21 || reportNumber == 27){
                 			x.innerHTML = "Please select continent:";
@@ -478,7 +483,6 @@ public class App {
                 			document.getElementById("groupingTypeDropdown").style.display = "inline";	
                 			selectobject.appendChild(new Option("Upolu", "Upolu"));
                 			selectobject.appendChild(new Option("Tahiti", "Tahiti"));
-                			selectobject.appendChild(new Option("Buenos Aires", "Buenos%20Aires"));
                 			selectobject.appendChild(new Option("Fakaofo", "Fakaofo"));
                 			selectobject.appendChild(new Option("Seoul", "Seoul"));
                 			selectobject.appendChild(new Option("Wallis", "Wallis"));
@@ -490,11 +494,8 @@ public class App {
                 			selectobject.appendChild(new Option("London", "London"));
                 			selectobject.appendChild(new Option("Peking", "Jakarta"));
                 			selectobject.appendChild(new Option("Hanoi", "Hanoi"));
-                			selectobject.appendChild(new Option("Edinburgh", "Edinburgh"));
-                			selectobject.appendChild(new Option("Taipei", "Taipei"));
                 			selectobject.appendChild(new Option("Tokyo", "Tokyo"));
-                		}	
-                		else{
+                		}else{
                 			x.innerHTML = " ";
                 			document.getElementById("groupingTypeDropdown").style.display = "none";
                 		}
@@ -503,7 +504,7 @@ public class App {
                 	
                             </script>
                             </body>
-                            </html>
+                            </html>          
                     """;
 
         return htmlOutput;
