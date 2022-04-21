@@ -72,8 +72,6 @@ public class ReportEngine {
                          </style>
                          <body style="font-family: Arial,serif; size: 11px; background-color: #D3D3D3;">
                         """;
-//        String reportHeader =  "<h1 style=\"size: 20px;\">" + headerOfReport + "</h1>";
-//        String name = "<h2 style=\"size: 14px;\">" + description + "</h2>";
 
         String reportHeader = "<h2 style=\"size: 14px;\">" + headerOfReport+ "</h2>";
         // report description

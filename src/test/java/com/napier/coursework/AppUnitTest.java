@@ -37,7 +37,7 @@ public class AppUnitTest {
                 "     }\n" +
                 " </style>\n" +
                 " <body style=\"font-family: Arial,serif; size: 11px; background-color: #D3D3D3;\">\n" +
-                "<h2 style=\"size: 14px;\">All the cities in Africa organised by largest population to smallest.</h2>";
+                "<h2 style=\"size: 14px;\">City Report</h2><h3 style=\"color: #666666;\">(Report ID: 8) All the cities in Africa organised by largest population to smallest.</h3>";
 
         assertEquals(expected, testResult);
         assertTrue(testResult.contains("All the cities in Africa organised by largest population to smallest."));
@@ -103,6 +103,13 @@ public class AppUnitTest {
       Integer testResult = Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC.getId();
         assertNotNull(testResult);
         assertEquals(1, testResult);
+    }
+
+    @Test
+    void getReportHeaderShouldReturnCorrectHeader(){
+        String testResult = Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC.getReportHeader();
+        assertNotNull(testResult);
+        assertEquals("Country Report", testResult);
     }
 
     @Test

@@ -365,7 +365,7 @@ public enum Reports {
     final String reportName;
     final String query;
     final ReportTypes reportType;
-    Reports(Integer id,String reportHeader,  String reportName, String query, ReportTypes reportType){
+    Reports(Integer id, String reportHeader,  String reportName, String query, ReportTypes reportType){
         this.id =id;
         this.reportHeader = reportHeader;
         this.reportName = reportName;
@@ -384,6 +384,7 @@ public enum Reports {
     public String getReportName() {
         return reportName;
     }
+
     public String getReportHeader() {return reportHeader;}
 
     public ReportTypes getReportType() {
