@@ -68,25 +68,6 @@ public class AppUnitTest {
         assertTrue(testResult.contains("<p style=\"font-family:Garamond;\">Please select report number that you would like to generate:</p>"));
     }
 
-    @Test
-    void getDataFromDatabaseShouldThrowExceptionOnEmptyReport(){
-        ReportEngine reportEngine = new ReportEngine();
-        Exception exception = assertThrows(NullPointerException.class, ()->{
-          reportEngine.getDataFromDatabase(null, null, null, null);
-        });
-        assertNotNull(exception);
-        assertEquals("Cannot invoke \"com.napier.coursework.Reports.getQuery()\" because \"report\" is null", exception.getMessage());
-    }
-
-    @Test
-    void getDataFromDatabaseShouldThrowExceptionOnEmptyGrouping(){
-        ReportEngine reportEngine = new ReportEngine();
-        Exception exception = assertThrows(NullPointerException.class, ()->{
-            reportEngine.getDataFromDatabase(null, Reports.REPORT_ALL_CITIES_IN_COUNTRY, null, null);
-        });
-        assertNotNull(exception);
-        assertEquals("Cannot invoke \"String.length()\" because \"replacement\" is null", exception.getMessage());
-    }
 
     @Test
    void getResultSetShouldThrowExceptionOnError() {
