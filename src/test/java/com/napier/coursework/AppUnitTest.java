@@ -65,7 +65,7 @@ public class AppUnitTest {
         assertNotNull(testResult);
         assertTrue(testResult.contains("Bolivia"));
         assertTrue(testResult.contains("Barbados"));
-        assertTrue(testResult.contains("<p style=\"font-family:Garamond;\">Please select report number that you would like to generate:</p>"));
+        assertTrue(testResult.contains("<p>Please select report number that you would like to generate:</p>"));
     }
 
 
