@@ -2,7 +2,7 @@ package com.napier.coursework;
 
 public enum Reports {
 
-    REPORT_ALL_COUNTRIES_BY_POPULATION_DESC(1,"All the countries in the world organised by largest population to smallest",
+    REPORT_ALL_COUNTRIES_BY_POPULATION_DESC(1, "Country Report","All the countries in the world organised by largest population to smallest",
             """
                 SELECT country.Code,country.Name,country.Continent,country.Region,
                        country.Population,
@@ -12,7 +12,7 @@ public enum Reports {
                               ON country.capital = c.id
                 ORDER  BY country.population DESC;
                 """, ReportTypes.REPORT_COUNTRY),
-    REPORT_ALL_COUNTRIES_IN_CONTINENT(2, "All the countries in a continent organised by largest population to smallest",
+    REPORT_ALL_COUNTRIES_IN_CONTINENT(2, "Country Report","All the countries in a continent organised by largest population to smallest",
             """
              SELECT country.Code,country.Name,country.Continent,country.Region,
                     country.Population,
@@ -23,7 +23,7 @@ public enum Reports {
              WHERE  country.continent LIKE 'XXvarArgXX'
              ORDER  BY country.population DESC;
              """, ReportTypes.REPORT_COUNTRY),
-    REPORT_ALL_COUNTRIES_IN_REGION(3, "All the countries in a region organised by largest population to smallest",
+    REPORT_ALL_COUNTRIES_IN_REGION(3, "Country Report", "All the countries in a region organised by largest population to smallest",
             """
                 SELECT country.Code,country.Name,country.Continent,country.Region,
                        country.Population,
@@ -35,7 +35,7 @@ public enum Reports {
                 ORDER  BY country.population DESC;
                 """, ReportTypes.REPORT_COUNTRY),
 
-    REPORT_TOP_POPULATED_COUNTRIES_IN_WORLD(4, "The top YYvarLimitYY populated countries in the world",
+    REPORT_TOP_POPULATED_COUNTRIES_IN_WORLD(4, "Country Report", "The top YYvarLimitYY populated countries in the world",
             """
                 SELECT country.Code,country.Name,country.Continent,country.Region,
                        country.Population,
@@ -47,7 +47,7 @@ public enum Reports {
                 LIMIT  0, YYvarLimitYY;
                 """, ReportTypes.REPORT_COUNTRY),
 
-    REPORT_TOP_POPULATED_COUNTRIES_IN_CONTINENT(5, "The top YYvarLimitYY populated countries in XXvarArgXX",
+    REPORT_TOP_POPULATED_COUNTRIES_IN_CONTINENT(5, "Country Report","The top YYvarLimitYY populated countries in XXvarArgXX",
                   """
                 SELECT country.Code,country.Name,country.Continent,country.Region,
                        country.Population,
@@ -60,7 +60,7 @@ public enum Reports {
                 LIMIT  0, YYvarLimitYY;
                 """, ReportTypes.REPORT_COUNTRY),
 
-    REPORT_TOP_POPULATED_COUNTRIES_IN_REGION(6, "The top YYvarLimitYY populated countries in XXvarArgXX",
+    REPORT_TOP_POPULATED_COUNTRIES_IN_REGION(6, "Country Report","The top YYvarLimitYY populated countries in XXvarArgXX",
             """
                 SELECT country.Code,country.Name,country.Continent,country.Region,
                        country.Population,
@@ -74,7 +74,7 @@ public enum Reports {
                 """,
             ReportTypes.REPORT_COUNTRY),
 
-    REPORT_ALL_CITIES_IN_WORLD(7, "All the cities in the world organised by largest population to smallest.",
+    REPORT_ALL_CITIES_IN_WORLD(7, "City Report","All the cities in the world organised by largest population to smallest.",
             """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
@@ -83,7 +83,7 @@ public enum Reports {
                 """,
             ReportTypes.REPORT_CITY),
 
-    REPORT_ALL_CITIES_IN_CONTINENT(8, "All the cities in XXvarArgXX organised by largest population to smallest.",
+    REPORT_ALL_CITIES_IN_CONTINENT(8, "City Report","All the cities in XXvarArgXX organised by largest population to smallest.",
             """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
@@ -94,7 +94,7 @@ public enum Reports {
                """,
             ReportTypes.REPORT_CITY),
 
-    REPORT_ALL_CITIES_IN_REGION(9,"All the cities in XXvarArgXX organised by largest population to smallest.",
+    REPORT_ALL_CITIES_IN_REGION(9,"City Report","All the cities in XXvarArgXX organised by largest population to smallest.",
             """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
@@ -105,7 +105,7 @@ public enum Reports {
                """,
             ReportTypes.REPORT_CITY),
 
-    REPORT_ALL_CITIES_IN_COUNTRY(10, "All the cities in XXvarArgXX organised by largest population to smallest.",
+    REPORT_ALL_CITIES_IN_COUNTRY(10, "City Report","All the cities in XXvarArgXX organised by largest population to smallest.",
             """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
@@ -116,7 +116,7 @@ public enum Reports {
                """,
             ReportTypes.REPORT_CITY),
 
-    REPORT_ALL_CITIES_IN_DISTRICT(11, "All the cities in XXvarArgXX organised by largest population to smallest.",
+    REPORT_ALL_CITIES_IN_DISTRICT(11, "City Report","All the cities in XXvarArgXX organised by largest population to smallest.",
             """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
@@ -126,7 +126,7 @@ public enum Reports {
                """,
             ReportTypes.REPORT_CITY),
 
-    REPORT_TOP_POPULATED_CITIES_IN_WORLD(12, "The top YYvarLimitYY populated cities in the world",
+    REPORT_TOP_POPULATED_CITIES_IN_WORLD(12, "City Report","The top YYvarLimitYY populated cities in the world",
             """
                         SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                         FROM city
@@ -136,7 +136,7 @@ public enum Reports {
                        """,
     ReportTypes.REPORT_CITY),
 
-    REPORT_TOP_POPULATED_CITIES_IN_CONTINENT(13, "The top YYvarLimitYY populated cities in XXvarArgXX",
+    REPORT_TOP_POPULATED_CITIES_IN_CONTINENT(13, "City Report","The top YYvarLimitYY populated cities in XXvarArgXX",
             """
                         SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                         FROM city
@@ -147,7 +147,7 @@ public enum Reports {
                         """,
     ReportTypes.REPORT_CITY),
 
-    REPORT_TOP_POPULATED_CITIES_IN_REGION(14, "The top YYvarLimitYY populated cities in XXvarArgXX",
+    REPORT_TOP_POPULATED_CITIES_IN_REGION(14, "City Report","The top YYvarLimitYY populated cities in XXvarArgXX",
             """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
@@ -157,7 +157,7 @@ public enum Reports {
                 LIMIT 0, YYvarLimitYY;
                 """,
             ReportTypes.REPORT_CITY),
-    REPORT_TOP_POPULATED_CITIES_IN_COUNTRY(15,"The top YYvarLimitYY populated cities in XXvarArgXX",
+    REPORT_TOP_POPULATED_CITIES_IN_COUNTRY(15, "City Report","The top YYvarLimitYY populated cities in XXvarArgXX",
             """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
@@ -167,7 +167,7 @@ public enum Reports {
                 LIMIT 0, YYvarLimitYY;
                 """,
             ReportTypes.REPORT_CITY),
-    REPORT_TOP_POPULATED_CITIES_IN_DISTRICT(16, "The top YYvarLimitYY populated cities in XXvarArgXX",
+    REPORT_TOP_POPULATED_CITIES_IN_DISTRICT(16, "City Report","The top YYvarLimitYY populated cities in XXvarArgXX",
             """
                 SELECT city.Name AS Name, country.Name AS Country, city.District, city.Population
                 FROM city
@@ -177,7 +177,7 @@ public enum Reports {
                 """,
             ReportTypes.REPORT_CITY ),
 
-    REPORT_CAPITAL_CITIES_IN_WORLD(17, "All the capital cities in the world organised by largest population to smallest.",
+    REPORT_CAPITAL_CITIES_IN_WORLD(17, "Capital City Report", "All the capital cities in the world organised by largest population to smallest.",
             """
                 SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population'
                 FROM country a
@@ -186,7 +186,7 @@ public enum Reports {
                 """,
             ReportTypes.REPORT_CAPITAL_CITY),
 
-    REPORT_CAPITAL_CITIES_IN_CONTINENT(18, "All the capital cities in XXvarArgXX organised by largest population to smallest.",
+    REPORT_CAPITAL_CITIES_IN_CONTINENT(18, "Capital City Report","All the capital cities in XXvarArgXX organised by largest population to smallest.",
             """
                 SELECT b.Name       as 'Name',
                        a.Name       as 'Country',
@@ -199,7 +199,7 @@ public enum Reports {
                 """,
             ReportTypes.REPORT_CAPITAL_CITY),
 
-    REPORT_CAPITAL_CITIES_IN_REGION(19, "All the capital cities in XXvarArgXX organised by largest to smallest.",
+    REPORT_CAPITAL_CITIES_IN_REGION(19, "Capital City Report","All the capital cities in XXvarArgXX organised by largest to smallest.",
             """
             SELECT b.Name as 'Name', a.Name as 'Country', a.Region as 'Region',
                    b.Population as 'Population'
@@ -209,7 +209,7 @@ public enum Reports {
             """,
             ReportTypes.REPORT_CAPITAL_CITY),
 
-    REPORT_TOP_POPULATED_CAPITAL_CITIES_IN_WORLD(20, "The top YYvarLimitYY populated capital cities in the world",
+    REPORT_TOP_POPULATED_CAPITAL_CITIES_IN_WORLD(20, "Capital City Report","The top YYvarLimitYY populated capital cities in the world",
             """
                 SELECT b.Name as 'Name', a.Name as 'Country', b.Population as 'Population'
                 FROM country a
@@ -218,7 +218,7 @@ public enum Reports {
                 LIMIT 0, YYvarLimitYY;
                 """,
             ReportTypes.REPORT_CAPITAL_CITY),
-    REPORT_TOP_POPULATED_CAPITAL_CITIES_IN_CONTINENT(21, "The top YYvarLimitYY populated capital cities in XXvarArgXX",
+    REPORT_TOP_POPULATED_CAPITAL_CITIES_IN_CONTINENT(21, "Capital City Report","The top YYvarLimitYY populated capital cities in XXvarArgXX",
             """
                         SELECT b.Name       as 'Name',
                                a.Name       as 'Country',
@@ -232,7 +232,7 @@ public enum Reports {
                         """,
     ReportTypes.REPORT_CAPITAL_CITY),
 
-    REPORT_TOP_POPULATED_CAPITAL_CITIES_IN_REGION(22, "The top YYvarLimitYY populated capital cities in XXvarArgXX",
+    REPORT_TOP_POPULATED_CAPITAL_CITIES_IN_REGION(22, "Capital City Report","The top YYvarLimitYY populated capital cities in XXvarArgXX",
             """
                         SELECT b.Name       as 'Name',
                                a.Name       as 'Country',
@@ -246,7 +246,7 @@ public enum Reports {
                         """,
     ReportTypes.REPORT_CAPITAL_CITY),
 
-    REPORT_POPULATION_CITIES_CONTINENT(23, "The population of people, people living in cities, and people not living in cities in each continent.",
+    REPORT_POPULATION_CITIES_CONTINENT(23, "Population Report","The population of people, people living in cities, and people not living in cities in each continent.",
             """
                 SELECT country.continent AS 'Name',
                        (SUM(DISTINCT (country.population)))                        AS 'Total Population',
@@ -262,7 +262,7 @@ public enum Reports {
                 """,
             ReportTypes.REPORT_POPULATION),
 
-    REPORT_POPULATION_CITIES_REGION(24, "The population of people, people living in cities, and people not living in cities in each region.",
+    REPORT_POPULATION_CITIES_REGION(24, "Population Report","The population of people, people living in cities, and people not living in cities in each region.",
             """
                 SELECT country.region AS 'Name',
                        (SUM(DISTINCT (country.population)))                        AS 'Total Population',
@@ -278,7 +278,7 @@ public enum Reports {
                 """,
             ReportTypes.REPORT_POPULATION),
 
-    REPORT_POPULATION_CITIES_COUNTRY(25, "The population of people, people living in cities, and people not living in cities in each country.",
+    REPORT_POPULATION_CITIES_COUNTRY(25, "Population Report","The population of people, people living in cities, and people not living in cities in each country.",
             """
                 SELECT country.name AS 'Name',
                        (SUM(DISTINCT (country.population)))                        AS 'Total Population',
@@ -294,7 +294,7 @@ public enum Reports {
                 """,
             ReportTypes.REPORT_POPULATION),
 
-    REPORT_SHORT_POPULATION_WORLD(26, "The population of the world.",
+    REPORT_SHORT_POPULATION_WORLD(26, "Population Report","The population of the world.",
             """
                 SELECT 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
                 FROM country
@@ -302,7 +302,7 @@ public enum Reports {
                 """,
             ReportTypes.REPORT_POPULATION_SHORT),
 
-    REPORT_SHORT_POPULATION_CONTINENT(27, "The population of XXvarArgXX",
+    REPORT_SHORT_POPULATION_CONTINENT(27, "Population Report","The population of XXvarArgXX",
             """
                 SELECT country.continent AS 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
                 FROM country
@@ -312,7 +312,7 @@ public enum Reports {
             ReportTypes.REPORT_POPULATION_SHORT),
 
 
-    REPORT_SHORT_POPULATION_REGION(28, "The population of XXvarArgXX",
+    REPORT_SHORT_POPULATION_REGION(28, "Population Report","The population of XXvarArgXX",
             """
                             SELECT country.region AS 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
                             FROM country
@@ -320,7 +320,7 @@ public enum Reports {
                             WHERE country.region = 'XXvarArgXX';
                             """,
             ReportTypes.REPORT_POPULATION_SHORT),
-    REPORT_SHORT_POPULATION_(29, "The population of XXvarArgXX",
+    REPORT_SHORT_POPULATION_(29, "Population Report","The population of XXvarArgXX",
             """
                             SELECT country.Name AS 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
                             FROM country
@@ -329,7 +329,7 @@ public enum Reports {
                             """,
             ReportTypes.REPORT_POPULATION_SHORT),
 
-    REPORT_SHORT_POPULATION_DISTRICT(30, "The population of XXvarArgXX",
+    REPORT_SHORT_POPULATION_DISTRICT(30, "Population Report","The population of XXvarArgXX",
             """
                             SELECT city.District AS 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
                             FROM country
@@ -338,7 +338,7 @@ public enum Reports {
                             """,
             ReportTypes.REPORT_POPULATION_SHORT),
 
-    REPORT_SHORT_POPULATION_COUNTRY(31, "The population of XXvarArgXX",
+    REPORT_SHORT_POPULATION_COUNTRY(31, "Population Report","The population of XXvarArgXX",
             """
                             SELECT city.Name AS 'Name', (SUM(DISTINCT (country.population))) AS 'Total Population'
                             FROM country
@@ -348,7 +348,7 @@ public enum Reports {
             ReportTypes.REPORT_POPULATION_SHORT),
 
 
-    REPORT_LANGUAGES_ALL_WORLD(32, "The number of people who speak the following languages (Chinese, English, Hindi, Spanish, Arabic) from greatest number to smallest, including the percentage of the world population",
+    REPORT_LANGUAGES_ALL_WORLD(32, "Languages Report","The number of people who speak the following languages (Chinese, English, Hindi, Spanish, Arabic) from greatest number to smallest, including the percentage of the world population",
                     """
                             WITH data as (SELECT countrylanguage.Language AS Language, 
                             Round(Sum(countrylanguage.Percentage/100*country.Population), 0) as Speakers FROM countrylanguage 
@@ -361,11 +361,13 @@ public enum Reports {
             ReportTypes.REPORT_LANGUAGES);
 
     final Integer id;
+    final String reportHeader;
     final String reportName;
     final String query;
     final ReportTypes reportType;
-    Reports(Integer id, String reportName, String query, ReportTypes reportType){
+    Reports(Integer id,String reportHeader,  String reportName, String query, ReportTypes reportType){
         this.id =id;
+        this.reportHeader = reportHeader;
         this.reportName = reportName;
         this.query = query;
         this.reportType = reportType;
@@ -382,6 +384,7 @@ public enum Reports {
     public String getReportName() {
         return reportName;
     }
+    public String getReportHeader() {return reportHeader;}
 
     public ReportTypes getReportType() {
         return reportType;

@@ -45,6 +45,8 @@ public class ReportEngine {
 
     protected String generateHtmlHeader(Reports report, String grouping, String limit) {
         String description = report.getReportName();
+        String headerOfReport = report.getReportHeader();
+        String reportId= report.getId().toString();
         description = description.replaceAll("XXvarArgXX", grouping);
         description = description.replaceAll("YYvarLimitYY", limit);
         String pageHeader =
@@ -70,8 +72,14 @@ public class ReportEngine {
                          </style>
                          <body style="font-family: Arial,serif; size: 11px; background-color: #D3D3D3;">
                         """;
-        String name = "<h2 style=\"size: 14px;\">" + description + "</h2>";
-        pageHeader += name;
+//        String reportHeader =  "<h1 style=\"size: 20px;\">" + headerOfReport + "</h1>";
+//        String name = "<h2 style=\"size: 14px;\">" + description + "</h2>";
+
+        String reportHeader = "<h2 style=\"size: 14px;\">" + headerOfReport+ "</h2>";
+        // report description
+        String htmlDesc = "<h3 style=\"color: #666666;\">(Report ID: " + reportId + ") " + description+ "</h3>";
+        pageHeader += reportHeader;
+        pageHeader += htmlDesc ;
 
         return pageHeader;
     }
