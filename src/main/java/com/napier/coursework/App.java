@@ -165,8 +165,8 @@ public class App {
                                     var groupingType = document.getElementById("groupingTypeDropdown");
                                     var limitType = document.getElementById("limitOf");
                                        \s
-                                    //window.open("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
-                                    console.log("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
+                                    window.open("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
+                                    //console.log("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
                                                                   \s
                                 }
                 	
