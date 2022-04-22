@@ -61,7 +61,7 @@ public class AppUnitTest {
     void produceHomePageShouldReturnCorrectHomePage() {
         App app;
         app = new App();
-        String testResult =  app.produceHomePage();
+        String testResult = app.produceHomePage();
         assertNotNull(testResult);
         assertTrue(testResult.contains("Bolivia"));
         assertTrue(testResult.contains("Barbados"));
@@ -70,31 +70,31 @@ public class AppUnitTest {
 
 
     @Test
-   void getResultSetShouldThrowExceptionOnError() {
-      Exception exception = assertThrows(NullPointerException.class, ()->{
-          QueryHelper.getResultSet(null ,null);
-      });
-      assertNotNull(exception);
-      assertEquals("Cannot invoke \"java.sql.Connection.createStatement()\" because \"connection\" is null", exception.getMessage());
+    void getResultSetShouldThrowExceptionOnError() {
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            QueryHelper.getResultSet(null, null);
+        });
+        assertNotNull(exception);
+        assertEquals("Cannot invoke \"java.sql.Connection.createStatement()\" because \"connection\" is null", exception.getMessage());
     }
 
 
     @Test
-    void getIdShouldReturnCorrectId(){
-      Integer testResult = Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC.getId();
+    void getIdShouldReturnCorrectId() {
+        Integer testResult = Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC.getId();
         assertNotNull(testResult);
         assertEquals(1, testResult);
     }
 
     @Test
-    void getReportHeaderShouldReturnCorrectHeader(){
+    void getReportHeaderShouldReturnCorrectHeader() {
         String testResult = Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC.getReportHeader();
         assertNotNull(testResult);
         assertEquals("Country Report", testResult);
     }
 
     @Test
-    void getReportByIdShouldReturnDefaultValue(){
+    void getReportByIdShouldReturnDefaultValue() {
         Reports reportById = ReportEngine.getReportById(10000);
         assertEquals(Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC, reportById);
         assertNotEquals(Reports.REPORT_ALL_CITIES_IN_CONTINENT, reportById);

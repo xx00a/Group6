@@ -4,34 +4,16 @@ import java.sql.*;
 
 public class MySQLConnection {
 
-    // default constructor
-    public static Connection connect()
-    {
-      return   connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
-    }
+    private MySQLConnection() {}
 
-    // constructor for connection with parameters
-    public static Connection connect(String uri, String user, String password)
-    {
-        try
-        {
-            // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
-
+    // connection with parameters
+    public static Connection connect(String uri, String user, String password) {
         // Connection to the database
         Connection con = null;
         int retries = 3;
-        for (int i = 0; i < retries; ++i)
-        {
+        for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
-            try
-            {
+            try {
                 // Wait a bit for db to start
                 Thread.sleep(5000);
                 // Connect to database
@@ -41,33 +23,22 @@ public class MySQLConnection {
                 Thread.sleep(1000);
                 // Exit for loop
                 return con;
-            }
-            catch (SQLException sqle)
-            {
+            } catch (InterruptedException | SQLException e) {
                 System.out.println("Failed to connect to database attempt " + i);
-                System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
-                System.out.println("Thread interrupted? Should not happen.");
+                System.out.println(e.getMessage());
             }
         }
         return con;
     }
 
     // Disconnect from the MySQL database.
-    public static void disconnect(Connection connection)
-    {
-        if (connection != null)
-        {
-            try
-            {
+    public static void disconnect(Connection connection) {
+        if (connection != null) {
+            try {
                 // Close connection
                 connection.close();
                 System.out.println("Database connection closed.");
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
         }

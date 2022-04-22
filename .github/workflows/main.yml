@@ -32,7 +32,7 @@ jobs:
           verbose: true # optional (default = false)
 
   build:
-    name: Group 6 application
+    name: Group 6 application and Unit Tests
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout

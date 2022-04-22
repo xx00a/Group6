@@ -7,6 +7,8 @@ import java.sql.Statement;
 
 public class QueryHelper {
 
+    private QueryHelper() {}
+
     public static ResultSet getResultSet(Connection connection, String query) throws SQLException {
         // Create an SQL statement
         Statement stmt = connection.createStatement();

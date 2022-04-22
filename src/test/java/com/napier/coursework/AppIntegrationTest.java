@@ -66,11 +66,10 @@ public class AppIntegrationTest {
     }
 
 
-
     @Test
-    void getDataFromDatabaseShouldThrowExceptionOnEmptyReport(){
+    void getDataFromDatabaseShouldThrowExceptionOnEmptyReport() {
         ReportEngine reportEngine = new ReportEngine();
-        Exception exception = assertThrows(NullPointerException.class, ()->{
+        Exception exception = assertThrows(NullPointerException.class, () -> {
             reportEngine.getDataFromDatabase(null, null, null, null);
         });
         assertNotNull(exception);
@@ -79,14 +78,20 @@ public class AppIntegrationTest {
 
 
     @Test
-    void getDataFromDatabaseShouldThrowExceptionOnEmptyGrouping(){
+    void getDataFromDatabaseShouldThrowExceptionOnEmptyGrouping() {
         ReportEngine reportEngine = new ReportEngine();
-        Exception exception = assertThrows(NullPointerException.class, ()->{
+        Exception exception = assertThrows(NullPointerException.class, () -> {
             reportEngine.getDataFromDatabase(null, Reports.REPORT_ALL_CITIES_IN_COUNTRY, null, null);
         });
         assertNotNull(exception);
         assertEquals("Cannot invoke \"String.length()\" because \"replacement\" is null", exception.getMessage());
     }
+
+    @Test
+    void getMySQLConnectionConnectShouldReturnNullOnIncorrectUri() {
+        assertNull(MySQLConnection.connect("jdbc:mysql://test", "testUser", "test"));
+    }
+
 
     @AfterAll
     static void disconnectDB() {

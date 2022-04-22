@@ -21,7 +21,7 @@ public class App {
     public static void main(String[] args) {
 
         // Initialise the connection to the "world" database on the MySQL db server
-        sqlConnect = MySQLConnection.connect();
+        sqlConnect = MySQLConnection.connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
 
         // Start our Spring Boot application
         SpringApplication.run(App.class, args);
@@ -38,21 +38,12 @@ public class App {
 
     @ResponseBody
     public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
-                            @RequestParam(value = "limit", defaultValue = "1") String limit) {
-
-        try {
-            // Create  the html report output
-            ReportEngine reportEngine = new ReportEngine();
-            Reports report = ReportEngine.getReportById(ID);
-            ResultSet dataFromDb = reportEngine.getDataFromDatabase(sqlConnect, report, grouping, limit);
-            return reportEngine.generateHtmlOutput(dataFromDb, report, grouping, limit);
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to produce report");
-        }
-
-        return "";
+                            @RequestParam(value = "limit", defaultValue = "1") String limit) throws SQLException {
+        // Create  the html report output
+        ReportEngine reportEngine = new ReportEngine();
+        Reports report = ReportEngine.getReportById(ID);
+        ResultSet dataFromDb = reportEngine.getDataFromDatabase(sqlConnect, report, grouping, limit);
+        return reportEngine.generateHtmlOutput(dataFromDb, report, grouping, limit);
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
