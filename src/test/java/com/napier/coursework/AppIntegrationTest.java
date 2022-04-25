@@ -1,13 +1,16 @@
-package com.napier.coursework;
+/*
+  SET08803 Coursework Application
+  AppIntegrationTest Class
+  This class is a basis for application integration testing
+*/
 
+// Dependencies
+package com.napier.coursework;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
-
 import static org.junit.jupiter.api.Assertions.*;
-
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +18,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+// start class AppIntegrationTest
 public class AppIntegrationTest {
 
     static App app;
@@ -29,6 +32,7 @@ public class AppIntegrationTest {
     }
 
     @Test
+    // start generateHtmlOutputShouldReturnCorrectHtmlOutput
     void generateHtmlOutputShouldReturnCorrectHtmlOutput() throws SQLException {
         ResultSet dataFromDb = reportEngine.getDataFromDatabase(App.sqlConnect, Reports.REPORT_ALL_CITIES_IN_COUNTRY, "Poland", "3");
         String testResult = reportEngine.generateHtmlOutput(dataFromDb, Reports.REPORT_ALL_CITIES_IN_COUNTRY, "Poland", "3");
@@ -38,6 +42,7 @@ public class AppIntegrationTest {
     }
 
     @Test
+    // start generateTableRowsShouldReturnCorrectTableRows
     void generateTableRowsShouldReturnCorrectTableRows() throws SQLException {
         ResultSet dataFromDb = reportEngine.getDataFromDatabase(App.sqlConnect, Reports.REPORT_ALL_CITIES_IN_COUNTRY, "Poland", "3");
         String testResult = reportEngine.generateTableRows(dataFromDb, Reports.REPORT_ALL_CITIES_IN_COUNTRY);
@@ -52,12 +57,14 @@ public class AppIntegrationTest {
     }
 
     @Test
+    // test getDataFromDatabaseShouldReturnResultSet
     void getDataFromDatabaseShouldReturnResultSet() throws SQLException {
         ResultSet testResult = reportEngine.getDataFromDatabase(App.sqlConnect, Reports.REPORT_ALL_CITIES_IN_COUNTRY, "Poland", "3");
         assertNotNull(testResult);
     }
 
     @Test
+    // test getReportShouldReturnCorrectReportHtmlOutput
     void getReportShouldReturnCorrectReportHtmlOutput() throws SQLException {
         String testResult = app.getReport(8, "Africa", "10");
         assertNotNull(testResult);
@@ -67,6 +74,7 @@ public class AppIntegrationTest {
 
 
     @Test
+    // test getDataFromDatabaseShouldThrowExceptionOnEmptyReport
     void getDataFromDatabaseShouldThrowExceptionOnEmptyReport() {
         ReportEngine reportEngine = new ReportEngine();
         Exception exception = assertThrows(NullPointerException.class, () -> {
@@ -78,6 +86,7 @@ public class AppIntegrationTest {
 
 
     @Test
+    // test getDataFromDatabaseShouldThrowExceptionOnEmptyGrouping
     void getDataFromDatabaseShouldThrowExceptionOnEmptyGrouping() {
         ReportEngine reportEngine = new ReportEngine();
         Exception exception = assertThrows(NullPointerException.class, () -> {
@@ -88,13 +97,16 @@ public class AppIntegrationTest {
     }
 
     @Test
+    // test getMySQLConnectionConnectShouldReturnNullOnIncorrectUri
     void getMySQLConnectionConnectShouldReturnNullOnIncorrectUri() {
         assertNull(MySQLConnection.connect("jdbc:mysql://test", "testUser", "test"));
     }
 
 
     @AfterAll
+    // test disconnectDB
     static void disconnectDB() {
         MySQLConnection.disconnect(App.sqlConnect);
     }
 }
+// end AppIntegrationTest
