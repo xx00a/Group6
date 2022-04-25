@@ -59,4 +59,4 @@ This repository is maintained and contributed by the following Group 6 members:
 | 29 |  The population of a country. | YES | ![](https://github.com/xx00a/Group6/blob/feature/screenshot/screenshots/ReportID_29.png?raw=true) |
 | 30 |  The population of a district. | YES | ![](https://github.com/xx00a/Group6/blob/feature/screenshot/screenshots/ReportID_30.png?raw=true) |
 | 31 |  The population of a city. | YES | ![](https://github.com/xx00a/Group6/blob/feature/screenshot/screenshots/ReportID_31.png?raw=true) |
-| 32 |  The number of people who speak the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic | YES | ![](https://github.com/xx00a/Group6/blob/feature/screenshot/screenshots/ReportID_32.png?raw=true) |
+| 32 |  The number of people who speak the following languages from greatest number to smallest, including the percentage of the world population: Chinese, English, Hindi, Spanish, Arabic | YES | ![](https://github.com/xx00a/Group6/blob/feature/screenshot/screenshots/ReportID_32.jpg?raw=true) |
