@@ -1,20 +1,29 @@
+/*
+  SET08803 Coursework Application
+  AppIntegrationTest Class
+  This class is a basis for application integration testing
+*/
+
+// Dependencies
 package com.napier.coursework;
-
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+// start class AppUnitTest
 public class AppUnitTest {
 
     ReportEngine reportEngine = new ReportEngine();
 
     @Test
+        // test getReportByIdShouldReturnCorrectReport
     void getReportByIdShouldReturnCorrectReport() {
         Reports report = ReportEngine.getReportById(1);
         assertEquals(Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC, report);
     }
+    // end test
 
     @Test
+        // test generateHtmlHeaderShouldReturnCorrectHeader
     void generateHtmlHeaderShouldReturnCorrectHeader() {
         String testResult = reportEngine.generateHtmlHeader(Reports.REPORT_ALL_CITIES_IN_CONTINENT, "Africa", "10");
         String expected = " <!DOCTYPE html>\n" +
@@ -42,22 +51,28 @@ public class AppUnitTest {
         assertEquals(expected, testResult);
         assertTrue(testResult.contains("All the cities in Africa organised by largest population to smallest."));
     }
+    // end test
 
     @Test
+        // test generateTableHeadersShouldReturnCorrectTableHeaders
     void generateTableHeadersShouldReturnCorrectTableHeaders() {
         String testResult = reportEngine.generateTableHeaders(Reports.REPORT_ALL_CITIES_IN_CONTINENT);
         String expected = "<tr><th>Name</th><th>Country</th><th>District</th><th>Population</th></tr>";
         assertEquals(expected, testResult);
     }
+    // end test
 
     @Test
+        // test generateHtmlFooterShouldReturnCorrectFooter
     void generateHtmlFooterShouldReturnCorrectFooter() {
         String testResult = reportEngine.generateHtmlFooter();
         String expected = "</body></html>";
         assertEquals(expected, testResult);
     }
+    // end test
 
     @Test
+        // test produceHomePageShouldReturnCorrectHomePage
     void produceHomePageShouldReturnCorrectHomePage() {
         App app;
         app = new App();
@@ -67,9 +82,10 @@ public class AppUnitTest {
         assertTrue(testResult.contains("Barbados"));
         assertTrue(testResult.contains("<p>Please select report number that you would like to generate:</p>"));
     }
-
+// end test
 
     @Test
+        // test getResultSetShouldThrowExceptionOnError
     void getResultSetShouldThrowExceptionOnError() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             QueryHelper.getResultSet(null, null);
@@ -77,26 +93,33 @@ public class AppUnitTest {
         assertNotNull(exception);
         assertEquals("Cannot invoke \"java.sql.Connection.createStatement()\" because \"connection\" is null", exception.getMessage());
     }
-
+// end test
 
     @Test
+        // test getIdShouldReturnCorrectId
     void getIdShouldReturnCorrectId() {
         Integer testResult = Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC.getId();
         assertNotNull(testResult);
         assertEquals(1, testResult);
     }
+    // end test
 
     @Test
+        // test getReportHeaderShouldReturnCorrectHeader
     void getReportHeaderShouldReturnCorrectHeader() {
         String testResult = Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC.getReportHeader();
         assertNotNull(testResult);
         assertEquals("Country Report", testResult);
     }
+    // end test
 
     @Test
+        // getReportByIdShouldReturnDefaultValue
     void getReportByIdShouldReturnDefaultValue() {
         Reports reportById = ReportEngine.getReportById(10000);
         assertEquals(Reports.REPORT_ALL_COUNTRIES_BY_POPULATION_DESC, reportById);
         assertNotEquals(Reports.REPORT_ALL_CITIES_IN_CONTINENT, reportById);
     }
+    // end test
 }
+// end class
