@@ -10,7 +10,7 @@
 - Develop Code Coverage
 
 ## Group 6 Knaban Board
-The Group 6 Knaban Board (Zube) can be [found here](https://zube.io/napier-151/group-6-project/w/workspace-1/kanban).
+The Group 6 Knaban board can be [found here](https://github.com/xx00a/Group6/projects/1).
 
 ## Group Members
 This repository is maintained and contributed by the following Group 6 members:
