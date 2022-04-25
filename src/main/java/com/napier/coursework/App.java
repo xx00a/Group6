@@ -1,28 +1,28 @@
+/*
+  SET08803 Coursework Application
+  Main Class
+*/
+
+// Dependencies
 package com.napier.coursework;
-
- // SET08803 Coursework Application
-
 import java.sql.*;
-import java.util.Objects;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
-
 
 // Set this class as the Spring Boot application and as the REST API controller
 @SpringBootApplication
 @RestController
 public class App {
 
-    // Connect to database
-    static MySQLConnection mySQLConnection = new MySQLConnection();
-    static Connection sqlConnect;
 
+    public static Connection sqlConnect;
+
+    // start main
     public static void main(String[] args) {
 
         // Initialise the connection to the "world" database on the MySQL db server
-        sqlConnect = MySQLConnection.connect();
+        sqlConnect = MySQLConnection.connect("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
 
         // Start our Spring Boot application
         SpringApplication.run(App.class, args);
@@ -31,47 +31,43 @@ public class App {
         System.out.println("Group6's website is now up and running. Waiting for http request...");
 
     }
+    // end main
 
     // Coursework API where report generation request will go through and will be returned to the NGINX webserver
     @RequestMapping(value = "/report",
-            params = { "id", "grouping", "limit" },
+            params = {"id", "grouping", "limit"},
             method = RequestMethod.GET)
+
+    // getReport will collect the various parameters from the webpage to produce the report
+    // start getReport
     @ResponseBody
     public String getReport(@RequestParam(value = "id", defaultValue = "1") int ID, @RequestParam(value = "grouping", defaultValue = "") String grouping,
-                            @RequestParam(value = "limit", defaultValue = "1") String limit) throws ClassNotFoundException, SQLException {
+                            @RequestParam(value = "limit", defaultValue = "1") String limit) throws SQLException {
 
-        // Create variable for the html report output
-        String htmlOutput = "";
+        // Create  the html report output
+        ReportEngine reportEngine = new ReportEngine();
 
-        try {
+        // Lookup our report ID
+        Reports report = ReportEngine.getReportById(ID);
 
-            // We create our handy report generator
-            ReportEngine theReport = new ReportEngine();
+        // Let's return the dataset from the SQL database
+        ResultSet dataFromDb = reportEngine.getDataFromDatabase(sqlConnect, report, grouping, limit);
 
-            // In this mode, we expect variables to be passed - we can also create a loop here to cycle from Reports 1 to 32
-            htmlOutput = theReport.generateReport(ID,grouping,limit,sqlConnect);
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to produce report");
-        }
-
-        /*
-         Produce HTML output in console - should be removed when testing complete
-         System.out.println("--- HTML START ---");
-         System.out.println(htmlOutput);
-         System.out.println("--- HTML END ---");
-        */
-
-        return htmlOutput;
+        // we are returning the HTML (strings) to display to the HTTP engine
+        return reportEngine.generateHtmlOutput(dataFromDb, report, grouping, limit);
     }
+    // end getReport
 
+    // The index page is where we will collect the parameters (via GET)
+    // http://localhost:8080/index
+    // start produceHomePage
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String produceQueryHome()  throws ClassNotFoundException, SQLException {
+    public String produceHomePage() {
 
         // Create variable for the html output
         String htmlOutput;
 
+        // Assign the static HTML page
         htmlOutput = """
                            <!DOCTYPE html>
                             <html lang="en">
@@ -165,8 +161,8 @@ public class App {
                                     var groupingType = document.getElementById("groupingTypeDropdown");
                                     var limitType = document.getElementById("limitOf");
                                        \s
-                                    //window.open("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
-                                    console.log("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
+                                    window.open("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
+                                    //console.log("/report?id=" + reportNumber + "&grouping=" + groupingType.value + "&limit=" + limitType.value);
                                                                   \s
                                 }
                 	
@@ -521,5 +517,6 @@ public class App {
         return htmlOutput;
 
     }
+    // end produceHomePage
 
 }
