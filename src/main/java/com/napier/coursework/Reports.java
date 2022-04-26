@@ -96,8 +96,7 @@ public enum Reports {
                      FROM city
                      INNER JOIN country  ON city.CountryCode = country.Code
                      WHERE country.Continent = 'XXvarArgXX'
-                     ORDER BY 4 DESC, 1
-                     LIMIT 0, YYvarLimitYY;
+                     ORDER BY 4 DESC;
                     """,
             ReportTypes.REPORT_CITY),
 
@@ -107,8 +106,7 @@ public enum Reports {
                      FROM city
                               INNER JOIN country ON city.CountryCode = country.Code
                      WHERE country.Region = 'XXvarArgXX'
-                     ORDER BY 4 DESC, 1
-                     LIMIT 0, YYvarLimitYY;
+                     ORDER BY 4 DESC;
                     """,
             ReportTypes.REPORT_CITY),
 
@@ -118,8 +116,7 @@ public enum Reports {
                      FROM city
                               INNER JOIN country ON city.CountryCode = country.Code
                      WHERE country.Name = 'XXvarArgXX'
-                     ORDER BY 4 DESC, 1
-                      LIMIT 0, YYvarLimitYY;
+                     ORDER BY 4 DESC;
                     """,
             ReportTypes.REPORT_CITY),
 
